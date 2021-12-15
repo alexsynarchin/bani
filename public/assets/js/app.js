@@ -4021,28 +4021,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       startTime: '',
       endTime: '',
-      endTimeEditable: true
+      endTimeNotEditable: true,
+      minEndTime: ''
     };
   },
-  watch: {
-    startTime: function startTime() {
-      if (this.startTime) {
-        this.endTimeEditable = false;
-      }
-
-      this.timeIsSelected();
-    },
-    endTime: function endTime() {
-      this.timeIsSelected();
-    }
-  },
-  computed: {
-    minEndTime: function minEndTime() {
+  methods: {
+    startTimeIsSelected: function startTimeIsSelected() {
       var startHours = new Date("01/01/2018 " + this.startTime).getHours();
       var startMinutes = new Date("01/01/2018 " + this.startTime).getMinutes();
       var minTime = startHours * 60 + startMinutes + 90;
@@ -4053,10 +4043,10 @@ __webpack_require__.r(__webpack_exports__);
         minMinutes = "00";
       }
 
-      return minHours + ":" + minMinutes;
-    }
-  },
-  methods: {
+      this.minEndTime = minHours + ":" + minMinutes;
+      this.endTimeNotEditable = false;
+      this.endTime = '';
+    },
     timeIsSelected: function timeIsSelected() {
       if (this.startTime && this.endTime) {
         this.$emit('select-time', {
@@ -85479,6 +85469,7 @@ var render = function () {
               end: "18:30",
             },
           },
+          on: { change: _vm.startTimeIsSelected },
           model: {
             value: _vm.startTime,
             callback: function ($$v) {
@@ -85502,14 +85493,14 @@ var render = function () {
         _c("el-time-select", {
           attrs: {
             placeholder: "-- : --",
-            readonly: _vm.endTimeEditable,
+            readonly: _vm.endTimeNotEditable,
             "picker-options": {
               start: _vm.minEndTime,
               step: "00:30",
               end: "18:30",
-              minTime: _vm.minEndTime,
             },
           },
+          on: { change: _vm.timeIsSelected },
           model: {
             value: _vm.endTime,
             callback: function ($$v) {

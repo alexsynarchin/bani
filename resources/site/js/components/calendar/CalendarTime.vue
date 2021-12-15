@@ -9,6 +9,7 @@
                 placeholder="-- : --"
                 v-model="startTime"
                 style="margin-right: 10px"
+                @change="startTimeIsSelected"
                 :picker-options="{
   start: '08:30',
   step: '00:30',
@@ -22,13 +23,13 @@
             </label>
             <el-time-select
                 placeholder="-- : --"
-                :readonly="endTimeEditable"
+                @change="timeIsSelected"
+                :readonly="endTimeNotEditable"
                 v-model="endTime"
                 :picker-options="{
   start: minEndTime,
   step: '00:30',
   end: '18:30',
-  minTime: minEndTime
 }">
             </el-time-select>
         </div>
@@ -41,22 +42,12 @@ export default {
         return {
             startTime: '',
             endTime: '',
-            endTimeEditable:true,
+            endTimeNotEditable:true,
+            minEndTime:'',
         };
     },
-    watch: {
-        startTime: function () {
-            if(this.startTime) {
-                this.endTimeEditable = false;
-            }
-            this.timeIsSelected();
-        },
-        endTime: function () {
-            this.timeIsSelected();
-        }
-    },
-    computed: {
-        minEndTime() {
+    methods: {
+        startTimeIsSelected() {
             let startHours = new Date("01/01/2018 " + this.startTime).getHours();
             let startMinutes = new Date("01/01/2018 " + this.startTime).getMinutes();
             let minTime = startHours * 60 + startMinutes + 90;
@@ -65,13 +56,13 @@ export default {
             if(minMinutes === 0) {
                 minMinutes = "00";
             }
-            return minHours + ":" + minMinutes;
-        }
-    },
-    methods: {
+            this.minEndTime =  minHours + ":" + minMinutes;
+            this.endTimeNotEditable = false;
+            this.endTime = '';
+        },
         timeIsSelected() {
           if(this.startTime && this.endTime) {
-            this.$emit('select-time', {startTime:this.startTime,endTime:this.endTime})
+           this.$emit('select-time', {startTime:this.startTime,endTime:this.endTime})
           }
         }
     }
