@@ -4010,6 +4010,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -4118,6 +4128,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
+//
+//
 //
 //
 //
@@ -6214,7 +6226,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".calendar-time {\n  display: flex;\n}\n.el-input.is-active .el-input__inner:focus, .el-input__inner:focus {\n  border-color: #006672 !important;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".calendar-time {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  justify-content: center;\n}\n.calendar-time__label {\n  margin-bottom: 0;\n  color: #006672;\n  text-transform: uppercase;\n  margin-right: 10px;\n  font-family: \"Metro\", sans-serif;\n  font-size: 17px;\n}\n.calendar-time__item {\n  display: flex;\n  align-items: center;\n}\n.calendar-time__item:first-child {\n  margin-right: 10px;\n}\n.el-input--prefix .el-input__inner {\n  padding-left: 8px;\n}\n.el-input--suffix .el-input__inner {\n  padding-right: 8px;\n}\n.el-date-editor.el-input, .el-date-editor.el-input__inner {\n  width: 65px;\n}\n.el-input.is-active .el-input__inner::-moz-placeholder, .el-input__inner::-moz-placeholder {\n  text-align: center;\n  text-align: center;\n}\n.el-input.is-active .el-input__inner:-ms-input-placeholder, .el-input__inner:-ms-input-placeholder {\n  text-align: center;\n  text-align: center;\n}\n.el-input.is-active .el-input__inner::placeholder, .el-input__inner::placeholder {\n  text-align: center;\n  text-align: center;\n}\n.el-input.is-active .el-input__inner:focus, .el-input__inner:focus {\n  border-color: #006672 !important;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -85245,7 +85257,10 @@ var render = function () {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "mb-3 mt-3", staticStyle: { width: "290px" } },
+        {
+          staticClass: "mb-3 mt-3",
+          staticStyle: { "margin-left": "auto", "margin-right": "auto" },
+        },
         [
           _c("calendar", {
             on: { "select-reserve-time": function ($event) {} },
@@ -85439,15 +85454,19 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", [
+  return _c("section", { staticClass: "calendar-time" }, [
     _c(
-      "section",
-      { staticClass: "calendar-time" },
+      "div",
+      { staticClass: "calendar-time__item" },
       [
+        _c("label", { staticClass: "calendar-time__label" }, [
+          _vm._v("\n                Приход\n            "),
+        ]),
+        _vm._v(" "),
         _c("el-time-select", {
           staticStyle: { "margin-right": "10px" },
           attrs: {
-            placeholder: "Приход",
+            placeholder: "-- : --",
             "picker-options": {
               start: "08:30",
               step: "00:30",
@@ -85462,10 +85481,21 @@ var render = function () {
             expression: "startTime",
           },
         }),
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "calendar-time__item" },
+      [
+        _c("label", { staticClass: "calendar-time__label" }, [
+          _vm._v("\n                Уход\n            "),
+        ]),
         _vm._v(" "),
         _c("el-time-select", {
           attrs: {
-            placeholder: "Уход",
+            placeholder: "-- : --",
             "picker-options": {
               start: "08:30",
               step: "00:30",
@@ -85549,40 +85579,47 @@ var render = function () {
     [
       _c(
         "div",
-        { staticClass: "calendar-month-header" },
+        { staticStyle: { width: "290px" } },
         [
-          _c("CalendarDateSelector", {
-            attrs: {
-              "current-date": _vm.today,
-              "selected-date": _vm.selectedDate,
-            },
-            on: { dateSelected: _vm.selectDate },
-          }),
+          _c(
+            "div",
+            { staticClass: "calendar-month-header" },
+            [
+              _c("CalendarDateSelector", {
+                attrs: {
+                  "current-date": _vm.today,
+                  "selected-date": _vm.selectedDate,
+                },
+                on: { dateSelected: _vm.selectDate },
+              }),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("CalendarWeekdays"),
+          _vm._v(" "),
+          _c(
+            "ul",
+            { staticClass: "days-grid" },
+            _vm._l(_vm.days, function (day) {
+              return _c("CalendarMonthDayItem", {
+                key: day.date,
+                attrs: {
+                  day: day,
+                  "is-today": day.date === _vm.today,
+                  "is-event": day.date === _vm.eventDay,
+                  "is-selected-day": day.date === _vm.reserveData.selectedDay,
+                },
+                on: { "select-day": _vm.selectDay },
+              })
+            }),
+            1
+          ),
+          _vm._v(" "),
+          _c("calendar-legend"),
         ],
         1
       ),
-      _vm._v(" "),
-      _c("CalendarWeekdays"),
-      _vm._v(" "),
-      _c(
-        "ul",
-        { staticClass: "days-grid" },
-        _vm._l(_vm.days, function (day) {
-          return _c("CalendarMonthDayItem", {
-            key: day.date,
-            attrs: {
-              day: day,
-              "is-today": day.date === _vm.today,
-              "is-event": day.date === _vm.eventDay,
-              "is-selected-day": day.date === _vm.reserveData.selectedDay,
-            },
-            on: { "select-day": _vm.selectDay },
-          })
-        }),
-        1
-      ),
-      _vm._v(" "),
-      _c("calendar-legend"),
       _vm._v(" "),
       _c("calendar-time", { on: { "select-time": _vm.selectTime } }),
       _vm._v("\n    " + _vm._s(_vm.reserveData) + "\n"),

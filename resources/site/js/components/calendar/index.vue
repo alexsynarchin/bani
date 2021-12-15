@@ -1,5 +1,6 @@
 <template>
     <div class="calendar-month">
+        <div style="width: 290px;">
         <div class="calendar-month-header">
             <CalendarDateSelector
                 :current-date="today"
@@ -22,6 +23,7 @@
             />
         </ul>
         <calendar-legend></calendar-legend>
+        </div>
         <calendar-time
             @select-time="selectTime"
         ></calendar-time>

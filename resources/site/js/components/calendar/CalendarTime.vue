@@ -1,28 +1,38 @@
 <template>
-    <section>
-        <section class="calendar-time">
+
+<section class="calendar-time">
+        <div class="calendar-time__item">
+            <label class="calendar-time__label">
+                Приход
+            </label>
             <el-time-select
-                placeholder="Приход"
+                placeholder="-- : --"
                 v-model="startTime"
                 style="margin-right: 10px"
                 :picker-options="{
-      start: '08:30',
-      step: '00:30',
-      end: '18:30'
-    }">
+  start: '08:30',
+  step: '00:30',
+  end: '18:30'
+}">
             </el-time-select>
+        </div>
+        <div class="calendar-time__item">
+            <label class="calendar-time__label">
+                Уход
+            </label>
             <el-time-select
-                placeholder="Уход"
+                placeholder="-- : --"
                 v-model="endTime"
                 :picker-options="{
-      start: '08:30',
-      step: '00:30',
-      end: '18:30',
-      minTime: minEndTime
-    }">
+  start: '08:30',
+  step: '00:30',
+  end: '18:30',
+  minTime: minEndTime
+}">
             </el-time-select>
-        </section>
-    </section>
+        </div>
+</section>
+
 </template>
 <script>
 export default {
@@ -65,8 +75,40 @@ export default {
 <style lang="scss" >
 .calendar-time {
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    &__label {
+        margin-bottom: 0;
+        color: #006672;
+        text-transform: uppercase;
+        margin-right: 10px;
+        font-family: 'Metro', sans-serif;
+        font-size: 17px;
+    }
+    &__item {
+        display: flex;
+        align-items: center;
+        &:first-child {
+            margin-right: 10px;
+        }
+
+    }
+}
+.el-input--prefix .el-input__inner {
+    padding-left: 8px;
+}
+.el-input--suffix .el-input__inner {
+    padding-right: 8px;
+}
+.el-date-editor.el-input, .el-date-editor.el-input__inner {
+    width: 65px;
 }
 .el-input.is-active .el-input__inner, .el-input__inner {
+    &::placeholder {
+        text-align: center;
+        text-align: center;
+    }
     &:focus {
         border-color: #006672 !important;
     }

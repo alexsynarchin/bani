@@ -11,7 +11,7 @@
         <button class="booking-link">
             Выберите дату и время
         </button>
-        <div class="mb-3 mt-3" style="width: 290px">
+        <div class="mb-3 mt-3" style="margin-left:auto; margin-right: auto">
             <calendar
                 @select-reserve-time=""
             ></calendar>
