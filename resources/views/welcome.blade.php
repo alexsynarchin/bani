@@ -14,6 +14,6 @@
             <booking></booking>
 
         </div>
-    <script src="{{mix('assets/js/app.js?ver=1')}}"></script>
+    <script src="{{mix('assets/js/app.js')}}"></script>
     </body>
 </html>
