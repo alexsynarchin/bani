@@ -22,9 +22,10 @@
             </label>
             <el-time-select
                 placeholder="-- : --"
+                :readonly="endTimeEditable"
                 v-model="endTime"
                 :picker-options="{
-  start: '08:30',
+  start: minEndTime,
   step: '00:30',
   end: '18:30',
   minTime: minEndTime
@@ -39,11 +40,15 @@ export default {
     data() {
         return {
             startTime: '',
-            endTime: ''
+            endTime: '',
+            endTimeEditable:true,
         };
     },
     watch: {
         startTime: function () {
+            if(this.startTime) {
+                this.endTimeEditable = false;
+            }
             this.timeIsSelected();
         },
         endTime: function () {
@@ -106,7 +111,6 @@ export default {
 }
 .el-input.is-active .el-input__inner, .el-input__inner {
     &::placeholder {
-        text-align: center;
         text-align: center;
     }
     &:focus {

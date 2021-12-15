@@ -4020,15 +4020,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       startTime: '',
-      endTime: ''
+      endTime: '',
+      endTimeEditable: true
     };
   },
   watch: {
     startTime: function startTime() {
+      if (this.startTime) {
+        this.endTimeEditable = false;
+      }
+
       this.timeIsSelected();
     },
     endTime: function endTime() {
@@ -6226,7 +6232,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".calendar-time {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  justify-content: center;\n}\n.calendar-time__label {\n  margin-bottom: 0;\n  color: #006672;\n  text-transform: uppercase;\n  margin-right: 10px;\n  font-family: \"Metro\", sans-serif;\n  font-size: 17px;\n}\n.calendar-time__item {\n  display: flex;\n  align-items: center;\n}\n.calendar-time__item:first-child {\n  margin-right: 10px;\n}\n.el-input--prefix .el-input__inner {\n  padding-left: 8px;\n}\n.el-input--suffix .el-input__inner {\n  padding-right: 8px;\n}\n.el-date-editor.el-input, .el-date-editor.el-input__inner {\n  width: 65px;\n}\n.el-input.is-active .el-input__inner::-moz-placeholder, .el-input__inner::-moz-placeholder {\n  text-align: center;\n  text-align: center;\n}\n.el-input.is-active .el-input__inner:-ms-input-placeholder, .el-input__inner:-ms-input-placeholder {\n  text-align: center;\n  text-align: center;\n}\n.el-input.is-active .el-input__inner::placeholder, .el-input__inner::placeholder {\n  text-align: center;\n  text-align: center;\n}\n.el-input.is-active .el-input__inner:focus, .el-input__inner:focus {\n  border-color: #006672 !important;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".calendar-time {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  justify-content: center;\n}\n.calendar-time__label {\n  margin-bottom: 0;\n  color: #006672;\n  text-transform: uppercase;\n  margin-right: 10px;\n  font-family: \"Metro\", sans-serif;\n  font-size: 17px;\n}\n.calendar-time__item {\n  display: flex;\n  align-items: center;\n}\n.calendar-time__item:first-child {\n  margin-right: 10px;\n}\n.el-input--prefix .el-input__inner {\n  padding-left: 8px;\n}\n.el-input--suffix .el-input__inner {\n  padding-right: 8px;\n}\n.el-date-editor.el-input, .el-date-editor.el-input__inner {\n  width: 65px;\n}\n.el-input.is-active .el-input__inner::-moz-placeholder, .el-input__inner::-moz-placeholder {\n  text-align: center;\n}\n.el-input.is-active .el-input__inner:-ms-input-placeholder, .el-input__inner:-ms-input-placeholder {\n  text-align: center;\n}\n.el-input.is-active .el-input__inner::placeholder, .el-input__inner::placeholder {\n  text-align: center;\n}\n.el-input.is-active .el-input__inner:focus, .el-input__inner:focus {\n  border-color: #006672 !important;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -85496,8 +85502,9 @@ var render = function () {
         _c("el-time-select", {
           attrs: {
             placeholder: "-- : --",
+            readonly: _vm.endTimeEditable,
             "picker-options": {
-              start: "08:30",
+              start: _vm.minEndTime,
               step: "00:30",
               end: "18:30",
               minTime: _vm.minEndTime,
