@@ -11304,29 +11304,6 @@ textarea.form-control-lg {
   cursor: pointer;
 }
 
-.reserve-map {
-  position: relative;
-  background-color: #C5C6C6;
-}
-.reserve-map__place {
-  cursor: pointer;
-  position: absolute;
-  z-index: 2;
-}
-.reserve-map__place svg {
-  width: 46px;
-  height: 46px;
-}
-.reserve-map__place:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 255, 102, 0.6);
-}
-
 .app {
   font-family: "Noto Sans", sans-serif;
 }
