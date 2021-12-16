@@ -11337,22 +11337,22 @@ textarea.form-control-lg {
   font-weight: bold;
 }
 .reserve-map__place-number--left {
-  left: 8px;
+  left: 6px;
   top: 50%;
   transform: translateY(-50%);
 }
 .reserve-map__place-number--right {
-  right: 8px;
+  right: 6px;
   top: 50%;
   transform: translateY(-50%);
 }
 .reserve-map__place-number--top {
-  top: 8px;
+  top: 6px;
   left: 50%;
   transform: translateX(-50%);
 }
 .reserve-map__place-number--down {
-  bottom: 8px;
+  bottom: 6px;
   left: 50%;
   transform: translateX(-50%);
 }

@@ -30,22 +30,22 @@
             line-height: 13px;
             font-weight: bold;
             &--left {
-                left: 8px;
+                left: 6px;
                 top:50%;
                 transform: translateY(-50%);
             }
             &--right {
-                right: 8px;
+                right: 6px;
                 top:50%;
                 transform: translateY(-50%);
             }
             &--top {
-                top:8px;
+                top:6px;
                 left: 50%;
                 transform: translateX(-50%);
             }
             &--down {
-               bottom:8px;
+               bottom:6px;
                 left: 50%;
                 transform: translateX(-50%);
             }
