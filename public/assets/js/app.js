@@ -3800,52 +3800,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -85822,8 +85776,6 @@ var render = function () {
           ],
           1
         ),
-        _vm._v(" "),
-        _vm._m(2),
       ]),
     ],
     1
@@ -85851,70 +85803,6 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("p", [
         _vm._v("\n            Выберите любые свободные места\n        "),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "reserve-inf__wrap" }, [
-      _c("div", { staticClass: "reserve-inf" }, [
-        _c("h4", { staticClass: "reserve-inf__title" }, [
-          _vm._v("\n                    3 шаг\n                "),
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "reserve-inf__descr" }, [
-          _vm._v("\n                    Произведите оплату "),
-          _c("br"),
-          _vm._v(" выбранных вами мест\n                "),
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "reserve-inf__selected" }, [
-          _vm._v("\n                    Выбрано:\n                "),
-        ]),
-        _vm._v(" "),
-        _c("ul", { staticClass: "reserve-inf-list" }, [
-          _c("li", { staticClass: "reserve-inf-list__item" }, [
-            _c("label", { staticClass: "reserve-inf-list__label" }, [
-              _vm._v(
-                "\n                            Мест\n                        "
-              ),
-            ]),
-            _vm._v(" "),
-            _c("span", { staticClass: "reserve-inf-list__value" }),
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "reserve-inf-list__item" }, [
-            _c("label", { staticClass: "reserve-inf-list__label" }, [
-              _vm._v(
-                "\n                            Дата:\n                        "
-              ),
-            ]),
-            _vm._v(" "),
-            _c("span", { staticClass: "reserve-inf-list__value" }),
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "reserve-inf-list__item" }, [
-            _c("label", { staticClass: "reserve-inf-list__label" }, [
-              _vm._v(
-                "\n                            Время:\n                        "
-              ),
-            ]),
-            _vm._v(" "),
-            _c("span", { staticClass: "reserve-inf-list__value" }),
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "reserve-inf-list__item" }, [
-            _c("label", { staticClass: "reserve-inf-list__label" }, [
-              _vm._v(
-                "\n                            Сумма:\n                        "
-              ),
-            ]),
-            _vm._v(" "),
-            _c("span", { staticClass: "reserve-inf-list__value" }),
-          ]),
-        ]),
       ]),
     ])
   },
