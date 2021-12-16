@@ -3,9 +3,9 @@
     <first-floor
         :can-select="canSelect"
     ></first-floor>
-    <second-floor>
+    <second-floor
         :can-select="canSelect"
-    </second-floor>
+    ></second-floor>
 </section>
 </template>
 <script>
@@ -18,7 +18,7 @@ import SecondFloor from "./SecondFloor";
         },
         data() {
             return {
-                canSelect:true,
+                canSelect:false,
             }
         },
         methods: {

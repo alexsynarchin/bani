@@ -4,6 +4,11 @@
 @import "components/booking-step";
 @import "components/booking-link";
 @import "components/reserve-map";
+body {
+    background-color: #f1f1f1;
+    background-image: url("../images/reserve-bg.png");
+    background-repeat: repeat;
+}
 .app {
     font-family: 'Noto Sans', sans-serif;
 }

@@ -6,13 +6,13 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
-        <link href="{{mix('assets/css/app.css')}}?ver=101" rel="stylesheet" type="text/css">
+        <link href="{{mix('assets/css/app.css')}}?ver=102" rel="stylesheet" type="text/css">
         <title>бронирование</title>
     </head>
     <body class="">
         <div class="app container mt-4 mb-4" id ="app">
             <booking></booking>
         </div>
-    <script src="{{mix('assets/js/app.js')}}?ver=101"></script>
+    <script src="{{mix('assets/js/app.js')}}?ver=102"></script>
     </body>
 </html>

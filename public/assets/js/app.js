@@ -4459,6 +4459,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     canSelect: {
@@ -4468,15 +4491,23 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      places: []
+      places: [],
+      cabinets: []
     };
   },
   methods: {
-    getPlaces: function getPlaces() {
+    getCabinets: function getCabinets() {
       var _this = this;
 
+      axios.get('/api/cabinets/list/' + 2).then(function (response) {
+        _this.cabinets = response.data;
+      });
+    },
+    getPlaces: function getPlaces() {
+      var _this2 = this;
+
       axios.get('/api/places/list/' + 2).then(function (response) {
-        _this.places = response.data;
+        _this2.places = response.data;
       });
     },
     handleSelectPlace: function handleSelectPlace(place, index) {
@@ -4489,10 +4520,22 @@ __webpack_require__.r(__webpack_exports__);
           type: 'warning'
         });
       }
+    },
+    handleSelectCabinet: function handleSelectCabinet(cabinet, index) {
+      if (this.canSelect) {
+        this.cabinets[index].select = !this.cabinets[index].select;
+      } else {
+        this.$notify({
+          title: 'Выберите дату и время',
+          message: '',
+          type: 'warning'
+        });
+      }
     }
   },
   mounted: function mounted() {
     this.getPlaces();
+    this.getCabinets();
   }
 });
 
@@ -4530,7 +4573,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      canSelect: true
+      canSelect: false
     };
   },
   methods: {},
@@ -86230,17 +86273,81 @@ var render = function () {
     _vm._v(" "),
     _c(
       "section",
-      { staticClass: "reserve-map" },
+      { staticClass: "reserve-map reserve-map--second" },
       [
         _c("img", { attrs: { src: "/assets/images/second-floor.jpg" } }),
+        _vm._v(" "),
+        _vm._l(_vm.cabinets, function (cabinet, index) {
+          return _c(
+            "div",
+            {
+              staticClass: "reserve-map__cabinet",
+              class: {
+                "reserve-map__cabinet--selected": cabinet.select,
+              },
+              style: {
+                width: cabinet.width,
+                height: cabinet.height,
+                left: cabinet.posX + "px",
+                top: cabinet.posY + "px",
+              },
+              on: {
+                click: function ($event) {
+                  $event.preventDefault()
+                  return _vm.handleSelectCabinet(cabinet, index)
+                },
+              },
+            },
+            [
+              _c(
+                "span",
+                {
+                  class:
+                    "reserve-map__cabinet-name " +
+                    "reserve-map__cabinet-name--" +
+                    cabinet.number,
+                },
+                [
+                  _vm._v(
+                    "\n                Кабинка " +
+                      _vm._s(cabinet.number) +
+                      "\n            "
+                  ),
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "svg",
+                {
+                  style: {
+                    width: cabinet.width,
+                    height: cabinet.height,
+                  },
+                  attrs: {
+                    viewBox: "0 0 " + cabinet.width + " " + cabinet.height,
+                  },
+                },
+                [
+                  _c("use", {
+                    attrs: {
+                      "xlink:href":
+                        "/assets/site/images/sprites.svg?ver=8#sprite-cabin-" +
+                        cabinet.number,
+                    },
+                  }),
+                ]
+              ),
+            ]
+          )
+        }),
         _vm._v(" "),
         _vm._l(_vm.places, function (place, index) {
           return _c(
             "div",
             {
-              staticClass: "reserve-map__place",
+              staticClass: "reserve-map__place-2",
               class: {
-                "reserve-map__place--selected": place.select,
+                "reserve-map__place-2--selected": place.select,
               },
               style: { left: place.posX + "px", top: place.posY + "px" },
               on: {
@@ -86254,23 +86361,25 @@ var render = function () {
               _c(
                 "span",
                 {
-                  staticClass: "reserve-map__place-number",
+                  staticClass: "reserve-map__place-2-number",
                   class: {
-                    "reserve-map__place-number--left": place.type === "left",
-                    "reserve-map__place-number--right": place.type === "right",
-                    "reserve-map__place-number--top": place.type === "top",
-                    "reserve-map__place-number--down": place.type === "down",
+                    "reserve-map__place-2-number--left": place.type === "left",
+                    "reserve-map__place-2-number--right":
+                      place.type === "right",
+                    "reserve-map__place-2-number--top": place.type === "top",
+                    "reserve-map__place-2-number--down": place.type === "down",
                   },
                 },
                 [_vm._v(_vm._s(place.number))]
               ),
               _vm._v(" "),
-              _c("svg", { attrs: { viewBox: "0 0 44 44" } }, [
+              _c("svg", { attrs: { viewBox: "0 0 35 35" } }, [
                 _c("use", {
                   attrs: {
                     "xlink:href":
-                      "/assets/site/images/sprites.svg?ver=28#sprite-place-" +
-                      place.type,
+                      "/assets/site/images/sprites.svg?ver=8#sprite-place-" +
+                      place.type +
+                      "-2",
                   },
                 }),
               ]),
@@ -86310,7 +86419,7 @@ var render = function () {
     [
       _c("first-floor", { attrs: { "can-select": _vm.canSelect } }),
       _vm._v(" "),
-      _c("second-floor", [_vm._v('\n        :can-select="canSelect"\n    ')]),
+      _c("second-floor", { attrs: { "can-select": _vm.canSelect } }),
     ],
     1
   )

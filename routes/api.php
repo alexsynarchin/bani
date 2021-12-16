@@ -21,3 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Places
 use App\Http\Controllers\Api\PlaceController;
 Route::get('/places/list/{floor}',[PlaceController::class, 'index']) -> name('places.list');
+//Cabinets
+use App\Http\Controllers\Api\CabinetController;
+Route::get('/cabinets/list/{floor}',[CabinetController::class, 'index']) -> name('cabinets.list');
