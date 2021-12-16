@@ -1,4 +1,7 @@
 .reserve-map {
+    width: 865px;
+    max-width: 865px;
+    min-width: 865px;
     position: relative;
     background-color: #C5C6C6;
     &__place {
@@ -6,17 +9,60 @@
         position: absolute;
         z-index: 2;
         svg {
-            width: 46px;
-            height: 46px;
+            width: 44px;
+            height: 44px;
         }
-        &:after {
-            content: "";
+        &--selected {
+            &:after {
+                content: "";
+                position: absolute;
+                top:0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,255,102,0.6);;
+            }
+        }
+        &-number {
             position: absolute;
-            top:0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,255,102,0.6);;
+            display: block;
+            font-size: 14px;
+            line-height: 14px;
+            font-weight: bold;
+            &--left {
+                left: 8px;
+                top:50%;
+                transform: translateY(-50%);
+            }
+            &--right {
+                right: 8px;
+                top:50%;
+                transform: translateY(-50%);
+            }
+            &--top {
+                top:8px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            &--down {
+               bottom:8px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
         }
+
     }
+}
+.map-floor {
+    width: 865px;
+    max-width: 865px;
+    min-width: 865px;
+    &__title {
+        font-family: 'Metro', sans-serif;
+        text-align: center;
+        font-weight: 400;
+        font-size: 17px;
+        color: #006672;
+    }
+
 }

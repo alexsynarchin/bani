@@ -5,7 +5,20 @@
         </h4>
         <section class="reserve-map">
             <img src="/assets/images/first-floor.png">
-            <div v-for="place in places" class="reserve-map__place" :style="{left:place.posX + 'px',top:place.posY + 'px'}" >
+            <div v-for="(place, index) in places"
+                 @click.prevent="handleSelectPlace(place, index)"
+                 class="reserve-map__place"
+                 :style="{left:place.posX + 'px',top:place.posY + 'px'}"
+                :class="{
+                     'reserve-map__place--selected': place.select,
+                }"
+            >
+                <span class="reserve-map__place-number" :class="{
+                    'reserve-map__place-number--left' : place.type === 'left',
+                    'reserve-map__place-number--right' : place.type === 'right',
+                    'reserve-map__place-number--top' : place.type === 'top',
+                    'reserve-map__place-number--down' : place.type === 'down',
+                }">{{place.number}}</span>
                 <svg viewBox="0 0 44 44">
                     <use :xlink:href="'/assets/site/images/sprites.svg?ver=28#sprite-place-' + place.type"></use>
                 </svg>
@@ -16,51 +29,40 @@
 <script>
 export default {
     props: {
-        places: {
-            type: Object,
-            required: true
+        canSelect: {
+            type: Boolean,
+            default: false
+        },
+    },
+    data() {
+        return {
+            places: [],
         }
+    },
+    methods: {
+        getPlaces() {
+            axios.get('/api/places/list/' + 1)
+            .then((response) => {
+                this.places = response.data;
+            })
+        },
+        handleSelectPlace(place, index) {
+
+            if(this.canSelect) {
+                this.places[index].select =  !this.places[index].select;
+
+            } else {
+                this.$notify({
+                    title: 'Выберите дату и время',
+                    message: '',
+                    type: 'warning'
+                });
+            }
+        }
+    },
+    mounted() {
+        this.getPlaces();
     }
 }
 
 </script>
-<style lang="scss" scoped>
-.reserve-map {
-    width: 865px;
-    max-width: 865px;
-    min-width: 865px;
-    position: relative;
-    background-color: #C5C6C6;
-    &__place {
-        cursor: pointer;
-        position: absolute;
-        z-index: 2;
-        svg {
-            width: 44px;
-            height: 44px;
-        }
-        &:after {
-            content: "";
-            position: absolute;
-            top:0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,255,102,0.6);;
-        }
-    }
-}
-.map-floor {
-    width: 865px;
-    max-width: 865px;
-    min-width: 865px;
-    &__title {
-        font-family: 'Metro', sans-serif;
-        text-align: center;
-        font-weight: 400;
-        font-size: 17px;
-        color: #006672;
-    }
-
-}
-</style>

@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Places
+use App\Http\Controllers\Api\PlaceController;
+Route::get('/places/list/{floor}',[PlaceController::class, 'index']) -> name('places.list');

@@ -1,6 +1,8 @@
 <template>
 <section>
-    <first-floor :places="places"></first-floor>
+    <first-floor
+        :can-select="canSelect"
+    ></first-floor>
 </section>
 </template>
 <script>
@@ -11,20 +13,7 @@ import FirstFloor from "./FirstFloor";
         },
         data() {
             return {
-                places: [
-                    {
-                        number:1,
-                        type:'right',
-                        posX:202.68,
-                        posY:177.31,
-                    },
-                    {
-                        number:2,
-                        type:'right',
-                        posX:202.92,
-                        posY:133.65,
-                    }
-                ],
+                canSelect:true,
             }
         },
         methods: {

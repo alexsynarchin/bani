@@ -15,6 +15,13 @@ class CreatePlacesTable extends Migration
     {
         Schema::create('places', function (Blueprint $table) {
             $table->id();
+            $table -> integer('number') -> unsigned();
+            $table -> string('type');
+            $table -> boolean('select') ->default(false);
+            $table -> float('posX') -> unsigned();
+            $table -> float('posY') -> unsigned();
+            $table -> integer('price') -> unsigned() -> default(0);
+            $table -> integer('floor') -> unsigned() ->default(1);
             $table->timestamps();
         });
     }

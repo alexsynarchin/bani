@@ -54,7 +54,7 @@
         </el-dialog>
         <div class="row">
             <div class="col-md-9">
-                <reserve-map></reserve-map>
+                <reserve-map ref="reserve_map"></reserve-map>
             </div>
             <div class="col-md-3">
 
@@ -94,6 +94,7 @@
             this.reserveData = data;
             this.firstStep = true;
             this.calendarVisible = false;
+            this.$refs.reserve_map.canSelect = true;
          }
         }
     }
