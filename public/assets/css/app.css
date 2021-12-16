@@ -11362,6 +11362,9 @@ textarea.form-control-lg {
   max-width: 865px;
   min-width: 865px;
 }
+.map-floor--second {
+  margin-top: 40px;
+}
 .map-floor__title {
   font-family: "Metro", sans-serif;
   text-align: center;
