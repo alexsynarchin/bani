@@ -1,19 +1,21 @@
 <template>
-
+<div class="calendar-time__wrap">
 <section class="calendar-time">
         <div class="calendar-time__item">
             <label class="calendar-time__label">
                 Приход
             </label>
             <el-time-select
+                :editable="false"
                 placeholder="-- : --"
+                :clearable="false"
                 v-model="startTime"
                 style="margin-right: 10px"
                 @change="startTimeIsSelected"
                 :picker-options="{
-  start: '08:30',
-  step: '00:30',
-  end: '18:30'
+                  start: '08:30',
+                  step: '00:30',
+                  end: '18:30'
 }">
             </el-time-select>
         </div>
@@ -22,19 +24,21 @@
                 Уход
             </label>
             <el-time-select
+                :editable="false"
                 placeholder="-- : --"
+                :disabled="endTimeDisabled"
                 @change="timeIsSelected"
-                :readonly="endTimeNotEditable"
                 v-model="endTime"
                 :picker-options="{
-  start: minEndTime,
-  step: '00:30',
-  end: '18:30',
+                  start: minEndTime,
+                  step: '00:30',
+                  end: '20:30',
+
 }">
             </el-time-select>
         </div>
 </section>
-
+</div>
 </template>
 <script>
 export default {
@@ -42,23 +46,30 @@ export default {
         return {
             startTime: '',
             endTime: '',
-            endTimeNotEditable:true,
-            minEndTime:'',
+            endTimeDisabled:true,
         };
     },
-    methods: {
-        startTimeIsSelected() {
+
+    computed: {
+        minEndTime() {
             let startHours = new Date("01/01/2018 " + this.startTime).getHours();
             let startMinutes = new Date("01/01/2018 " + this.startTime).getMinutes();
-            let minTime = startHours * 60 + startMinutes + 90;
+            let minTime = startHours * 60 + startMinutes + 120;
             let minHours = parseInt(minTime / 60);
             let minMinutes = minTime % 60
             if(minMinutes === 0) {
                 minMinutes = "00";
             }
-            this.minEndTime =  minHours + ":" + minMinutes;
-            this.endTimeNotEditable = false;
+            return minHours + ":" + minMinutes;
+        }
+    },
+    methods: {
+        startTimeIsSelected() {
+            if(this.endTimeDisabled) {
+                this.endTimeDisabled = false;
+            }
             this.endTime = '';
+
         },
         timeIsSelected() {
           if(this.startTime && this.endTime) {
@@ -88,8 +99,16 @@ export default {
         &:first-child {
             margin-right: 10px;
         }
-
+        .el-input__icon {
+            display: none;
+        }
     }
+    &__descr {
+          text-align: center;
+          margin-top:20px;
+        color:#A3A3A3;
+        font-size: 14px;
+      }
 }
 .el-input--prefix .el-input__inner {
     padding-left: 8px;

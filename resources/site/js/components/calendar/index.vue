@@ -1,6 +1,6 @@
 <template>
     <div class="calendar-month">
-        <div style="width: 290px;">
+        <div style="width: 290px; margin-right: auto; margin-left: auto;">
         <div class="calendar-month-header">
             <CalendarDateSelector
                 :current-date="today"
@@ -27,7 +27,12 @@
         <calendar-time
             @select-time="selectTime"
         ></calendar-time>
-        {{reserveData}}
+        <div class="calendar-btn__wrap">
+            <button class="calendar-btn" @click.prevent="selectDayAndTime">Выбрать</button>
+        </div>
+        <div class="calendar-time__descr">
+            Минимальное время брони — 2 часа
+        </div>
     </div>
 </template>
 <script>
@@ -59,6 +64,7 @@ export default {
             eventDay:"2021-12-22",
             reserveData: {
                 selectedDay:null,
+                selectedDayString:'',
                 startTime:'',
                 endTime:'',
             },
@@ -66,6 +72,9 @@ export default {
     },
 
     computed: {
+        selectedDay() {
+           return  dayjs(this.reserveData.selectedDay).locale('ru').format('DD MMMM');
+        },
         days() {
             return [
                 ...this.previousMonthDays,
@@ -157,9 +166,15 @@ export default {
     },
 
     methods: {
+        selectDayAndTime() {
+            if(this.reserveData.selectedDay && this.reserveData.startTime && this.reserveData.endTime) {
+                this.$emit('select-day-and-time', this.reserveData);
+            }
+        },
         selectDay(date) {
             if(this.today <= date) {
                 this.reserveData.selectedDay = date;
+                this.reserveData.selectedDayString = this.selectedDay;
             }
         },
         selectTime(data) {
@@ -211,6 +226,20 @@ export default {
     grid-column-gap: var(--grid-gap);
     grid-row-gap: var(--grid-gap);
     border-top: solid 1px var(--grey-200);
+}
+.calendar-btn {
+    color: #fff;
+    background: #3097A1;
+    box-shadow: 0 0 0 transparent;
+    border: 0 solid transparent;
+    border-radius: 6px;
+    padding: 6px 30px;
+    font-size: 16px;
+    text-shadow: 0 0 0 transparent;
+    &__wrap {
+        margin-top: 20px;
+        text-align: center;
+    }
 }
 </style>
 

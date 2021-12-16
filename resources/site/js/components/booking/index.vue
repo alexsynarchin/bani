@@ -8,15 +8,59 @@
         <h4 class="booking-step">
             1 шаг
         </h4>
-        <button class="booking-link">
+        <div v-if="firstStep">
+            <span class="booking-first__value">
+                {{reserveData.selectedDayString}}
+            </span>
+            <span class="booking-first__label">
+                с
+            </span>
+            <span class="booking-first__value">
+                {{reserveData.startTime}}
+            </span>
+            <span class="booking-first__label">
+                до
+            </span>
+            <span class="booking-first__value">
+                {{reserveData.endTime}}
+            </span>
+        </div>
+        <button class="booking-link" v-else @click.prevent="calendarVisible=true">
             Выберите дату и время
         </button>
-        <div class="mb-3 mt-3" style="margin-left:auto; margin-right: auto">
-            <calendar
-                @select-reserve-time=""
-            ></calendar>
+        <div class="mt-4 mb-4">
+            <h4 class="booking-step">
+                2 шаг
+            </h4>
+            <p>
+                Выберите любые свободные места
+            </p>
         </div>
-        <reserve-map></reserve-map>
+
+        <div class="mb-3 mt-3" style="margin-left:auto; margin-right: auto">
+
+        </div>
+        <el-dialog
+
+            :visible.sync="calendarVisible"
+            width="30%"
+            class="calendar-modal"
+           >
+        <div slot="title"></div>
+            <calendar
+                @select-day-and-time="selectReserveTime"
+                v-if="calendarVisible"
+            ></calendar>
+        </el-dialog>
+        <div class="row">
+            <div class="col-md-9">
+                <reserve-map></reserve-map>
+            </div>
+            <div class="col-md-3">
+
+            </div>
+        </div>
+
     </section>
 </template>
 <script>
@@ -29,9 +73,15 @@
      },
         data() {
          return {
-            reserveDate:'',
-            startTime: '',
-            endTime:''
+             calendarVisible:false,
+             firstStep:false,
+             reserveData: {
+                 selectedDay:null,
+                 selectedDayString:'',
+                 startTime:'',
+                 endTime:'',
+             }
+
          }
         },
 
@@ -39,8 +89,11 @@
 
         },
         methods: {
+         handleCalendarClose() {},
          selectReserveTime(data) {
-
+            this.reserveData = data;
+            this.firstStep = true;
+            this.calendarVisible = false;
          }
         }
     }
@@ -54,6 +107,13 @@
         &__description {
             font-size: 17px;
             text-align: center;
+        }
+    }
+    .booking-first {
+        font-size: 17px;
+        &__value {
+            font-weight: 600;
+            color: #006672;
         }
     }
 </style>

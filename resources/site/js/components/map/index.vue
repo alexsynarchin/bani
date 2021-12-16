@@ -30,4 +30,11 @@
         }
     }
 </script>
+<style lang="scss" scoped>
+    .reserve-map {
+        width: 865px;
+        max-width: 865px;
+        min-width: 865px;
+    }
+</style>
 
