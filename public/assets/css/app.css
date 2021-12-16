@@ -11332,9 +11332,8 @@ textarea.form-control-lg {
 .reserve-map__place-number {
   position: absolute;
   display: block;
-  font-size: 14px;
-  line-height: 14px;
-  font-weight: bold;
+  font-size: 12px;
+  line-height: 12px;
 }
 .reserve-map__place-number--left {
   left: 8px;
