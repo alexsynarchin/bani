@@ -12,19 +12,23 @@
                      'reserve-map__cabinet--selected': cabinet.select,
                  }"
                  :style="{
-                width:cabinet.width,
-                height:cabinet.height,
+                width : cabinet.width,
+
+                height : cabinet.height,
                 left:cabinet.posX + 'px',
                 top:cabinet.posY + 'px'
             }">
                 <span :class="'reserve-map__cabinet-name ' + 'reserve-map__cabinet-name--' + cabinet.number">
                     Кабинка {{cabinet.number}}
                 </span>
-                <svg :viewBox="'0 0 ' +  cabinet.width + ' ' + cabinet.height"
-                        :style="{
-                width:cabinet.width,
-                height:cabinet.height,
-            }">
+                <svg
+                    :width="cabinet.width"
+                    :height="cabinet.height"
+                    :style="{
+                        width:cabinet.width,
+                        height:cabinet.height,
+                        }"
+                    :viewBox="'0 0 ' +  cabinet.width + ' ' + cabinet.height">
                     <use :xlink:href="'/assets/site/images/sprites.svg?ver=8#sprite-cabin-' + cabinet.number"></use>
                 </svg>
             </div>
@@ -77,10 +81,9 @@ export default {
                 })
         },
         handleSelectPlace(place, index) {
-
             if(this.canSelect) {
                 this.places[index].select =  !this.places[index].select;
-
+                this.$emit('select-item', this.places[index])
             } else {
                 this.$notify({
                     title: 'Выберите дату и время',

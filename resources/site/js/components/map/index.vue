@@ -2,9 +2,11 @@
 <section>
     <first-floor
         :can-select="canSelect"
+        @select-item="selectReservationItem"
     ></first-floor>
     <second-floor
         :can-select="canSelect"
+        @select-item="selectReservationItem"
     ></second-floor>
 </section>
 </template>
@@ -14,7 +16,7 @@ import SecondFloor from "./SecondFloor";
     export default {
         components: {
             FirstFloor,
-            SecondFloor
+            SecondFloor,
         },
         data() {
             return {
@@ -22,7 +24,9 @@ import SecondFloor from "./SecondFloor";
             }
         },
         methods: {
+            selectReservationItem(data) {
 
+            }
         },
         mounted() {
 

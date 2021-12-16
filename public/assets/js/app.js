@@ -3801,6 +3801,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -3816,18 +3861,26 @@ __webpack_require__.r(__webpack_exports__);
         selectedDay: null,
         selectedDayString: '',
         startTime: '',
-        endTime: ''
-      }
+        endTime: '',
+        duration: null
+      },
+      reservations: []
     };
   },
   computed: {},
   methods: {
+    selectReserveItem: function selectReserveItem() {},
     handleCalendarClose: function handleCalendarClose() {},
     selectReserveTime: function selectReserveTime(data) {
       this.reserveData = data;
       this.firstStep = true;
       this.calendarVisible = false;
       this.$refs.reserve_map.canSelect = true;
+      var startHours = new Date("01/01/2018 " + data.startTime).getHours();
+      var startMinutes = new Date("01/01/2018 " + data.startTime).getMinutes();
+      var endHours = new Date("01/01/2018 " + data.endTime).getHours();
+      var endMinutes = new Date("01/01/2018 " + data.endTime).getMinutes();
+      this.reserveData.duration = (endHours * 60 + endMinutes - startHours * 60 - startMinutes) / 60;
     }
   }
 });
@@ -4404,6 +4457,7 @@ __webpack_require__.r(__webpack_exports__);
     handleSelectPlace: function handleSelectPlace(place, index) {
       if (this.canSelect) {
         this.places[index].select = !this.places[index].select;
+        this.$emit('select-item', this.places[index]);
       } else {
         this.$notify({
           title: 'Выберите дату и время',
@@ -4431,6 +4485,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
 //
 //
 //
@@ -4513,6 +4571,7 @@ __webpack_require__.r(__webpack_exports__);
     handleSelectPlace: function handleSelectPlace(place, index) {
       if (this.canSelect) {
         this.places[index].select = !this.places[index].select;
+        this.$emit('select-item', this.places[index]);
       } else {
         this.$notify({
           title: 'Выберите дату и время',
@@ -4564,6 +4623,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -4576,7 +4637,9 @@ __webpack_require__.r(__webpack_exports__);
       canSelect: false
     };
   },
-  methods: {},
+  methods: {
+    selectReservationItem: function selectReservationItem(data) {}
+  },
   mounted: function mounted() {}
 });
 
@@ -85748,15 +85811,19 @@ var render = function () {
         1
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "d-flex flex-wrap" }, [
         _c(
           "div",
-          { staticClass: "col-md-9" },
-          [_c("reserve-map", { ref: "reserve_map" })],
+          [
+            _c("reserve-map", {
+              ref: "reserve_map",
+              on: { "select-item": _vm.selectReserveItem },
+            }),
+          ],
           1
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-3" }),
+        _vm._m(2),
       ]),
     ],
     1
@@ -85784,6 +85851,70 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("p", [
         _vm._v("\n            Выберите любые свободные места\n        "),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "reserve-inf__wrap" }, [
+      _c("div", { staticClass: "reserve-inf" }, [
+        _c("h4", { staticClass: "reserve-inf__title" }, [
+          _vm._v("\n                    3 шаг\n                "),
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "reserve-inf__descr" }, [
+          _vm._v("\n                    Произведите оплату "),
+          _c("br"),
+          _vm._v(" выбранных вами мест\n                "),
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "reserve-inf__selected" }, [
+          _vm._v("\n                    Выбрано:\n                "),
+        ]),
+        _vm._v(" "),
+        _c("ul", { staticClass: "reserve-inf-list" }, [
+          _c("li", { staticClass: "reserve-inf-list__item" }, [
+            _c("label", { staticClass: "reserve-inf-list__label" }, [
+              _vm._v(
+                "\n                            Мест\n                        "
+              ),
+            ]),
+            _vm._v(" "),
+            _c("span", { staticClass: "reserve-inf-list__value" }),
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "reserve-inf-list__item" }, [
+            _c("label", { staticClass: "reserve-inf-list__label" }, [
+              _vm._v(
+                "\n                            Дата:\n                        "
+              ),
+            ]),
+            _vm._v(" "),
+            _c("span", { staticClass: "reserve-inf-list__value" }),
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "reserve-inf-list__item" }, [
+            _c("label", { staticClass: "reserve-inf-list__label" }, [
+              _vm._v(
+                "\n                            Время:\n                        "
+              ),
+            ]),
+            _vm._v(" "),
+            _c("span", { staticClass: "reserve-inf-list__value" }),
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "reserve-inf-list__item" }, [
+            _c("label", { staticClass: "reserve-inf-list__label" }, [
+              _vm._v(
+                "\n                            Сумма:\n                        "
+              ),
+            ]),
+            _vm._v(" "),
+            _c("span", { staticClass: "reserve-inf-list__value" }),
+          ]),
+        ]),
       ]),
     ])
   },
@@ -86287,6 +86418,7 @@ var render = function () {
               },
               style: {
                 width: cabinet.width,
+
                 height: cabinet.height,
                 left: cabinet.posX + "px",
                 top: cabinet.posY + "px",
@@ -86324,6 +86456,8 @@ var render = function () {
                     height: cabinet.height,
                   },
                   attrs: {
+                    width: cabinet.width,
+                    height: cabinet.height,
                     viewBox: "0 0 " + cabinet.width + " " + cabinet.height,
                   },
                 },
@@ -86417,9 +86551,15 @@ var render = function () {
   return _c(
     "section",
     [
-      _c("first-floor", { attrs: { "can-select": _vm.canSelect } }),
+      _c("first-floor", {
+        attrs: { "can-select": _vm.canSelect },
+        on: { "select-item": _vm.selectReservationItem },
+      }),
       _vm._v(" "),
-      _c("second-floor", { attrs: { "can-select": _vm.canSelect } }),
+      _c("second-floor", {
+        attrs: { "can-select": _vm.canSelect },
+        on: { "select-item": _vm.selectReservationItem },
+      }),
     ],
     1
   )

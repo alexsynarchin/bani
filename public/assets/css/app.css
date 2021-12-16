@@ -11328,6 +11328,10 @@ textarea.form-control-lg {
   height: 100%;
   background-color: rgba(0, 255, 102, 0.6);
 }
+.reserve-map__cabinet svg {
+  max-width: 100%;
+  max-height: 100%;
+}
 .reserve-map__cabinet-name {
   display: block;
   position: absolute;
@@ -11468,6 +11472,52 @@ textarea.form-control-lg {
   font-weight: 400;
   font-size: 17px;
   color: #006672;
+}
+
+.reserve-inf {
+  padding: 30px;
+  background: #006672;
+  border-radius: 15px;
+  color: #fff;
+}
+.reserve-inf__title {
+  font-family: "Metro", sans-serif;
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+.reserve-inf__descr {
+  font-size: 16px;
+  margin-bottom: 25px;
+}
+.reserve-inf__selected {
+  font-size: 26px;
+  margin-bottom: 15px;
+}
+.reserve-inf__wrap {
+  padding-left: 20px;
+  flex: 1;
+}
+
+.reserve-inf-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+.reserve-inf-list__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #007583;
+}
+.reserve-inf-list__label {
+  opacity: 50%;
+}
+.reserve-inf-list__value {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 body {

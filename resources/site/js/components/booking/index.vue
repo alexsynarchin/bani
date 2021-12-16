@@ -52,15 +52,60 @@
                 v-if="calendarVisible"
             ></calendar>
         </el-dialog>
-        <div class="row">
-            <div class="col-md-9">
-                <reserve-map ref="reserve_map"></reserve-map>
+        <div class="d-flex flex-wrap">
+            <div>
+                <reserve-map ref="reserve_map"
+                    @select-item = "selectReserveItem"
+                ></reserve-map>
             </div>
-            <div class="col-md-3">
+            <div class="reserve-inf__wrap">
+                <div class="reserve-inf">
+                    <h4 class="reserve-inf__title">
+                        3 шаг
+                    </h4>
+                    <p class="reserve-inf__descr">
+                        Произведите оплату <br> выбранных вами мест
+                    </p>
+                    <p class="reserve-inf__selected">
+                        Выбрано:
+                    </p>
+                    <ul class="reserve-inf-list">
+                        <li class="reserve-inf-list__item">
+                            <label class="reserve-inf-list__label">
+                                Мест
+                            </label>
+                            <span class="reserve-inf-list__value">
 
+                            </span>
+                        </li>
+                        <li class="reserve-inf-list__item">
+                            <label class="reserve-inf-list__label">
+                                Дата:
+                            </label>
+                            <span class="reserve-inf-list__value">
+
+                            </span>
+                        </li>
+                        <li class="reserve-inf-list__item">
+                            <label class="reserve-inf-list__label">
+                                Время:
+                            </label>
+                            <span class="reserve-inf-list__value">
+
+                            </span>
+                        </li>
+                        <li class="reserve-inf-list__item">
+                            <label class="reserve-inf-list__label">
+                                Сумма:
+                            </label>
+                            <span class="reserve-inf-list__value">
+
+                            </span>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-
     </section>
 </template>
 <script>
@@ -80,7 +125,9 @@
                  selectedDayString:'',
                  startTime:'',
                  endTime:'',
-             }
+                 duration: null,
+             },
+             reservations: [],
 
          }
         },
@@ -89,13 +136,23 @@
 
         },
         methods: {
-         handleCalendarClose() {},
+         selectReserveItem() {
+
+         },
+         handleCalendarClose() {
+
+         },
          selectReserveTime(data) {
             this.reserveData = data;
             this.firstStep = true;
             this.calendarVisible = false;
             this.$refs.reserve_map.canSelect = true;
-         }
+             let startHours = new Date("01/01/2018 " + data.startTime).getHours();
+             let startMinutes = new Date("01/01/2018 " + data.startTime).getMinutes();
+             let endHours = new Date("01/01/2018 " + data.endTime).getHours();
+             let endMinutes = new Date("01/01/2018 " + data.endTime).getMinutes();
+             this.reserveData.duration = (endHours * 60 + endMinutes - startHours * 60 - startMinutes) / 60;
+            }
         }
     }
 </script>

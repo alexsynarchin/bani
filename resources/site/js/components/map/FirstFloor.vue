@@ -47,9 +47,9 @@ export default {
             })
         },
         handleSelectPlace(place, index) {
-
             if(this.canSelect) {
                 this.places[index].select =  !this.places[index].select;
+                this.$emit('select-item', this.places[index])
 
             } else {
                 this.$notify({
