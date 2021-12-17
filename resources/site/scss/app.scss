@@ -1,10 +1,12 @@
 @import "~bootstrap/scss/bootstrap";
 @import "components/fonts";
+@import "components/booking";
 @import "components/scaffolding";
 @import "components/booking-step";
 @import "components/booking-link";
 @import "components/reserve-map";
 @import "components/reserve-inf";
+@import "components/map-modal";
 @import "components/reservation-order";
 body {
     background-color: #f1f1f1;

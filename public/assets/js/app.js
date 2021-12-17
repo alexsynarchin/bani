@@ -4029,6 +4029,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4042,6 +4057,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      canSelectMap: false,
+      mapVisible: false,
       calendarVisible: false,
       firstStep: false,
       orderModalVisible: false,
@@ -4059,6 +4076,17 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {},
   methods: {
+    openMapModal: function openMapModal() {
+      if (this.canSelectMap) {
+        this.mapVisible = true;
+      } else {
+        this.$notify({
+          title: 'Выберите дату и время',
+          message: '',
+          type: 'warning'
+        });
+      }
+    },
     orderReservation: function orderReservation() {
       this.orderModalVisible = true;
     },
@@ -4090,7 +4118,7 @@ __webpack_require__.r(__webpack_exports__);
       this.reserveData.selectedDay = data.selectedDay;
       this.firstStep = true;
       this.calendarVisible = false;
-      this.$refs.reserve_map.canSelect = true;
+      this.canSelectMap = true;
       var startHours = new Date("01/01/2018 " + data.startTime).getHours();
       var startMinutes = new Date("01/01/2018 " + data.startTime).getMinutes();
       var endHours = new Date("01/01/2018 " + data.endTime).getHours();
@@ -4859,14 +4887,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    canSelect: {
+      type: Boolean,
+      "default": false
+    }
+  },
   components: {
     FirstFloor: _FirstFloor__WEBPACK_IMPORTED_MODULE_0__["default"],
     SecondFloor: _SecondFloor__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
-    return {
-      canSelect: false
-    };
+    return {};
   },
   methods: {
     selectReservationItem: function selectReservationItem(data) {
@@ -86558,150 +86590,213 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "section",
-    { staticClass: "booking" },
-    [
-      _c("h3", { staticClass: "booking__title" }, [
-        _vm._v("Забронировать место"),
-      ]),
-      _vm._v(" "),
-      _vm._m(0),
-      _vm._v(" "),
-      _c("h4", { staticClass: "booking-step" }, [
-        _vm._v("\n        1 шаг\n    "),
-      ]),
-      _vm._v(" "),
-      _vm.firstStep
-        ? _c(
-            "div",
-            {
-              on: {
-                click: function ($event) {
-                  $event.preventDefault()
-                  _vm.calendarVisible = true
+  return _c("div", { staticClass: "booking__wrap" }, [
+    _c(
+      "section",
+      { staticClass: "booking" },
+      [
+        _c("h3", { staticClass: "booking__title" }, [
+          _vm._v("Забронировать место"),
+        ]),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _c("h4", { staticClass: "booking-step text-center" }, [
+          _vm._v("\n            1 шаг\n        "),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "text-center" }, [
+          _vm.firstStep
+            ? _c(
+                "div",
+                {
+                  staticStyle: { cursor: "pointer" },
+                  on: {
+                    click: function ($event) {
+                      $event.preventDefault()
+                      _vm.calendarVisible = true
+                    },
+                  },
+                },
+                [
+                  _c("span", { staticClass: "booking-first__value" }, [
+                    _vm._v(
+                      "\n            " +
+                        _vm._s(_vm.reserveData.selectedDayString) +
+                        "\n        "
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "booking-first__label" }, [
+                    _vm._v("\n            с\n        "),
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "booking-first__value" }, [
+                    _vm._v(
+                      "\n            " +
+                        _vm._s(_vm.reserveData.startTime) +
+                        "\n        "
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "booking-first__label" }, [
+                    _vm._v("\n            до\n        "),
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "booking-first__value" }, [
+                    _vm._v(
+                      "\n            " +
+                        _vm._s(_vm.reserveData.endTime) +
+                        "\n        "
+                    ),
+                  ]),
+                ]
+              )
+            : _c(
+                "button",
+                {
+                  staticClass: "booking-link",
+                  on: {
+                    click: function ($event) {
+                      $event.preventDefault()
+                      _vm.calendarVisible = true
+                    },
+                  },
+                },
+                [
+                  _vm._v(
+                    "\n                Выберите дату и время\n            "
+                  ),
+                ]
+              ),
+          _vm._v(" "),
+          _c("div", { staticClass: "mt-4 mb-4" }, [
+            _c("h4", { staticClass: "booking-step" }, [
+              _vm._v("\n                    2 шаг\n                "),
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "booking-link",
+                on: {
+                  click: function ($event) {
+                    $event.preventDefault()
+                    return _vm.openMapModal.apply(null, arguments)
+                  },
                 },
               },
-            },
-            [
-              _c("span", { staticClass: "booking-first__value" }, [
+              [
                 _vm._v(
-                  "\n            " +
-                    _vm._s(_vm.reserveData.selectedDayString) +
-                    "\n        "
+                  "\n                    Выберите любые свободные места\n                "
                 ),
-              ]),
-              _vm._v(" "),
-              _c("span", { staticClass: "booking-first__label" }, [
-                _vm._v("\n            с\n        "),
-              ]),
-              _vm._v(" "),
-              _c("span", { staticClass: "booking-first__value" }, [
-                _vm._v(
-                  "\n            " +
-                    _vm._s(_vm.reserveData.startTime) +
-                    "\n        "
-                ),
-              ]),
-              _vm._v(" "),
-              _c("span", { staticClass: "booking-first__label" }, [
-                _vm._v("\n            до\n        "),
-              ]),
-              _vm._v(" "),
-              _c("span", { staticClass: "booking-first__value" }, [
-                _vm._v(
-                  "\n            " +
-                    _vm._s(_vm.reserveData.endTime) +
-                    "\n        "
-                ),
-              ]),
-            ]
-          )
-        : _c(
-            "button",
-            {
-              staticClass: "booking-link",
-              on: {
-                click: function ($event) {
-                  $event.preventDefault()
-                  _vm.calendarVisible = true
-                },
+              ]
+            ),
+          ]),
+        ]),
+        _vm._v(" "),
+        this.reserveData.count > 0
+          ? _c("reservation-information", {
+              attrs: { "reserve-data": _vm.reserveData },
+              on: { "order-reservation": _vm.orderReservation },
+            })
+          : _vm._e(),
+        _vm._v(" "),
+        _c(
+          "el-dialog",
+          {
+            staticClass: "calendar-modal",
+            attrs: { visible: _vm.calendarVisible, width: "30%" },
+            on: {
+              "update:visible": function ($event) {
+                _vm.calendarVisible = $event
               },
             },
-            [_vm._v("\n        Выберите дату и время\n    ")]
-          ),
-      _vm._v(" "),
-      _vm._m(1),
-      _vm._v(" "),
-      _c(
-        "el-dialog",
-        {
-          staticClass: "calendar-modal",
-          attrs: { visible: _vm.calendarVisible, width: "30%" },
-          on: {
-            "update:visible": function ($event) {
-              _vm.calendarVisible = $event
+          },
+          [
+            _c("div", { attrs: { slot: "title" }, slot: "title" }),
+            _vm._v(" "),
+            _vm.calendarVisible
+              ? _c("calendar", {
+                  on: { "select-day-and-time": _vm.selectReserveTime },
+                })
+              : _vm._e(),
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "el-dialog",
+          {
+            staticClass: "map-modal",
+            attrs: { visible: _vm.mapVisible },
+            on: {
+              "update:visible": function ($event) {
+                _vm.mapVisible = $event
+              },
             },
           },
-        },
-        [
-          _c("div", { attrs: { slot: "title" }, slot: "title" }),
-          _vm._v(" "),
-          _vm.calendarVisible
-            ? _c("calendar", {
-                on: { "select-day-and-time": _vm.selectReserveTime },
-              })
-            : _vm._e(),
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "d-flex flex-wrap" },
-        [
-          _c(
-            "div",
-            [
-              _c("reserve-map", {
-                ref: "reserve_map",
-                on: { "select-item": _vm.selectReserveItem },
-              }),
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("reservation-information", {
-            attrs: { "reserve-data": _vm.reserveData },
-            on: { "order-reservation": _vm.orderReservation },
-          }),
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "el-dialog",
-        {
-          staticClass: "reservation-order",
-          attrs: { visible: _vm.orderModalVisible },
-          on: {
-            "update:visible": function ($event) {
-              _vm.orderModalVisible = $event
+          [
+            _c("reserve-map", {
+              ref: "reserve_map",
+              attrs: { "can-select": _vm.canSelectMap },
+              on: { "select-item": _vm.selectReserveItem },
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "reserve-inf__btn-wrap mt-3 pb-3",
+                staticStyle: {
+                  "max-width": "300px",
+                  "margin-right": "auto",
+                  "margin-left": "auto",
+                },
+              },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "reserve-inf__btn",
+                    on: {
+                      click: function ($event) {
+                        $event.preventDefault()
+                        _vm.mapVisible = false
+                      },
+                    },
+                  },
+                  [_vm._v("\n                    Продолжить\n                ")]
+                ),
+              ]
+            ),
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "el-dialog",
+          {
+            staticClass: "reservation-order",
+            attrs: { visible: _vm.orderModalVisible },
+            on: {
+              "update:visible": function ($event) {
+                _vm.orderModalVisible = $event
+              },
             },
           },
-        },
-        [
-          _c("div", { attrs: { slot: "title" }, slot: "title" }),
-          _vm._v(" "),
-          _c("reservation-order", {
-            attrs: { "reserve-data": _vm.reserveData },
-          }),
-        ],
-        1
-      ),
-    ],
-    1
-  )
+          [
+            _c("div", { attrs: { slot: "title" }, slot: "title" }),
+            _vm._v(" "),
+            _c("reservation-order", {
+              attrs: { "reserve-data": _vm.reserveData },
+            }),
+          ],
+          1
+        ),
+      ],
+      1
+    ),
+  ])
 }
 var staticRenderFns = [
   function () {
@@ -86709,23 +86804,11 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("p", { staticClass: "booking__description" }, [
-      _vm._v("\n        Дорогие гости, для бронирования вам необходимо "),
+      _vm._v("\n            Дорогие гости, для бронирования вам необходимо "),
       _c("br"),
-      _vm._v("\n        выбрать дату, время, место и произвести оплату\n    "),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mt-4 mb-4" }, [
-      _c("h4", { staticClass: "booking-step" }, [
-        _vm._v("\n            2 шаг\n        "),
-      ]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v("\n            Выберите любые свободные места\n        "),
-      ]),
+      _vm._v(
+        "\n            выбрать дату, время, место и произвести оплату\n        "
+      ),
     ])
   },
 ]

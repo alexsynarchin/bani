@@ -14,13 +14,19 @@
 import FirstFloor from "./FirstFloor";
 import SecondFloor from "./SecondFloor";
     export default {
+        props: {
+            canSelect: {
+                type:Boolean,
+                default:false,
+            }
+        },
         components: {
             FirstFloor,
             SecondFloor,
         },
         data() {
             return {
-                canSelect:false,
+
             }
         },
         methods: {

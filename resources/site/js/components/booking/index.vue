@@ -1,74 +1,89 @@
 <template>
-    <section class="booking">
-        <h3 class="booking__title">Забронировать место</h3>
-        <p class="booking__description">
-            Дорогие гости, для бронирования вам необходимо <br>
-            выбрать дату, время, место и произвести оплату
-        </p>
-        <h4 class="booking-step">
-            1 шаг
-        </h4>
-        <div v-if="firstStep" @click.prevent="calendarVisible=true">
+    <div class="booking__wrap">
+        <section class="booking">
+            <h3 class="booking__title">Забронировать место</h3>
+            <p class="booking__description">
+                Дорогие гости, для бронирования вам необходимо <br>
+                выбрать дату, время, место и произвести оплату
+            </p>
+            <h4 class="booking-step text-center">
+                1 шаг
+            </h4>
+            <div class="text-center">
+                <div v-if="firstStep" @click.prevent="calendarVisible=true" style="cursor: pointer">
             <span class="booking-first__value">
                 {{reserveData.selectedDayString}}
             </span>
-            <span class="booking-first__label">
+                    <span class="booking-first__label">
                 с
             </span>
-            <span class="booking-first__value">
+                    <span class="booking-first__value">
                 {{reserveData.startTime}}
             </span>
-            <span class="booking-first__label">
+                    <span class="booking-first__label">
                 до
             </span>
-            <span class="booking-first__value">
+                    <span class="booking-first__value">
                 {{reserveData.endTime}}
             </span>
-        </div>
-        <button class="booking-link" v-else @click.prevent="calendarVisible=true">
-            Выберите дату и время
-        </button>
-        <div class="mt-4 mb-4">
-            <h4 class="booking-step">
-                2 шаг
-            </h4>
-            <p>
-                Выберите любые свободные места
-            </p>
-        </div>
-        <el-dialog
-
-            :visible.sync="calendarVisible"
-            width="30%"
-            class="calendar-modal"
-           >
-        <div slot="title"></div>
-            <calendar
-                @select-day-and-time="selectReserveTime"
-                v-if="calendarVisible"
-            ></calendar>
-        </el-dialog>
-        <div class="d-flex flex-wrap">
-            <div>
-                <reserve-map ref="reserve_map"
-                    @select-item = "selectReserveItem"
-                ></reserve-map>
+                </div>
+                <button class="booking-link" v-else @click.prevent="calendarVisible=true">
+                    Выберите дату и время
+                </button>
+                <div class="mt-4 mb-4">
+                    <h4 class="booking-step">
+                        2 шаг
+                    </h4>
+                    <button class="booking-link" @click.prevent="openMapModal">
+                        Выберите любые свободные места
+                    </button>
+                </div>
             </div>
             <reservation-information
+                v-if="this.reserveData.count > 0"
                 :reserve-data="reserveData"
                 @order-reservation="orderReservation"
             ></reservation-information>
-        </div>
-        <el-dialog
-            :visible.sync="orderModalVisible"
-            class="reservation-order"
-        >
-            <div slot="title"> </div>
-            <reservation-order
-                :reserve-data="reserveData"
-            ></reservation-order>
-        </el-dialog>
-    </section>
+            <el-dialog
+
+                :visible.sync="calendarVisible"
+                width="30%"
+                class="calendar-modal"
+            >
+                <div slot="title"></div>
+                <calendar
+                    @select-day-and-time="selectReserveTime"
+                    v-if="calendarVisible"
+                ></calendar>
+            </el-dialog>
+            <el-dialog
+                :visible.sync="mapVisible"
+                class="map-modal"
+            >
+                <reserve-map ref="reserve_map"
+                             @select-item = "selectReserveItem"
+                             :can-select="canSelectMap"
+                ></reserve-map>
+                <div class="reserve-inf__btn-wrap mt-3 pb-3" style="max-width: 300px; margin-right: auto; margin-left: auto">
+                    <button class="reserve-inf__btn" @click.prevent="mapVisible = false">
+                        Продолжить
+                    </button>
+                </div>
+            </el-dialog>
+
+
+            <el-dialog
+                :visible.sync="orderModalVisible"
+                class="reservation-order"
+            >
+                <div slot="title"> </div>
+                <reservation-order
+                    :reserve-data="reserveData"
+                ></reservation-order>
+            </el-dialog>
+        </section>
+    </div>
+
 </template>
 <script>
     import calendar from '../calendar/index'
@@ -84,6 +99,8 @@
      },
         data() {
          return {
+             canSelectMap:false,
+             mapVisible:false,
              calendarVisible:false,
              firstStep:false,
             orderModalVisible:false,
@@ -103,6 +120,17 @@
 
         },
         methods: {
+         openMapModal() {
+             if (this.canSelectMap) {
+                 this.mapVisible = true;
+             } else {
+                 this.$notify({
+                     title: 'Выберите дату и время',
+                     message: '',
+                     type: 'warning'
+                 });
+             }
+         },
          orderReservation() {
             this.orderModalVisible = true;
          },
@@ -133,7 +161,7 @@
             this.reserveData.selectedDay = data.selectedDay;
             this.firstStep = true;
             this.calendarVisible = false;
-            this.$refs.reserve_map.canSelect = true;
+            this.canSelectMap = true;
              let startHours = new Date("01/01/2018 " + data.startTime).getHours();
              let startMinutes = new Date("01/01/2018 " + data.startTime).getMinutes();
              let endHours = new Date("01/01/2018 " + data.endTime).getHours();

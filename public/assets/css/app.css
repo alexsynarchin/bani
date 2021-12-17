@@ -11287,6 +11287,11 @@ textarea.form-control-lg {
   font-weight: normal;
   font-style: normal;
 }
+.booking__wrap {
+  display: flex;
+  justify-content: center;
+}
+
 .booking-step {
   color: #006672;
   font-family: "Metro", sans-serif;
@@ -11533,6 +11538,14 @@ textarea.form-control-lg {
   color: #fff;
   font-size: 16px;
   font-weight: 600;
+}
+
+.map-modal .el-dialog__body {
+  padding: 0;
+}
+.map-modal .el-dialog {
+  min-width: 865px;
+  max-width: 865px;
 }
 
 .reservation-order__title {
