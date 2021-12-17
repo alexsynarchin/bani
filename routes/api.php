@@ -24,3 +24,6 @@ Route::get('/places/list/{floor}',[PlaceController::class, 'index']) -> name('pl
 //Cabinets
 use App\Http\Controllers\Api\CabinetController;
 Route::get('/cabinets/list/{floor}',[CabinetController::class, 'index']) -> name('cabinets.list');
+//Order
+use App\Http\Controllers\Api\OrderController;
+Route::post('/reservation-order', [OrderController::class, 'order']) -> name('order-submit');

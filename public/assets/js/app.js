@@ -3929,7 +3929,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     submitForm: function submitForm() {
-      console.log('test');
+      var _this = this;
+
+      axios.post('/api/reservation-order', this.form).then(function (response) {
+        console.log(response.data);
+      })["catch"](function (error) {
+        _this.errors.record(error.response.data.errors);
+      });
     }
   }
 });

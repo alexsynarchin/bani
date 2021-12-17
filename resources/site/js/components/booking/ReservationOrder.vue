@@ -93,7 +93,14 @@ export default {
     },
     methods: {
         submitForm() {
-            console.log('test');
+            axios.post('/api/reservation-order', this.form)
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {
+                this.errors.record(error.response.data.errors);
+            })
+
         }
     }
 }
