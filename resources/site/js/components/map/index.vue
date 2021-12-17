@@ -25,7 +25,7 @@ import SecondFloor from "./SecondFloor";
         },
         methods: {
             selectReservationItem(data) {
-
+                this.$emit('select-item', data);
             }
         },
         mounted() {

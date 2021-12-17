@@ -83,7 +83,12 @@ export default {
         handleSelectPlace(place, index) {
             if(this.canSelect) {
                 this.places[index].select =  !this.places[index].select;
-                this.$emit('select-item', this.places[index])
+                let data = {
+                    id: place.id,
+                    type:'place',
+                    price: place.price,
+                };
+                this.$emit('select-item', data)
             } else {
                 this.$notify({
                     title: 'Выберите дату и время',
@@ -95,6 +100,12 @@ export default {
          handleSelectCabinet(cabinet, index) {
              if(this.canSelect) {
                  this.cabinets[index].select =  !this.cabinets[index].select;
+                 let data = {
+                     id: cabinet.id,
+                     type:'cabinet',
+                     price: cabinet.price,
+                 };
+                 this.$emit('select-item', data)
              } else {
                  this.$notify({
                      title: 'Выберите дату и время',

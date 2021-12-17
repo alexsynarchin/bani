@@ -8,7 +8,7 @@
         <h4 class="booking-step">
             1 шаг
         </h4>
-        <div v-if="firstStep">
+        <div v-if="firstStep" @click.prevent="calendarVisible=true">
             <span class="booking-first__value">
                 {{reserveData.selectedDayString}}
             </span>
@@ -36,10 +36,6 @@
                 Выберите любые свободные места
             </p>
         </div>
-
-        <div class="mb-3 mt-3" style="margin-left:auto; margin-right: auto">
-
-        </div>
         <el-dialog
 
             :visible.sync="calendarVisible"
@@ -58,46 +54,83 @@
                     @select-item = "selectReserveItem"
                 ></reserve-map>
             </div>
-
+            <reservation-information
+                :reserve-data="reserveData"
+                @order-reservation="orderReservation"
+            ></reservation-information>
         </div>
+        <el-dialog
+            :visible.sync="orderModalVisible"
+            class="reservation-order"
+        >
+            <div slot="title"> </div>
+            <reservation-order
+                :reserve-data="reserveData"
+            ></reservation-order>
+        </el-dialog>
     </section>
 </template>
 <script>
     import calendar from '../calendar/index'
     import ReserveMap from "../map/index"
+    import ReservationInformation from "./ReservationInformation";
+    import ReservationOrder from "./ReservationOrder";
     export default {
      components: {
+         ReservationInformation,
          'calendar':calendar,
-        'ReserveMap':ReserveMap
+        'ReserveMap':ReserveMap,
+         ReservationOrder
      },
         data() {
          return {
              calendarVisible:false,
              firstStep:false,
+            orderModalVisible:false,
              reserveData: {
                  selectedDay:null,
                  selectedDayString:'',
                  startTime:'',
                  endTime:'',
-                 duration: null,
+                 duration: 0,
+                 price: 0,
+                 count:0,
              },
              reservations: [],
-
          }
         },
-
         computed: {
 
         },
         methods: {
-         selectReserveItem() {
-
+         orderReservation() {
+            this.orderModalVisible = true;
+         },
+         selectReserveItem(data) {
+             var add = true;
+             for(var i = 0; i < this.reservations.length; i++) {
+                 if((this.reservations[i].type ===  data.type) && (this.reservations[i].id === data.id) ) {
+                     this.reservations.splice(i, 1);
+                     this.reserveData.price = this.reserveData.price - data.price * this.reserveData.duration
+                     add = false;
+                     break;
+                 }
+             }
+             if(add) {
+                 this.reservations.push(data);
+                 this.reserveData.price = this.reserveData.price + data.price * this.reserveData.duration
+             }
+             this.reserveData.count = this.reservations.length;
          },
          handleCalendarClose() {
 
          },
          selectReserveTime(data) {
-            this.reserveData = data;
+             console.log(data);
+            this.reserveData.startTime = data.startTime;
+            this.reserveData.endTime = data.endTime;
+            this.reserveData.selectedDayString = data.selectedDayString;
+            this.reserveData.selectedDay = data.selectedDay;
             this.firstStep = true;
             this.calendarVisible = false;
             this.$refs.reserve_map.canSelect = true;

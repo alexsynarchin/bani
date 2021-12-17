@@ -11497,6 +11497,21 @@ textarea.form-control-lg {
   padding-left: 20px;
   flex: 1;
 }
+.reserve-inf__btn {
+  color: #fff;
+  background: #3097A1;
+  box-shadow: 0 0 0 transparent;
+  border: 0 solid transparent;
+  border-radius: 6px;
+  padding: 15px 30px;
+  text-shadow: 0 0 0 transparent;
+  width: 100%;
+  font-size: 16px;
+}
+.reserve-inf__btn__wrap {
+  margin-top: 20px;
+  text-align: center;
+}
 
 .reserve-inf-list {
   list-style-type: none;
@@ -11518,6 +11533,90 @@ textarea.form-control-lg {
   color: #fff;
   font-size: 16px;
   font-weight: 600;
+}
+
+.reservation-order__title {
+  font-family: "Metro", sans-serif;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #006672;
+  font-size: 26px;
+}
+.reservation-order__text {
+  text-align: center;
+  color: #898989;
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+.reservation-order .el-dialog {
+  background: #f1f1f1;
+  min-width: 320px;
+  max-width: 414px;
+}
+.reservation-order .el-dialog__body {
+  padding-left: 60px;
+  padding-right: 60px;
+}
+
+.reservation-order-list {
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 0;
+  color: #007583;
+  margin-bottom: 25px;
+}
+.reservation-order-list__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #E2E2E2;
+}
+.reservation-order-list__value {
+  font-weight: 600;
+}
+
+.form-control {
+  background-color: #E2E2E2;
+  height: 60px;
+}
+.form-control::-moz-placeholder {
+  color: #898989;
+  font-size: 17px;
+}
+.form-control:-ms-input-placeholder {
+  color: #898989;
+  font-size: 17px;
+}
+.form-control::placeholder {
+  color: #898989;
+  font-size: 17px;
+}
+.form-control:focus {
+  outline: none;
+  box-shadow: none !important;
+}
+
+.reservation-form__label {
+  color: #006672;
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+.reservation-form__group {
+  margin-bottom: 20px;
+}
+.reservation-form__btn {
+  margin-top: 35px;
+  color: #fff;
+  background: #3097A1;
+  box-shadow: 0 0 0 transparent;
+  border: 0 solid transparent;
+  border-radius: 6px;
+  padding: 15px 30px;
+  text-shadow: 0 0 0 transparent;
+  width: 100%;
+  font-size: 16px;
 }
 
 body {
