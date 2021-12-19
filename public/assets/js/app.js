@@ -4046,7 +4046,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -86709,7 +86708,6 @@ var render = function () {
           "el-dialog",
           {
             staticClass: "calendar-modal",
-            staticStyle: { "min-width": "420px" },
             attrs: { visible: _vm.calendarVisible },
             on: {
               "update:visible": function ($event) {

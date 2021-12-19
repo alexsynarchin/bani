@@ -11632,7 +11632,12 @@ textarea.form-control-lg {
   font-size: 16px;
 }
 
+.calendar-modal .el-dialog {
+  min-width: 380px;
+}
+
 body {
+  min-width: 380px;
   background-color: #f1f1f1;
   background-image: url("../images/reserve-bg.png");
   background-repeat: repeat;

@@ -47,7 +47,6 @@
             <el-dialog
 
                 :visible.sync="calendarVisible"
-                style="min-width: 420px"
                 class="calendar-modal"
             >
                 <div slot="title"></div>
