@@ -27,3 +27,4 @@ Route::get('/cabinets/list/{floor}',[CabinetController::class, 'index']) -> name
 //Order
 use App\Http\Controllers\Api\OrderController;
 Route::post('/reservation-order', [OrderController::class, 'order']) -> name('order-submit');
+

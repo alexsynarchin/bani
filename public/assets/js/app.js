@@ -3931,7 +3931,10 @@ __webpack_require__.r(__webpack_exports__);
     submitForm: function submitForm() {
       var _this = this;
 
-      axios.post('/api/reservation-order', this.form).then(function (response) {
+      axios.post('/api/reservation-order', {
+        client: this.form,
+        reservation: this.reserveData
+      }).then(function (response) {
         console.log(response.data);
       })["catch"](function (error) {
         _this.errors.record(error.response.data.errors);
@@ -86706,7 +86709,8 @@ var render = function () {
           "el-dialog",
           {
             staticClass: "calendar-modal",
-            attrs: { visible: _vm.calendarVisible, width: "30%" },
+            staticStyle: { "min-width": "420px" },
+            attrs: { visible: _vm.calendarVisible },
             on: {
               "update:visible": function ($event) {
                 _vm.calendarVisible = $event

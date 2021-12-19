@@ -93,7 +93,7 @@ export default {
     },
     methods: {
         submitForm() {
-            axios.post('/api/reservation-order', this.form)
+            axios.post('/api/reservation-order', {client:this.form, reservation:this.reserveData})
             .then((response) => {
                 console.log(response.data);
             })
