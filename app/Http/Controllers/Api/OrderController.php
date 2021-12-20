@@ -28,7 +28,8 @@ class OrderController extends Controller
         ]);
         $order = Order::create([
             'status' => 'progress',
-            'client_id' => $client -> id
+            'client_id' => $client -> id,
+            'price' => $request->get('reservation')['price']
         ]);
         $reservation_data = [
             'order_id' => $order -> id,

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
-    protected $fillable = ['client_id', 'status'];
+    protected $fillable = ['client_id', 'status', 'price'];
     public function client()
     {
         return $this -> belongsTo('App/Models/Client', 'client_id');
