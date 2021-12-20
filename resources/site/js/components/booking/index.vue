@@ -171,6 +171,16 @@
 
          },
          selectReserveTime(data) {
+             this.reservations = [];
+             this.reserveData = {
+                 selectedDay:null,
+                 selectedDayString:'',
+                 startTime:'',
+                 endTime:'',
+                 duration: 0,
+                 price: 0,
+                 count:0,
+             };
              console.log(data);
             this.reserveData.startTime = data.startTime;
             this.reserveData.endTime = data.endTime;
