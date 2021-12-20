@@ -11,11 +11,11 @@ class Order extends Model
     protected $fillable = ['client_id', 'status', 'price'];
     public function client()
     {
-        return $this -> belongsTo('App/Models/Client', 'client_id');
+        return $this -> belongsTo(Client::class, 'client_id');
     }
 
     public function reservations()
     {
-        return $this -> hasMany('App/Models/Reservation', 'order_id');
+        return $this -> hasMany(Reservation::class, 'order_id');
     }
 }

@@ -19,7 +19,10 @@
                     'reserve-map__place-number--top' : place.type === 'top',
                     'reserve-map__place-number--down' : place.type === 'down',
                 }">{{place.number}}</span>
-                <svg viewBox="0 0 44 44">
+                <svg viewBox="0 0 44 44" v-if="place.reserved">
+                    <use :xlink:href="'/assets/site/images/sprites.svg?ver=29#sprite-place-' + place.type + '-res'"></use>
+                </svg>
+                <svg viewBox="0 0 44 44" v-else>
                     <use :xlink:href="'/assets/site/images/sprites.svg?ver=28#sprite-place-' + place.type"></use>
                 </svg>
             </div>
@@ -29,6 +32,18 @@
 <script>
 export default {
     props: {
+        date: {
+            type:String,
+            required:true
+        },
+        startDate:{
+            type:String,
+            required:true
+        },
+        endDate: {
+            type:String,
+            required: true
+        },
         canSelect: {
             type: Boolean,
             default: false
@@ -41,13 +56,14 @@ export default {
     },
     methods: {
         getPlaces() {
-            axios.get('/api/places/list/' + 1)
+            axios.get('/api/places/list/' + 1, {params:{startDate:this.startDate, endDate:this.endDate,date:this.date}})
             .then((response) => {
                 this.places = response.data;
+                console.log(this.places);
             })
         },
         handleSelectPlace(place, index) {
-            if(this.canSelect) {
+            if(this.canSelect && !place.reserved) {
                 this.places[index].select =  !this.places[index].select;
                 let data = {
                     id: place.id,
@@ -56,7 +72,14 @@ export default {
                 };
                 this.$emit('select-item', data)
 
-            } else {
+            } else if(place.reserved) {
+                this.$notify({
+                    title: 'Место занято',
+                    message: '',
+                    type: 'warning'
+                });
+            }
+            else {
                 this.$notify({
                     title: 'Выберите дату и время',
                     message: '',

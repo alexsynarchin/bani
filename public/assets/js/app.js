@@ -4063,6 +4063,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -4724,8 +4728,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
+    date: {
+      type: String,
+      required: true
+    },
+    startDate: {
+      type: String,
+      required: true
+    },
+    endDate: {
+      type: String,
+      required: true
+    },
     canSelect: {
       type: Boolean,
       "default": false
@@ -4740,12 +4759,19 @@ __webpack_require__.r(__webpack_exports__);
     getPlaces: function getPlaces() {
       var _this = this;
 
-      axios.get('/api/places/list/' + 1).then(function (response) {
+      axios.get('/api/places/list/' + 1, {
+        params: {
+          startDate: this.startDate,
+          endDate: this.endDate,
+          date: this.date
+        }
+      }).then(function (response) {
         _this.places = response.data;
+        console.log(_this.places);
       });
     },
     handleSelectPlace: function handleSelectPlace(place, index) {
-      if (this.canSelect) {
+      if (this.canSelect && !place.reserved) {
         this.places[index].select = !this.places[index].select;
         var data = {
           id: place.id,
@@ -4753,6 +4779,12 @@ __webpack_require__.r(__webpack_exports__);
           price: place.price
         };
         this.$emit('select-item', data);
+      } else if (place.reserved) {
+        this.$notify({
+          title: 'Место занято',
+          message: '',
+          type: 'warning'
+        });
       } else {
         this.$notify({
           title: 'Выберите дату и время',
@@ -4835,8 +4867,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
+    date: {
+      type: String,
+      required: true
+    },
+    startDate: {
+      type: String,
+      required: true
+    },
+    endDate: {
+      type: String,
+      required: true
+    },
     canSelect: {
       type: Boolean,
       "default": false
@@ -4852,19 +4897,31 @@ __webpack_require__.r(__webpack_exports__);
     getCabinets: function getCabinets() {
       var _this = this;
 
-      axios.get('/api/cabinets/list/' + 2).then(function (response) {
+      axios.get('/api/cabinets/list/' + 2, {
+        params: {
+          startDate: this.startDate,
+          endDate: this.endDate,
+          date: this.date
+        }
+      }).then(function (response) {
         _this.cabinets = response.data;
       });
     },
     getPlaces: function getPlaces() {
       var _this2 = this;
 
-      axios.get('/api/places/list/' + 2).then(function (response) {
+      axios.get('/api/places/list/' + 2, {
+        params: {
+          startDate: this.startDate,
+          endDate: this.endDate,
+          date: this.date
+        }
+      }).then(function (response) {
         _this2.places = response.data;
       });
     },
     handleSelectPlace: function handleSelectPlace(place, index) {
-      if (this.canSelect) {
+      if (this.canSelect && !place.reserved) {
         this.places[index].select = !this.places[index].select;
         var data = {
           id: place.id,
@@ -4872,6 +4929,12 @@ __webpack_require__.r(__webpack_exports__);
           price: place.price
         };
         this.$emit('select-item', data);
+      } else if (place.reserved) {
+        this.$notify({
+          title: 'Место занято',
+          message: '',
+          type: 'warning'
+        });
       } else {
         this.$notify({
           title: 'Выберите дату и время',
@@ -4931,10 +4994,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
+    date: {
+      type: String,
+      required: true
+    },
+    startDate: {
+      type: String,
+      required: true
+    },
+    endDate: {
+      type: String,
+      required: true
+    },
     canSelect: {
       type: Boolean,
       "default": false
@@ -86807,11 +86888,26 @@ var render = function () {
             },
           },
           [
-            _c("reserve-map", {
-              ref: "reserve_map",
-              attrs: { "can-select": _vm.canSelectMap },
-              on: { "select-item": _vm.selectReserveItem },
-            }),
+            _vm.reserveData.startTime &&
+            _vm.reserveData.endTime &&
+            _vm.reserveData.selectedDay
+              ? _c("reserve-map", {
+                  ref: "reserve_map",
+                  attrs: {
+                    "can-select": _vm.canSelectMap,
+                    date: _vm.reserveData.selectedDay,
+                    "start-date":
+                      _vm.reserveData.selectedDay +
+                      " " +
+                      _vm.reserveData.startTime,
+                    "end-date":
+                      _vm.reserveData.selectedDay +
+                      " " +
+                      _vm.reserveData.endTime,
+                  },
+                  on: { "select-item": _vm.selectReserveItem },
+                })
+              : _vm._e(),
             _vm._v(" "),
             _c(
               "div",
@@ -87323,15 +87419,26 @@ var render = function () {
                 [_vm._v(_vm._s(place.number))]
               ),
               _vm._v(" "),
-              _c("svg", { attrs: { viewBox: "0 0 44 44" } }, [
-                _c("use", {
-                  attrs: {
-                    "xlink:href":
-                      "/assets/site/images/sprites.svg?ver=28#sprite-place-" +
-                      place.type,
-                  },
-                }),
-              ]),
+              place.reserved
+                ? _c("svg", { attrs: { viewBox: "0 0 44 44" } }, [
+                    _c("use", {
+                      attrs: {
+                        "xlink:href":
+                          "/assets/site/images/sprites.svg?ver=29#sprite-place-" +
+                          place.type +
+                          "-res",
+                      },
+                    }),
+                  ])
+                : _c("svg", { attrs: { viewBox: "0 0 44 44" } }, [
+                    _c("use", {
+                      attrs: {
+                        "xlink:href":
+                          "/assets/site/images/sprites.svg?ver=28#sprite-place-" +
+                          place.type,
+                      },
+                    }),
+                  ]),
             ]
           )
         }),
@@ -87364,6 +87471,7 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "map-floor map-floor--second" }, [
+    _vm._v("\n    " + _vm._s(_vm.startDate) + "\n    "),
     _c("h4", { staticClass: "map-floor__title" }, [
       _vm._v("\n        2 ЭТАЖ\n    "),
     ]),
@@ -87518,12 +87626,22 @@ var render = function () {
     "section",
     [
       _c("first-floor", {
-        attrs: { "can-select": _vm.canSelect },
+        attrs: {
+          date: _vm.date,
+          "can-select": _vm.canSelect,
+          "start-date": _vm.startDate,
+          "end-date": _vm.endDate,
+        },
         on: { "select-item": _vm.selectReservationItem },
       }),
       _vm._v(" "),
       _c("second-floor", {
-        attrs: { "can-select": _vm.canSelect },
+        attrs: {
+          date: _vm.date,
+          "can-select": _vm.canSelect,
+          "start-date": _vm.startDate,
+          "end-date": _vm.endDate,
+        },
         on: { "select-item": _vm.selectReservationItem },
       }),
     ],

@@ -1,5 +1,6 @@
 <template>
     <div class="map-floor map-floor--second">
+        {{startDate}}
         <h4 class="map-floor__title">
             2 ЭТАЖ
         </h4>
@@ -56,6 +57,19 @@
 <script>
 export default {
     props: {
+        date: {
+            type:String,
+            required:true
+        },
+        startDate:{
+            type:String,
+            required:true
+        },
+        endDate: {
+            type:String,
+            required: true
+        },
+
         canSelect: {
             type: Boolean,
             default: false
@@ -69,19 +83,19 @@ export default {
     },
     methods: {
         getCabinets() {
-            axios.get('/api/cabinets/list/' + 2)
+            axios.get('/api/cabinets/list/' + 2, {params:{startDate:this.startDate, endDate:this.endDate, date:this.date}})
                 .then((response) => {
                     this.cabinets = response.data;
                 })
         },
         getPlaces() {
-            axios.get('/api/places/list/' + 2)
+            axios.get('/api/places/list/' + 2, {params:{startDate:this.startDate, endDate:this.endDate, date:this.date}})
                 .then((response) => {
                     this.places = response.data;
                 })
         },
         handleSelectPlace(place, index) {
-            if(this.canSelect) {
+            if(this.canSelect && !place.reserved) {
                 this.places[index].select =  !this.places[index].select;
                 let data = {
                     id: place.id,
@@ -89,7 +103,15 @@ export default {
                     price: place.price,
                 };
                 this.$emit('select-item', data)
-            } else {
+            }
+            else if(place.reserved) {
+                this.$notify({
+                    title: 'Место занято',
+                    message: '',
+                    type: 'warning'
+                });
+            }
+            else {
                 this.$notify({
                     title: 'Выберите дату и время',
                     message: '',

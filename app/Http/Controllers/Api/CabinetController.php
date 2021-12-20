@@ -8,9 +8,22 @@ use Illuminate\Http\Request;
 
 class CabinetController extends Controller
 {
-    public function index($floor)
+    public function index(Request $request, $floor)
     {
         $cabinets = Cabinet::where('floor',$floor)->get();
+        foreach ($cabinets as $cabinet) {
+            $cabinet -> reserved = false;
+            $reservations = $cabinet ->reservations()
+                ->whereDate('date', '=', $request->get('date'))
+                ->whereTime('start', '<=', \Carbon\Carbon::parse($request->get('startDate')))
+                ->whereTime('end' , '>', \Carbon\Carbon::parse($request->get('startDate')))
+                ->whereHas('order', function ($query) {
+                    $query->where('status','success');
+                }) -> get();
+            if(count($reservations) > 0) {
+                $cabinet -> reserved = true;
+            }
+        }
         return $cabinets;
     }
 }

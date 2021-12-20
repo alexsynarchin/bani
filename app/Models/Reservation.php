@@ -9,13 +9,20 @@ class Reservation extends Model
 {
     use HasFactory;
     protected $fillable = ['order_id', 'start', 'end', 'reservationable_type, reservationable_id', 'date'];
+    protected $appends = [
+        'status',
+    ];
     public function order()
     {
-        return $this -> belongsTo('App/Models/Order', 'order_id');
+        return $this -> belongsTo(Order::class, 'order_id');
     }
 
     public function reservationable()
     {
         return $this->morphTo();
+    }
+    public function getStatusAttribute()
+    {
+        return $this -> order -> status;
     }
 }
