@@ -86911,7 +86911,8 @@ var render = function () {
           [
             _vm.reserveData.startTime &&
             _vm.reserveData.endTime &&
-            _vm.reserveData.selectedDay
+            _vm.reserveData.selectedDay &&
+            _vm.mapVisible
               ? _c("reserve-map", {
                   ref: "reserve_map",
                   attrs: {
