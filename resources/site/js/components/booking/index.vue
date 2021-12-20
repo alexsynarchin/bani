@@ -184,6 +184,7 @@
             getPaymentResult(form) {
              axios.post('/api/payment-result', form)
                 .then((response) => {
+                    console.log(response.data);
                     this.resultVisible = true;
                    this.resultText = response.data;
                 })

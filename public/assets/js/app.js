@@ -4151,6 +4151,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.post('/api/payment-result', form).then(function (response) {
+        console.log(response.data);
         _this.resultVisible = true;
         _this.resultText = response.data;
       });
