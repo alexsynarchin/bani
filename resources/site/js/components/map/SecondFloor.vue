@@ -135,7 +135,7 @@ export default {
             }
         },
          handleSelectCabinet(cabinet, index) {
-             if(this.canSelect) {
+             if(this.canSelect && !cabinet.reserved) {
                  this.cabinets[index].select =  !this.cabinets[index].select;
                  let data = {
                      id: cabinet.id,
@@ -143,7 +143,15 @@ export default {
                      price: cabinet.price,
                  };
                  this.$emit('select-item', data)
-             } else {
+             }
+             else if(cabinet.reserved) {
+                 this.$notify({
+                     title: 'Кабинка занята',
+                     message: '',
+                     type: 'warning'
+                 });
+             }
+             else {
                  this.$notify({
                      title: 'Выберите дату и время',
                      message: '',

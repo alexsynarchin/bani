@@ -4959,7 +4959,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     handleSelectCabinet: function handleSelectCabinet(cabinet, index) {
-      if (this.canSelect) {
+      if (this.canSelect && !cabinet.reserved) {
         this.cabinets[index].select = !this.cabinets[index].select;
         var data = {
           id: cabinet.id,
@@ -4967,6 +4967,12 @@ __webpack_require__.r(__webpack_exports__);
           price: cabinet.price
         };
         this.$emit('select-item', data);
+      } else if (cabinet.reserved) {
+        this.$notify({
+          title: 'Кабинка занята',
+          message: '',
+          type: 'warning'
+        });
       } else {
         this.$notify({
           title: 'Выберите дату и время',
