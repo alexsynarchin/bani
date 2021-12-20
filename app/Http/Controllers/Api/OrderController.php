@@ -51,7 +51,7 @@ class OrderController extends Controller
             'userName' => env('ALFA_USERNAME'),
             'password' => env('ALFA_PASSWORD'),
             'orderNumber' => $order->id,
-            'amount' => 400,
+            'amount' => $request->get('reservation')['price'] * 100,
             'returnUrl' => env('ALFA_RETURN_URL')
         );
         $alfa_pay = new PaymentService();
