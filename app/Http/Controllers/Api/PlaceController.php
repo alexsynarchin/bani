@@ -15,7 +15,7 @@ class PlaceController extends Controller
            $reservations = $place ->reservations()
                ->whereDate('date', '=', $request->get('date'))
                ->whereTime('start', '<=', \Carbon\Carbon::parse($request->get('startDate')))
-               -> whereTime('end' , '>', \Carbon\Carbon::parse($request->get('startDate')))
+               -> whereTime('end' , '>', \Carbon\Carbon::parse($request->get('startDate'))->addMinutes(30))
                ->whereHas('order', function ($query) {
                $query->where('status','success');
            }) -> get();
