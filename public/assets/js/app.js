@@ -4868,6 +4868,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     date: {
@@ -87522,29 +87537,54 @@ var render = function () {
                 ]
               ),
               _vm._v(" "),
-              _c(
-                "svg",
-                {
-                  style: {
-                    width: cabinet.width,
-                    height: cabinet.height,
-                  },
-                  attrs: {
-                    width: cabinet.width,
-                    height: cabinet.height,
-                    viewBox: "0 0 " + cabinet.width + " " + cabinet.height,
-                  },
-                },
-                [
-                  _c("use", {
-                    attrs: {
-                      "xlink:href":
-                        "/assets/site/images/sprites.svg?ver=8#sprite-cabin-" +
-                        cabinet.number,
+              cabinet.reserved
+                ? _c(
+                    "svg",
+                    {
+                      style: {
+                        width: cabinet.width,
+                        height: cabinet.height,
+                      },
+                      attrs: {
+                        width: cabinet.width,
+                        height: cabinet.height,
+                        viewBox: "0 0 " + cabinet.width + " " + cabinet.height,
+                      },
                     },
-                  }),
-                ]
-              ),
+                    [
+                      _c("use", {
+                        attrs: {
+                          "xlink:href":
+                            "/assets/site/images/sprites.svg?ver=11#sprite-cabin-" +
+                            cabinet.number +
+                            "-res",
+                        },
+                      }),
+                    ]
+                  )
+                : _c(
+                    "svg",
+                    {
+                      style: {
+                        width: cabinet.width,
+                        height: cabinet.height,
+                      },
+                      attrs: {
+                        width: cabinet.width,
+                        height: cabinet.height,
+                        viewBox: "0 0 " + cabinet.width + " " + cabinet.height,
+                      },
+                    },
+                    [
+                      _c("use", {
+                        attrs: {
+                          "xlink:href":
+                            "/assets/site/images/sprites.svg?ver=8#sprite-cabin-" +
+                            cabinet.number,
+                        },
+                      }),
+                    ]
+                  ),
             ]
           )
         }),
@@ -87581,16 +87621,27 @@ var render = function () {
                 [_vm._v(_vm._s(place.number))]
               ),
               _vm._v(" "),
-              _c("svg", { attrs: { viewBox: "0 0 35 35" } }, [
-                _c("use", {
-                  attrs: {
-                    "xlink:href":
-                      "/assets/site/images/sprites.svg?ver=8#sprite-place-" +
-                      place.type +
-                      "-2",
-                  },
-                }),
-              ]),
+              place.reserved
+                ? _c("svg", { attrs: { viewBox: "0 0 35 35" } }, [
+                    _c("use", {
+                      attrs: {
+                        "xlink:href":
+                          "/assets/site/images/sprites.svg?ver=8#sprite-place-" +
+                          place.type +
+                          "res",
+                      },
+                    }),
+                  ])
+                : _c("svg", { attrs: { viewBox: "0 0 35 35" } }, [
+                    _c("use", {
+                      attrs: {
+                        "xlink:href":
+                          "/assets/site/images/sprites.svg?ver=8#sprite-place-" +
+                          place.type +
+                          "-2",
+                      },
+                    }),
+                  ]),
             ]
           )
         }),

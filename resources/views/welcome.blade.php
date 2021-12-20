@@ -13,6 +13,6 @@
         <div class="app container mt-4 mb-4" id ="app">
             <booking></booking>
         </div>
-    <script src="{{mix('assets/js/app.js')}}?ver=19"></script>
+    <script src="{{mix('assets/js/app.js')}}?ver=22"></script>
     </body>
 </html>
