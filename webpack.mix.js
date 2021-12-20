@@ -12,8 +12,10 @@ const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
  */
 
 mix.js('resources/site/js/app.js', 'public/assets/js')
+    .js('resources/admin/js/app.js', 'public/assets/admin/js')
     .vue()
     .sass('resources/site/scss/app.scss', 'public/assets/css')
+    .sass('resources/admin/scss/admin.scss', 'public/assets/admin/css')
     .options({
         processCssUrls: false,
         processJsUrls:false
