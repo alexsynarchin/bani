@@ -13,9 +13,9 @@
                 style="margin-right: 10px"
                 @change="startTimeIsSelected"
                 :picker-options="{
-                  start: '08:30',
+                  start: '17:00',
                   step: '00:30',
-                  end: '18:30'
+                  end: '20:00'
 }">
             </el-time-select>
         </div>
@@ -32,7 +32,7 @@
                 :picker-options="{
                   start: minEndTime,
                   step: '00:30',
-                  end: '20:30',
+                  end: '22:00',
 
 }">
             </el-time-select>

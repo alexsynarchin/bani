@@ -3916,6 +3916,10 @@ __webpack_require__.r(__webpack_exports__);
     reserveData: {
       required: true,
       type: Object
+    },
+    reservations: {
+      required: true,
+      type: Array
     }
   },
   data: function data() {
@@ -3933,9 +3937,11 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.post('/api/reservation-order', {
         client: this.form,
-        reservation: this.reserveData
+        reservation: this.reserveData,
+        reservations: this.reservations
       }).then(function (response) {
         console.log(response.data);
+        window.location.href = response.data.formUrl;
       })["catch"](function (error) {
         _this.errors.record(error.response.data.errors);
       });
@@ -4046,6 +4052,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4059,6 +4076,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      resultVisible: false,
+      resultText: '',
+      order_id: null,
       canSelectMap: false,
       mapVisible: false,
       calendarVisible: false,
@@ -4126,6 +4146,30 @@ __webpack_require__.r(__webpack_exports__);
       var endHours = new Date("01/01/2018 " + data.endTime).getHours();
       var endMinutes = new Date("01/01/2018 " + data.endTime).getMinutes();
       this.reserveData.duration = (endHours * 60 + endMinutes - startHours * 60 - startMinutes) / 60;
+    },
+    getPaymentResult: function getPaymentResult(form) {
+      var _this = this;
+
+      axios.post('/api/payment-result', form).then(function (response) {
+        _this.resultVisible = true;
+        _this.resultText = response.data;
+      });
+    },
+    resultClosed: function resultClosed() {
+      window.location.href = '/';
+    }
+  },
+  created: function created() {
+    var uri = window.location.search.substring(1);
+    var params = new URLSearchParams(uri);
+    this.order_id = params.get("orderId");
+  },
+  mounted: function mounted() {
+    if (this.order_id) {
+      this.getPaymentResult({
+        order_id: this.order_id,
+        success: true
+      });
     }
   }
 });
@@ -86468,7 +86512,7 @@ var render = function () {
           _vm._v(
             "\n                            " +
               _vm._s(_vm.reserveData.price) +
-              " ₽\n                        "
+              " ₽\n            "
           ),
         ]),
       ]),
@@ -86707,6 +86751,29 @@ var render = function () {
         _c(
           "el-dialog",
           {
+            staticClass: "result-modal",
+            attrs: { visible: _vm.resultVisible },
+            on: {
+              closed: _vm.resultClosed,
+              "update:visible": function ($event) {
+                _vm.resultVisible = $event
+              },
+            },
+          },
+          [
+            _c("div", { attrs: { slot: "title" }, slot: "title" }),
+            _vm._v(" "),
+            _c("p", { staticStyle: { "text-align": "center" } }, [
+              _vm._v(
+                "\n                " + _vm._s(_vm.resultText) + "\n            "
+              ),
+            ]),
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "el-dialog",
+          {
             staticClass: "calendar-modal",
             attrs: { visible: _vm.calendarVisible },
             on: {
@@ -86790,7 +86857,10 @@ var render = function () {
             _c("div", { attrs: { slot: "title" }, slot: "title" }),
             _vm._v(" "),
             _c("reservation-order", {
-              attrs: { "reserve-data": _vm.reserveData },
+              attrs: {
+                "reserve-data": _vm.reserveData,
+                reservations: _vm.reservations,
+              },
             }),
           ],
           1
@@ -86999,9 +87069,9 @@ var render = function () {
               placeholder: "-- : --",
               clearable: false,
               "picker-options": {
-                start: "08:30",
+                start: "17:00",
                 step: "00:30",
-                end: "18:30",
+                end: "20:00",
               },
             },
             on: { change: _vm.startTimeIsSelected },
@@ -87033,7 +87103,7 @@ var render = function () {
               "picker-options": {
                 start: _vm.minEndTime,
                 step: "00:30",
-                end: "20:30",
+                end: "22:00",
               },
             },
             on: { change: _vm.timeIsSelected },

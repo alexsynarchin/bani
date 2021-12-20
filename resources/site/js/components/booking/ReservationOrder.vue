@@ -40,7 +40,7 @@
                 </label>
                 <span class="reservation-order-list__value">
                                 {{reserveData.price}} ₽
-                            </span>
+                </span>
             </li>
         </ul>
         <p class="reservation-order__text">
@@ -80,7 +80,11 @@ export default {
         reserveData: {
             required:true,
             type:Object,
-        }
+        },
+        reservations: {
+            required: true,
+            type:Array,
+        },
     },
     data() {
         return {
@@ -93,9 +97,10 @@ export default {
     },
     methods: {
         submitForm() {
-            axios.post('/api/reservation-order', {client:this.form, reservation:this.reserveData})
+            axios.post('/api/reservation-order', {client:this.form, reservation:this.reserveData, reservations:this.reservations})
             .then((response) => {
                 console.log(response.data);
+                window.location.href=response.data.formUrl;
             })
             .catch((error) => {
                 this.errors.record(error.response.data.errors);

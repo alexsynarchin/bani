@@ -13,4 +13,9 @@ class Order extends Model
     {
         return $this -> belongsTo('App/Models/Client', 'client_id');
     }
+
+    public function reservations()
+    {
+        return $this -> hasMany('App/Models/Reservation', 'order_id');
+    }
 }

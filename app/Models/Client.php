@@ -9,6 +9,12 @@ class Client extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'email'];
+    protected $fillable = ['name', 'phone'];
+
+    public function orders()
+    {
+        return $this->hasMany('App/Models/Order', 'client_id');
+    }
+
 }
 

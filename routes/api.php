@@ -28,3 +28,6 @@ Route::get('/cabinets/list/{floor}',[CabinetController::class, 'index']) -> name
 use App\Http\Controllers\Api\OrderController;
 Route::post('/reservation-order', [OrderController::class, 'order']) -> name('order-submit');
 
+use App\Http\Controllers\Api\PaymentController;
+
+Route::post('/payment-result', [PaymentController::class, 'paymentResult']) -> name('payment.result');

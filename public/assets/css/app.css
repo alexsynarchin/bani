@@ -11634,6 +11634,12 @@ textarea.form-control-lg {
 
 .calendar-modal .el-dialog {
   min-width: 380px;
+  max-width: 520px;
+}
+
+.result-modal .el-dialog {
+  min-width: 380px;
+  max-width: 460px;
 }
 
 body {

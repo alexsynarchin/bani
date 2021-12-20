@@ -16,11 +16,11 @@ class CreateReservationsTable extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table ->bigInteger('order_id') -> unsigned();
+            $table ->bigInteger('order_id') ->unsigned();
             $table->dateTime('start');
             $table->dateTime('end');
-            $table->string('reservation_type');
-            $table->bigInteger('reservation_id')->unsigned();
+            $table->string('reservationable_type');
+            $table->bigInteger('reservationable_id')->unsigned();
             $table->timestamps();
         });
     }

@@ -45,6 +45,16 @@
                 @order-reservation="orderReservation"
             ></reservation-information>
             <el-dialog
+                @closed="resultClosed"
+                :visible.sync="resultVisible"
+                class="result-modal"
+            >
+                <div slot="title"></div>
+                <p style="text-align: center">
+                    {{resultText}}
+                </p>
+            </el-dialog>
+            <el-dialog
 
                 :visible.sync="calendarVisible"
                 class="calendar-modal"
@@ -78,6 +88,7 @@
                 <div slot="title"> </div>
                 <reservation-order
                     :reserve-data="reserveData"
+                    :reservations="reservations"
                 ></reservation-order>
             </el-dialog>
         </section>
@@ -98,6 +109,9 @@
      },
         data() {
          return {
+             resultVisible:false,
+             resultText:'',
+             order_id:null,
              canSelectMap:false,
              mapVisible:false,
              calendarVisible:false,
@@ -166,7 +180,27 @@
              let endHours = new Date("01/01/2018 " + data.endTime).getHours();
              let endMinutes = new Date("01/01/2018 " + data.endTime).getMinutes();
              this.reserveData.duration = (endHours * 60 + endMinutes - startHours * 60 - startMinutes) / 60;
-            }
+            },
+            getPaymentResult(form) {
+             axios.post('/api/payment-result', form)
+                .then((response) => {
+                    this.resultVisible = true;
+                   this.resultText = response.data;
+                })
+            },
+            resultClosed() {
+                window.location.href=('/');
+            },
+        },
+        created() {
+            let uri = window.location.search.substring(1);
+            let params = new URLSearchParams(uri);
+            this.order_id = params.get("orderId");
+        },
+        mounted() {
+         if(this.order_id) {
+             this.getPaymentResult({order_id:this.order_id, success:true})
+         }
         }
     }
 </script>
