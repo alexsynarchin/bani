@@ -9,6 +9,7 @@
           'calendar-day__num--today': isToday,
           'calendar-day__num--event': isEvent,
           'calendar-day__num--selected': isSelectedDay,
+          'calendar-day__num--previous':isPrevious,
     }"
         @click.prevent="selectDay"
         >{{ label }}</span>
@@ -22,6 +23,10 @@ export default {
     name: "CalendarMonthDayItem",
 
     props: {
+        isPrevious: {
+            type: Boolean,
+            default: false
+        },
         isEvent: {
             type: Boolean,
             default: false
@@ -88,6 +93,10 @@ export default {
         &--selected {
             background-color: #006672;
             color: #fff;
+        }
+        &--previous {
+            color: rgba(0,102,114,0.6);
+            border-color:rgba(0,102,114,0.6);
         }
     }
 }

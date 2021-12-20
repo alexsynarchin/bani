@@ -17,6 +17,7 @@
                 :key="day.date"
                 :day="day"
                 :is-today="day.date === today"
+                :is-previous="day.date < today"
                 :is-event="day.date === eventDay"
                 :is-selected-day="day.date === reserveData.selectedDay"
                 @select-day="selectDay"
@@ -188,6 +189,9 @@ export default {
         selectDate(newSelectedDate) {
             this.selectedDate = newSelectedDate;
         }
+    },
+    mounted() {
+        this.selectDay(this.today);
     }
 }
 </script>

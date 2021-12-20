@@ -4336,10 +4336,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "CalendarMonthDayItem",
   props: {
+    isPrevious: {
+      type: Boolean,
+      "default": false
+    },
     isEvent: {
       type: Boolean,
       "default": false
@@ -4573,6 +4578,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
 
 
 __webpack_require__(/*! dayjs/locale/ru */ "./node_modules/dayjs/locale/ru.js");
@@ -4684,6 +4690,9 @@ dayjs__WEBPACK_IMPORTED_MODULE_0___default().extend((dayjs_plugin_weekOfYear__WE
     selectDate: function selectDate(newSelectedDate) {
       this.selectedDate = newSelectedDate;
     }
+  },
+  mounted: function mounted() {
+    this.selectDay(this.today);
   }
 });
 
@@ -7133,7 +7142,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".calendar-day[data-v-02d5bd1b] {\n  text-align: center;\n  position: relative;\n  font-size: 16px;\n  background-color: #fff;\n  color: var(--grey-800);\n  padding: 2.5px;\n  height: 36px;\n}\n.calendar-day__num[data-v-02d5bd1b] {\n  cursor: pointer;\n  height: 100%;\n  align-items: center;\n  justify-content: center;\n  display: flex;\n  border: 1px solid #006672;\n  border-radius: 5px;\n  color: #006672;\n}\n.calendar-day__num--today[data-v-02d5bd1b] {\n  color: #000000;\n  font-weight: bold;\n}\n.calendar-day__num--not-current[data-v-02d5bd1b] {\n  color: rgba(0, 102, 114, 0.6);\n  border-color: rgba(0, 102, 114, 0.6);\n}\n.calendar-day__num--selected[data-v-02d5bd1b] {\n  background-color: #006672;\n  color: #fff;\n}\n.calendar-day--today > span[data-v-02d5bd1b] {\n  color: #fff;\n  border-radius: 9999px;\n  background-color: var(--grey-800);\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".calendar-day[data-v-02d5bd1b] {\n  text-align: center;\n  position: relative;\n  font-size: 16px;\n  background-color: #fff;\n  color: var(--grey-800);\n  padding: 2.5px;\n  height: 36px;\n}\n.calendar-day__num[data-v-02d5bd1b] {\n  cursor: pointer;\n  height: 100%;\n  align-items: center;\n  justify-content: center;\n  display: flex;\n  border: 1px solid #006672;\n  border-radius: 5px;\n  color: #006672;\n}\n.calendar-day__num--today[data-v-02d5bd1b] {\n  color: #000000;\n  font-weight: bold;\n}\n.calendar-day__num--not-current[data-v-02d5bd1b] {\n  color: rgba(0, 102, 114, 0.6);\n  border-color: rgba(0, 102, 114, 0.6);\n}\n.calendar-day__num--selected[data-v-02d5bd1b] {\n  background-color: #006672;\n  color: #fff;\n}\n.calendar-day__num--previous[data-v-02d5bd1b] {\n  color: rgba(0, 102, 114, 0.6);\n  border-color: rgba(0, 102, 114, 0.6);\n}\n.calendar-day--today > span[data-v-02d5bd1b] {\n  color: #fff;\n  border-radius: 9999px;\n  background-color: var(--grey-800);\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -87149,6 +87158,7 @@ var render = function () {
           "calendar-day__num--today": _vm.isToday,
           "calendar-day__num--event": _vm.isEvent,
           "calendar-day__num--selected": _vm.isSelectedDay,
+          "calendar-day__num--previous": _vm.isPrevious,
         },
         on: {
           click: function ($event) {
@@ -87350,6 +87360,7 @@ var render = function () {
                 attrs: {
                   day: day,
                   "is-today": day.date === _vm.today,
+                  "is-previous": day.date < _vm.today,
                   "is-event": day.date === _vm.eventDay,
                   "is-selected-day": day.date === _vm.reserveData.selectedDay,
                 },
