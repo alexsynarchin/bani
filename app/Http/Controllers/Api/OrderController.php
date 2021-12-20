@@ -52,7 +52,7 @@ class OrderController extends Controller
             'password' => env('ALFA_PASSWORD'),
             'orderNumber' => $order->id,
             'amount' => 400,
-            'returnUrl' => 'http://bani.loc'
+            'returnUrl' => env('ALFA_RETURN_URL')
         );
         $alfa_pay = new PaymentService();
         $response = $alfa_pay -> gateway('register.do', $data);
