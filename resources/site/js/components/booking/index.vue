@@ -219,7 +219,7 @@
         }
     }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
     .booking {
         &__wrap {
             display: flex;
