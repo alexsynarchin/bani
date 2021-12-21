@@ -227,10 +227,12 @@
             text-align: center;
         }
         &__title {
+            margin-bottom: 15px;
             font-size: 26px;
             text-align: center;
         }
         &__description {
+            margin-bottom: 25px;
             font-size: 17px;
             text-align: center;
         }
