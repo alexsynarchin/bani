@@ -30,7 +30,7 @@
                 <button class="booking-link" v-else @click.prevent="calendarVisible=true">
                     Выберите дату и время
                 </button>
-                <div class="mt-4 mb-4">
+                <div style="margin-top: 2rem; margin-bottom: 2rem;">
                     <h4 class="booking-step">
                         2 шаг
                     </h4>

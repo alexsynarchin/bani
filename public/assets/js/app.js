@@ -87061,29 +87061,33 @@ var render = function () {
                 ]
               ),
           _vm._v(" "),
-          _c("div", { staticClass: "mt-4 mb-4" }, [
-            _c("h4", { staticClass: "booking-step" }, [
-              _vm._v("\n                    2 шаг\n                "),
-            ]),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "booking-link",
-                on: {
-                  click: function ($event) {
-                    $event.preventDefault()
-                    return _vm.openMapModal.apply(null, arguments)
+          _c(
+            "div",
+            { staticStyle: { "margin-top": "2rem", "margin-bottom": "2rem" } },
+            [
+              _c("h4", { staticClass: "booking-step" }, [
+                _vm._v("\n                    2 шаг\n                "),
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "booking-link",
+                  on: {
+                    click: function ($event) {
+                      $event.preventDefault()
+                      return _vm.openMapModal.apply(null, arguments)
+                    },
                   },
                 },
-              },
-              [
-                _vm._v(
-                  "\n                    Выберите любые свободные места\n                "
-                ),
-              ]
-            ),
-          ]),
+                [
+                  _vm._v(
+                    "\n                    Выберите любые свободные места\n                "
+                  ),
+                ]
+              ),
+            ]
+          ),
         ]),
         _vm._v(" "),
         this.reserveData.count > 0
