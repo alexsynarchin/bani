@@ -87,7 +87,7 @@
         }
     }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .reserve-inf {
     padding: 30px;
     background: #006672;
