@@ -1,5 +1,5 @@
 @extends('admin.base.base')
 @section('content')
-    <h1 class="page-title">Заказы</h1>
-    <orders-list></orders-list>
+    <h1 class="page-title">Список броней</h1>
+    <places-dashboard></places-dashboard>
 @endsection

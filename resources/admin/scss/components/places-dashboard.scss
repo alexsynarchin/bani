@@ -1,0 +1,11 @@
+.places-dashboard {
+    margin-bottom: 20px;
+    padding: 40px;
+    background-color: #007583;
+    border-radius: 10px;
+    color: #fff;
+    &__wrap {
+        display: flex;
+        justify-content: center;
+    }
+}

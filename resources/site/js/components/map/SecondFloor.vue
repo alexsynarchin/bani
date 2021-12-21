@@ -98,13 +98,13 @@ export default {
     },
     methods: {
         getCabinets() {
-            axios.get('/api/cabinets/list/' + 2, {params:{startDate:this.startDate, endDate:this.endDate, date:this.date}})
+            axios.get( this.$root.api_url + '/api/cabinets/list/' + 2, {params:{startDate:this.startDate, endDate:this.endDate, date:this.date}})
                 .then((response) => {
                     this.cabinets = response.data;
                 })
         },
         getPlaces() {
-            axios.get('/api/places/list/' + 2, {params:{startDate:this.startDate, endDate:this.endDate, date:this.date}})
+            axios.get(this.$root.api_url + '/api/places/list/' + 2, {params:{startDate:this.startDate, endDate:this.endDate, date:this.date}})
                 .then((response) => {
                     this.places = response.data;
                 })

@@ -57,7 +57,7 @@ export default {
 
     methods: {
         getPlaces() {
-            axios.get('/api/places/list/' + 1, {params:{startDate:this.startDate, endDate:this.endDate,date:this.date}})
+            axios.get(this.$root.api_url + '/api/places/list/' + 1, {params:{startDate:this.startDate, endDate:this.endDate,date:this.date}})
             .then((response) => {
                 this.places = response.data;
                 console.log(this.places);

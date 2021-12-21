@@ -196,7 +196,7 @@
              this.reserveData.duration = (endHours * 60 + endMinutes - startHours * 60 - startMinutes) / 60;
             },
             getPaymentResult(form) {
-             axios.post('/api/payment-result', form)
+             axios.post(this.$root.api_url + '/api/payment-result', form)
                 .then((response) => {
                     console.log(response.data);
                     this.resultVisible = true;
@@ -237,5 +237,43 @@
             color: #006672;
         }
     }
+    .calendar-modal {
+        .el-dialog {
+            min-width: 380px;
+            max-width: 520px;
+        }
+    }
+    .map-modal {
+        .el-dialog__body {
+            padding: 0;
+        }
+        .el-dialog {
+            min-width: 865px;
+            max-width: 865px;
+        }
+    }
+    .result-modal {
+        .el-dialog {
+            min-width: 380px;
+            max-width: 460px;
+        }
+    }
+    .booking-link {
+        padding: 0;
+        border: none;
+        font: inherit;
+        color: #006672;
+        text-decoration: underline;
+        background-color: transparent;
+        /* отображаем курсор в виде руки при наведении; некоторые
+        считают, что необходимо оставлять стрелочный вид для кнопок */
+        cursor: pointer;
+    }
+    .booking-step {
+        color: #006672;
+        font-family: 'Metro', sans-serif;
+    }
+
+
 </style>
 

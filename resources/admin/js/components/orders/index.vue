@@ -89,7 +89,7 @@ export default {
     },
     methods: {
         getOrders() {
-            axios.get('/admin/orders')
+            axios.get('/admin/api/orders')
             .then((response) => {
                 this.orders = response.data;
             })

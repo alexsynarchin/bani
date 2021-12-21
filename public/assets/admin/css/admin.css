@@ -11909,3 +11909,34 @@ p {
 .items-list__btn-order:hover {
   color: #d92344;
 }
+
+.places-dashboard {
+  margin-bottom: 20px;
+  padding: 40px;
+  background-color: #007583;
+  border-radius: 10px;
+  color: #fff;
+}
+.places-dashboard__wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.dashboard-places-list {
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+.dashboard-places-list__item {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 17px;
+  margin-right: 15px;
+  color: rgba(255, 255, 255, 0.5);
+}
+.dashboard-places-list__item--selected {
+  display: none;
+  margin-right: 0;
+}

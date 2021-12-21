@@ -11,6 +11,7 @@ Vue.use(VueDataTables);
 
 Vue.component('LoginForm', require('./components/login/Form.vue').default);
 Vue.component('OrdersList', require('./components/orders/index').default);
+Vue.component('PlacesDashboard',require('./components/places-dashboard/index').default);
 
 const app = new Vue({
     el: '#app',
