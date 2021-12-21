@@ -87748,7 +87748,6 @@ var render = function () {
                     _c("use", {
                       attrs: {
                         "xlink:href":
-                          _vm.$root.api_url +
                           "/assets/site/images/sprites.svg?ver=29#sprite-place-" +
                           place.type +
                           "-res",
@@ -87759,7 +87758,6 @@ var render = function () {
                     _c("use", {
                       attrs: {
                         "xlink:href":
-                          _vm.$root.api_url +
                           "/assets/site/images/sprites.svg?ver=28#sprite-place-" +
                           place.type,
                       },
@@ -87868,7 +87866,6 @@ var render = function () {
                       _c("use", {
                         attrs: {
                           "xlink:href":
-                            this.$root.api_url +
                             "/assets/site/images/sprites.svg?ver=11#sprite-cabin-" +
                             cabinet.number +
                             "-res",
@@ -87893,7 +87890,6 @@ var render = function () {
                       _c("use", {
                         attrs: {
                           "xlink:href":
-                            this.$root.api_url +
                             "/assets/site/images/sprites.svg?ver=8#sprite-cabin-" +
                             cabinet.number,
                         },
@@ -87941,7 +87937,6 @@ var render = function () {
                     _c("use", {
                       attrs: {
                         "xlink:href":
-                          this.$root.api_url +
                           "/assets/site/images/sprites.svg?ver=8#sprite-place-" +
                           place.type +
                           "res",

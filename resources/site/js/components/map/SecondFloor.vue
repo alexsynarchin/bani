@@ -31,7 +31,7 @@
                         height:cabinet.height,
                         }"
                     :viewBox="'0 0 ' +  cabinet.width + ' ' + cabinet.height">
-                    <use :xlink:href="this.$root.api_url + '/assets/site/images/sprites.svg?ver=11#sprite-cabin-' + cabinet.number+ '-res'"></use>
+                    <use :xlink:href="'/assets/site/images/sprites.svg?ver=11#sprite-cabin-' + cabinet.number+ '-res'"></use>
                 </svg>
                 <svg
                     v-else
@@ -42,7 +42,7 @@
                         height:cabinet.height,
                         }"
                     :viewBox="'0 0 ' +  cabinet.width + ' ' + cabinet.height">
-                    <use :xlink:href="this.$root.api_url + '/assets/site/images/sprites.svg?ver=8#sprite-cabin-' + cabinet.number"></use>
+                    <use :xlink:href="'/assets/site/images/sprites.svg?ver=8#sprite-cabin-' + cabinet.number"></use>
                 </svg>
             </div>
             <div v-for="(place, index) in places"
@@ -60,7 +60,7 @@
                     'reserve-map__place-2-number--down' : place.type === 'down',
                 }">{{place.number}}</span>
                 <svg viewBox="0 0 35 35" v-if="place.reserved">
-                    <use :xlink:href="this.$root.api_url + '/assets/site/images/sprites.svg?ver=8#sprite-place-' + place.type + 'res'"></use>
+                    <use :xlink:href="'/assets/site/images/sprites.svg?ver=8#sprite-place-' + place.type + 'res'"></use>
                 </svg>
                 <svg viewBox="0 0 35 35" v-else>
                     <use :xlink:href="'/assets/site/images/sprites.svg?ver=8#sprite-place-' + place.type + '-2'"></use>
