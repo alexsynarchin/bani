@@ -1,6 +1,5 @@
 <template>
     <div class="map-floor map-floor--second">
-        {{startDate}}
         <h4 class="map-floor__title">
             2 ЭТАЖ
         </h4>

@@ -64,6 +64,9 @@ import SecondFloor from "./SecondFloor";
     min-width: 865px;
     position: relative;
     background-color: #C5C6C6;
+    img {
+        max-width: 100%;
+    }
     &--second {
         background-color: transparent;
     }
