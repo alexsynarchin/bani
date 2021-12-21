@@ -86939,7 +86939,7 @@ var render = function () {
             },
           ],
           staticClass: "form-control",
-          class: { "is-invalid": _vm.errors.has("name") },
+          class: { "is-invalid": _vm.errors.has("client.name") },
           attrs: { name: "name", type: "text", placeholder: "Ваше имя" },
           domProps: { value: _vm.form.name },
           on: {
@@ -86954,7 +86954,7 @@ var render = function () {
         _vm._v(" "),
         _c("div", {
           staticClass: "invalid-feedback",
-          domProps: { textContent: _vm._s(_vm.errors.get("name")) },
+          domProps: { textContent: _vm._s(_vm.errors.get("client.name")) },
         }),
       ]),
       _vm._v(" "),
@@ -86974,7 +86974,7 @@ var render = function () {
             },
           ],
           staticClass: "form-control",
-          class: { "is-invalid": _vm.errors.has("phone") },
+          class: { "is-invalid": _vm.errors.has("client.phone") },
           attrs: {
             autocomplete: "tel",
             name: "phone",
@@ -86994,7 +86994,7 @@ var render = function () {
         _vm._v(" "),
         _c("div", {
           staticClass: "invalid-feedback",
-          domProps: { textContent: _vm._s(_vm.errors.get("phone")) },
+          domProps: { textContent: _vm._s(_vm.errors.get("client.phone")) },
         }),
       ]),
       _vm._v(" "),

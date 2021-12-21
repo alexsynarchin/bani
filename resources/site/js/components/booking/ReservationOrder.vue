@@ -51,9 +51,9 @@
                 <label class="reservation-form__label">
                     Имя
                 </label>
-                <input name="name" type="text" v-model="form.name" :class="{'is-invalid': errors.has('name')}"
+                <input name="name" type="text" v-model="form.name" :class="{'is-invalid': errors.has('client.name')}"
                        class="form-control"  placeholder="Ваше имя">
-                <div class="invalid-feedback" v-text="errors.get('name')"></div>
+                <div class="invalid-feedback" v-text="errors.get('client.name')"></div>
             </div>
             <div class="reservation-form__group">
                 <label class="reservation-form__label">
@@ -63,9 +63,9 @@
                        class="form-control"
                        v-phone
                        v-model="form.phone"
-                       :class="{'is-invalid': errors.has('phone')}"
+                       :class="{'is-invalid': errors.has('client.phone')}"
                        placeholder="Телефон">
-                <div class="invalid-feedback" v-text="errors.get('phone')"></div>
+                <div class="invalid-feedback" v-text="errors.get('client.phone')"></div>
             </div>
            <button class="reservation-form__btn" @click.prevent="submitForm">
                Оплатить
