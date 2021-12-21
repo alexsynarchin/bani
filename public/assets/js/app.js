@@ -87748,7 +87748,7 @@ var render = function () {
                     _c("use", {
                       attrs: {
                         "xlink:href":
-                          _vm.$root.api_url +
+                          this.$root.api_url +
                           "/assets/site/images/sprites.svg?ver=29#sprite-place-" +
                           place.type +
                           "-res",
@@ -87759,7 +87759,7 @@ var render = function () {
                     _c("use", {
                       attrs: {
                         "xlink:href":
-                          _vm.$root.api_url +
+                          this.$root.api_url +
                           "/assets/site/images/sprites.svg?ver=28#sprite-place-" +
                           place.type,
                       },
@@ -87807,7 +87807,9 @@ var render = function () {
       { staticClass: "reserve-map reserve-map--second" },
       [
         _c("img", {
-          attrs: { src: _vm.$root.api_url + "/assets/images/second-floor.jpg" },
+          attrs: {
+            src: this.$root.api_url + "/assets/images/second-floor.jpg",
+          },
         }),
         _vm._v(" "),
         _vm._l(_vm.cabinets, function (cabinet, index) {
@@ -87868,7 +87870,7 @@ var render = function () {
                       _c("use", {
                         attrs: {
                           "xlink:href":
-                            _vm.$root.api_url +
+                            this.$root.api_url +
                             "/assets/site/images/sprites.svg?ver=11#sprite-cabin-" +
                             cabinet.number +
                             "-res",
@@ -87893,7 +87895,7 @@ var render = function () {
                       _c("use", {
                         attrs: {
                           "xlink:href":
-                            _vm.$root.api_url +
+                            this.$root.api_url +
                             "/assets/site/images/sprites.svg?ver=8#sprite-cabin-" +
                             cabinet.number,
                         },
@@ -87941,7 +87943,7 @@ var render = function () {
                     _c("use", {
                       attrs: {
                         "xlink:href":
-                          _vm.$root.api_url +
+                          this.$root.api_url +
                           "/assets/site/images/sprites.svg?ver=8#sprite-place-" +
                           place.type +
                           "res",
@@ -87952,7 +87954,7 @@ var render = function () {
                     _c("use", {
                       attrs: {
                         "xlink:href":
-                          _vm.$root.api_url +
+                          this.$root.api_url +
                           "/assets/site/images/sprites.svg?ver=8#sprite-place-" +
                           place.type +
                           "-2",
