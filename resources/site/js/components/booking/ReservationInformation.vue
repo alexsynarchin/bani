@@ -130,6 +130,7 @@
     list-style-type: none;
     padding-left: 0;
     margin-left: 0;
+    margin-bottom: 25px;
     &__item {
         display: flex;
         align-items: center;
