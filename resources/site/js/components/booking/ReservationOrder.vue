@@ -110,7 +110,7 @@ export default {
     }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .reservation-order {
     &__title {
         font-family: 'Metro', sans-serif;
