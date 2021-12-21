@@ -266,9 +266,10 @@
         }
     }
     .booking-link {
+        font-size: 17px;
+        font-weight: 600;
         padding: 0;
         border: none;
-        font: inherit;
         color: #006672;
         text-decoration: underline;
         background-color: transparent;
@@ -277,6 +278,7 @@
         cursor: pointer;
     }
     .booking-step {
+        font-size: 26px;
         color: #006672;
         font-family: 'Metro', sans-serif;
     }
