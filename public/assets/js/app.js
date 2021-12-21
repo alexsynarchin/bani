@@ -87708,7 +87708,9 @@ var render = function () {
       "section",
       { staticClass: "reserve-map" },
       [
-        _c("img", { attrs: { src: "/assets/images/first-floor.png" } }),
+        _c("img", {
+          attrs: { src: this.$root.api_url + "/assets/images/first-floor.png" },
+        }),
         _vm._v(" "),
         _vm._l(_vm.places, function (place, index) {
           return _c(
@@ -87746,6 +87748,7 @@ var render = function () {
                     _c("use", {
                       attrs: {
                         "xlink:href":
+                          this.$root.api_url +
                           "/assets/site/images/sprites.svg?ver=29#sprite-place-" +
                           place.type +
                           "-res",
@@ -87756,6 +87759,7 @@ var render = function () {
                     _c("use", {
                       attrs: {
                         "xlink:href":
+                          this.$root.api_url +
                           "/assets/site/images/sprites.svg?ver=28#sprite-place-" +
                           place.type,
                       },
@@ -87802,7 +87806,11 @@ var render = function () {
       "section",
       { staticClass: "reserve-map reserve-map--second" },
       [
-        _c("img", { attrs: { src: "/assets/images/second-floor.jpg" } }),
+        _c("img", {
+          attrs: {
+            src: this.$root.api_url + "/assets/images/second-floor.jpg",
+          },
+        }),
         _vm._v(" "),
         _vm._l(_vm.cabinets, function (cabinet, index) {
           return _c(
@@ -87862,6 +87870,7 @@ var render = function () {
                       _c("use", {
                         attrs: {
                           "xlink:href":
+                            this.$root.api_url +
                             "/assets/site/images/sprites.svg?ver=11#sprite-cabin-" +
                             cabinet.number +
                             "-res",
@@ -87886,6 +87895,7 @@ var render = function () {
                       _c("use", {
                         attrs: {
                           "xlink:href":
+                            this.$root.api_url +
                             "/assets/site/images/sprites.svg?ver=8#sprite-cabin-" +
                             cabinet.number,
                         },
@@ -87933,6 +87943,7 @@ var render = function () {
                     _c("use", {
                       attrs: {
                         "xlink:href":
+                          this.$root.api_url +
                           "/assets/site/images/sprites.svg?ver=8#sprite-place-" +
                           place.type +
                           "res",
@@ -87943,6 +87954,7 @@ var render = function () {
                     _c("use", {
                       attrs: {
                         "xlink:href":
+                          this.$root.api_url +
                           "/assets/site/images/sprites.svg?ver=8#sprite-place-" +
                           place.type +
                           "-2",
