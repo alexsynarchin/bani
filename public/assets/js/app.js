@@ -87748,7 +87748,7 @@ var render = function () {
                     _c("use", {
                       attrs: {
                         "xlink:href":
-                          this.$root.api_url +
+                          _vm.$root.api_url +
                           "/assets/site/images/sprites.svg?ver=29#sprite-place-" +
                           place.type +
                           "-res",
@@ -87759,7 +87759,7 @@ var render = function () {
                     _c("use", {
                       attrs: {
                         "xlink:href":
-                          this.$root.api_url +
+                          _vm.$root.api_url +
                           "/assets/site/images/sprites.svg?ver=28#sprite-place-" +
                           place.type,
                       },
