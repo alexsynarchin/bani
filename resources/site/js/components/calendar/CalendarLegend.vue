@@ -31,6 +31,8 @@
         list-style-type: none;
         margin-left: 0;
         padding-left: 0;
+        margin-top: 15px;
+        margin-bottom: 15px;
        &__item {
            display: flex;
            justify-content: center;
