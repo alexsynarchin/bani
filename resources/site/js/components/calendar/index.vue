@@ -212,6 +212,7 @@ export default {
 
 .day-of-week,
 .days-grid {
+    margin-bottom: 20px;
     list-style-type: none;
     margin-left: 0;
     padding-left: 0;
