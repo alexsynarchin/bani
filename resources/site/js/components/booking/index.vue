@@ -221,6 +221,10 @@
 </script>
 <style lang="scss" scoped>
     .booking {
+        &__wrap {
+            display: flex;
+            justify-content: center;
+        }
         &__title {
             font-size: 26px;
             text-align: center;
