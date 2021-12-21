@@ -20,10 +20,10 @@
                     'reserve-map__place-number--down' : place.type === 'down',
                 }">{{place.number}}</span>
                 <svg viewBox="0 0 44 44" v-if="place.reserved">
-                    <use :xlink:href="this.$root.api_url +'/assets/site/images/sprites.svg?ver=29#sprite-place-' + place.type + '-res'"></use>
+                    <use :xlink:href="$root.api_url +'/assets/site/images/sprites.svg?ver=29#sprite-place-' + place.type + '-res'"></use>
                 </svg>
                 <svg viewBox="0 0 44 44" v-else>
-                    <use :xlink:href="this.$root.api_url + '/assets/site/images/sprites.svg?ver=28#sprite-place-' + place.type"></use>
+                    <use :xlink:href="$root.api_url + '/assets/site/images/sprites.svg?ver=28#sprite-place-' + place.type"></use>
                 </svg>
             </div>
         </section>
