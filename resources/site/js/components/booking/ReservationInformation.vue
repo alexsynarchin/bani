@@ -111,6 +111,7 @@
         flex:1;
     }
     &__btn {
+        margin-bottom: 20px;
         color: #fff;
         background: #3097A1;
         box-shadow: 0 0 0 transparent;
