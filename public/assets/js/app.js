@@ -87709,7 +87709,7 @@ var render = function () {
       { staticClass: "reserve-map" },
       [
         _c("img", {
-          attrs: { src: this.$root.api_url + "/assets/images/first-floor.png" },
+          attrs: { src: _vm.$root.api_url + "/assets/images/first-floor.png" },
         }),
         _vm._v(" "),
         _vm._l(_vm.places, function (place, index) {
@@ -87807,9 +87807,7 @@ var render = function () {
       { staticClass: "reserve-map reserve-map--second" },
       [
         _c("img", {
-          attrs: {
-            src: this.$root.api_url + "/assets/images/second-floor.jpg",
-          },
+          attrs: { src: _vm.$root.api_url + "/assets/images/second-floor.jpg" },
         }),
         _vm._v(" "),
         _vm._l(_vm.cabinets, function (cabinet, index) {
@@ -87954,7 +87952,6 @@ var render = function () {
                     _c("use", {
                       attrs: {
                         "xlink:href":
-                          this.$root.api_url +
                           "/assets/site/images/sprites.svg?ver=8#sprite-place-" +
                           place.type +
                           "-2",

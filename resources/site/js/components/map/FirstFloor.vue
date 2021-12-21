@@ -4,7 +4,7 @@
             1 ЭТАЖ
         </h4>
         <section class="reserve-map">
-            <img :src="this.$root.api_url + '/assets/images/first-floor.png'">
+            <img :src="$root.api_url + '/assets/images/first-floor.png'">
             <div v-for="(place, index) in places"
                  @click.prevent="handleSelectPlace(place, index)"
                  class="reserve-map__place"
