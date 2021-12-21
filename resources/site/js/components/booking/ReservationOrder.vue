@@ -188,6 +188,7 @@ export default {
 }
 .reservation-form {
     &__label {
+        display: block;
         color: #006672;
         font-size: 17px;
         margin-bottom: 10px;
