@@ -4171,7 +4171,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     resultClosed: function resultClosed() {
-      window.location.href = '/';
+      window.location.href = 'http://baniufa.ru/reservation.html';
     }
   },
   created: function created() {
