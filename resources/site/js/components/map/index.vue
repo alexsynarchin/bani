@@ -129,6 +129,8 @@ import SecondFloor from "./SecondFloor";
         cursor: pointer;
         position: absolute;
         z-index: 2;
+        width: 44px;
+        height: 44px;
         svg {
             width: 44px;
             height: 44px;
@@ -178,6 +180,8 @@ import SecondFloor from "./SecondFloor";
         cursor: pointer;
         position: absolute;
         z-index: 2;
+        width: 35px;
+        height: 35px;
         svg {
             width: 35px;
             height: 35px;
