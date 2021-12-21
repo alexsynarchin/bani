@@ -30,7 +30,7 @@
                 <button class="booking-link" v-else @click.prevent="calendarVisible=true">
                     Выберите дату и время
                 </button>
-                <div style="margin-top: 2rem; margin-bottom: 2rem;">
+                <div style="margin-top: 30px; margin-bottom: 30px;">
                     <h4 class="booking-step">
                         2 шаг
                     </h4>
@@ -278,6 +278,7 @@
         cursor: pointer;
     }
     .booking-step {
+        margin-bottom: 15px;
         font-size: 26px;
         color: #006672;
         font-family: 'Metro', sans-serif;
