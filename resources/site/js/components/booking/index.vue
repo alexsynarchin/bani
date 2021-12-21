@@ -224,6 +224,7 @@
         &__wrap {
             display: flex;
             justify-content: center;
+            text-align: center;
         }
         &__title {
             font-size: 26px;

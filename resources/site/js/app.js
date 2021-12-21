@@ -2,6 +2,7 @@ require('./bootstrap');
 import Vue from "vue";
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 Vue.use(ElementUI);
 Vue.component('booking', require('./components/booking').default);
 const app = new Vue({
