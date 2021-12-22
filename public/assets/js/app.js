@@ -4174,7 +4174,7 @@ __webpack_require__.r(__webpack_exports__);
       window.location.href = 'https://baniufa.ru/reservation.html';
     },
     getOrderInf: function getOrderInf(order_id) {
-      axios.post('/api/reservation-order-inf', {
+      axios.post(this.$root.api_url + '/api/reservation-order-inf', {
         order_id: order_id
       }).then(function (response) {
         console.log(response.data);
