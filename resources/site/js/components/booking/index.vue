@@ -204,8 +204,14 @@
                 })
             },
             resultClosed() {
-                window.location.href=('http://baniufa.ru/reservation.html');
+                window.location.href=('https://baniufa.ru/reservation.html');
             },
+            getOrderInf(order_id) {
+                axios.post('/api/reservation-order-inf', {order_id:order_id})
+                .then((response) => {
+                    console.log(response.data);
+                })
+            }
         },
         created() {
             let uri = window.location.search.substring(1);
@@ -214,6 +220,7 @@
         },
         mounted() {
          if(this.order_id) {
+             this.getOrderInf(this.order_id);
              this.getPaymentResult({order_id:this.order_id, success:true})
          }
         }

@@ -61,4 +61,14 @@ class OrderController extends Controller
         $order -> save();
         return $response;
     }
+    public function getOrderInf(Request $request) {
+        $data = array(
+            'userName' => env('ALFA_USERNAME'),
+            'password' => env('ALFA_PASSWORD'),
+            'orderId' => $request->get('order_id')
+        );
+        $alfa_pay = new PaymentService();
+        $response = $alfa_pay -> gateway('getOrderStatus.do', $data);
+        return $response;
+    }
 }
