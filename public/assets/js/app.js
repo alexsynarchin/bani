@@ -4640,8 +4640,8 @@ dayjs__WEBPACK_IMPORTED_MODULE_0___default().extend((dayjs_plugin_weekOfYear__WE
       return [].concat(_toConsumableArray(this.previousMonthDays), _toConsumableArray(this.currentMonthDays), _toConsumableArray(this.nextMonthDays));
     },
     today: function today() {
-      var day = dayjs__WEBPACK_IMPORTED_MODULE_0___default()().format("YYYY-MM-DD") + 1;
-      return day;
+      var day = dayjs__WEBPACK_IMPORTED_MODULE_0___default()().format("YYYY-MM-DD");
+      return '2021-12-28';
     },
     month: function month() {
       return Number(this.selectedDate.format("M"));
