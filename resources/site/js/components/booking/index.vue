@@ -152,6 +152,7 @@
             this.orderModalVisible = true;
          },
          selectReserveItem(data) {
+             console.log(data);
              var add = true;
              for(var i = 0; i < this.reservations.length; i++) {
                  if((this.reservations[i].type ===  data.type) && (this.reservations[i].id === data.id) ) {
@@ -194,6 +195,7 @@
              let endHours = new Date("01/01/2018 " + data.endTime).getHours();
              let endMinutes = new Date("01/01/2018 " + data.endTime).getMinutes();
              this.reserveData.duration = (endHours * 60 + endMinutes - startHours * 60 - startMinutes) / 60;
+             console.log(this.reservations.duration);
             },
             getPaymentResult(form) {
              axios.post(this.$root.api_url + '/api/payment-result', form)

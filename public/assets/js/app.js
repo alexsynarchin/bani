@@ -4117,6 +4117,7 @@ __webpack_require__.r(__webpack_exports__);
       this.orderModalVisible = true;
     },
     selectReserveItem: function selectReserveItem(data) {
+      console.log(data);
       var add = true;
 
       for (var i = 0; i < this.reservations.length; i++) {
@@ -4160,6 +4161,7 @@ __webpack_require__.r(__webpack_exports__);
       var endHours = new Date("01/01/2018 " + data.endTime).getHours();
       var endMinutes = new Date("01/01/2018 " + data.endTime).getMinutes();
       this.reserveData.duration = (endHours * 60 + endMinutes - startHours * 60 - startMinutes) / 60;
+      console.log(this.reservations.duration);
     },
     getPaymentResult: function getPaymentResult(form) {
       var _this = this;
