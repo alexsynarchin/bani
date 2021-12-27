@@ -17,7 +17,7 @@ class PricesSeeder extends Seeder
     {
         $places = Place::all();
         foreach ($places as $place) {
-            $place -> price = 300;
+            $place -> price = 450;
             $place -> save();
         }
         $cabinets = Cabinet::all();
@@ -27,7 +27,7 @@ class PricesSeeder extends Seeder
             } elseif ($cabinet -> number === 7) {
                 $cabinet -> price = 3900;
             } else {
-                $cabinet -> price = 1800;
+                $cabinet -> price = 2500;
             }
             $cabinet -> save();
         }
