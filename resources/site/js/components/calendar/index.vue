@@ -85,7 +85,8 @@ export default {
         },
 
         today() {
-            return dayjs().format("YYYY-MM-DD");
+            let day = dayjs().format("YYYY-MM-DD") + 1
+            return day;
         },
 
         month() {
