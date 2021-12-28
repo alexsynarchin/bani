@@ -4069,6 +4069,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -5101,10 +5102,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
+    reserveData: {
+      type: Object,
+      required: true
+    },
     duration: {
       type: Number,
       "default": 0
@@ -87228,6 +87237,7 @@ var render = function () {
               ? _c("reserve-map", {
                   ref: "reserve_map",
                   attrs: {
+                    "reserve-data": _vm.reserveData,
                     duration: _vm.duration,
                     "can-select": _vm.canSelectMap,
                     date: _vm.reserveData.selectedDay,
@@ -88001,6 +88011,24 @@ var render = function () {
   return _c(
     "section",
     [
+      _vm.reserveData.count > 0
+        ? _c(
+            "div",
+            { staticStyle: { "margin-bottom": "20px", "font-size": "17px" } },
+            [
+              _vm._v("\n        Забронировано мест: "),
+              _c("span", { staticStyle: { "font-weight": "bold" } }, [
+                _vm._v(_vm._s(_vm.reserveData.count)),
+              ]),
+              _c("br"),
+              _vm._v("\n        На сумму: "),
+              _c("span", { staticStyle: { "font-weight": "bold" } }, [
+                _vm._v(_vm._s(_vm.reserveData.price) + " ₽"),
+              ]),
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
       _c("first-floor", {
         attrs: {
           date: _vm.date,

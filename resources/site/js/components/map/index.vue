@@ -1,5 +1,9 @@
 <template>
 <section>
+    <div style="margin-bottom: 20px; font-size: 17px; " v-if="reserveData.count > 0">
+        Забронировано мест: <span style="font-weight: bold;">{{reserveData.count}}</span><br>
+        На сумму: <span style="font-weight: bold;">{{reserveData.price}} ₽</span>
+    </div>
     <first-floor
         :date="date"
         :duration="duration"
@@ -23,6 +27,10 @@ import FirstFloor from "./FirstFloor";
 import SecondFloor from "./SecondFloor";
     export default {
         props: {
+            reserveData: {
+                type:Object,
+                required:true,
+            },
             duration: {
                 type:Number,
                 default: 0,

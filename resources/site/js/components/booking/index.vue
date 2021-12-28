@@ -72,6 +72,7 @@
             >
                 <reserve-map ref="reserve_map"
                              @select-item = "selectReserveItem"
+                             :reserve-data="reserveData"
                              :duration="duration"
                              :can-select="canSelectMap"
                              :date="reserveData.selectedDay"
