@@ -11,14 +11,12 @@ class PlacesController extends Controller
 {
     public function navigation()
     {
-
         $date = Carbon::now();
         $i = 5;
         $dates = [
             [
                 'date' =>$date -> format('Y-m-d'),
                 'date_string' => Date::parse($date)->format('j F'),
-                'selected' => true,
             ]
         ];
 
@@ -29,7 +27,6 @@ class PlacesController extends Controller
             $item = [
                 'date' =>$current_date -> format('Y-m-d'),
                 'date_string' => Date::parse($current_date)->format('j F'),
-                'selected' => $selected,
             ];
             array_push($dates, $item);
         }

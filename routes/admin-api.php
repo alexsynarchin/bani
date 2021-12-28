@@ -17,3 +17,7 @@ Route::get('/orders', [OrderController::class, 'index']) -> name('orders.list');
 use App\Http\Controllers\Admin\Api\PlacesController;
 
 Route::get('/places/navigation', [PlacesController::class, 'navigation']) -> name('places.navigation');
+
+use App\Http\Controllers\Admin\Api\ReservationsController;
+
+Route::get('/reservations', [ReservationsController::class, 'index']) -> name('reservations');

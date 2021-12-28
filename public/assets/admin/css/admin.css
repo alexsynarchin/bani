@@ -11443,7 +11443,7 @@ body, html {
 }
 
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: "Noto Sans", sans-serif;
   font-size: 16px;
   background-color: #f5f8ff;
 }
@@ -11510,6 +11510,12 @@ p {
   font-family: "Roboto Condensed", sans-serif;
 }
 
+@font-face {
+  font-family: "Metro";
+  src: url("../fonts/Metro/Metro.eot?#iefix") format("embedded-opentype"), url("../fonts/Metro/Metro.otf") format("opentype"), url("../fonts/Metro/Metro.woff") format("woff"), url("../fonts/Metro/Metro.ttf") format("truetype"), url("../fonts/Metro/Metro.svg#Metro") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
 .upload-gallery__upload {
   background-color: #fbfdff;
   border: 1px dashed #c0ccda;
@@ -11921,6 +11927,12 @@ p {
   display: flex;
   justify-content: center;
 }
+.places-dashboard__title {
+  font-family: "Metro", sans-serif;
+  font-size: 17px;
+  font-weight: normal;
+  margin-bottom: 35px;
+}
 
 .dashboard-places-list {
   list-style-type: none;
@@ -11939,4 +11951,75 @@ p {
 .dashboard-places-list__item--selected {
   display: none;
   margin-right: 0;
+}
+
+.places-reserv-list {
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+.places-reserv-list__item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.places-reserv-list__label {
+  margin-bottom: 0;
+  padding-right: 10px;
+  width: 200px;
+  max-width: 120px;
+}
+.places-reserv-list__reserv-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+.places-reserv-list__reserv {
+  cursor: pointer;
+  font-weight: 400;
+  padding: 5px;
+  display: block;
+  border: 1px solid #FFFFFF;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-right: 10px;
+}
+.places-reserv-list__reserv--selected {
+  border-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.reservation-inf {
+  width: 420px;
+  max-width: 420px;
+  border: 1px solid #FFFFFF;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 35px 60px;
+}
+.reservation-inf__wrap {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.reservation-inf__title {
+  font-family: "Metro", sans-serif;
+  font-size: 17px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+.reservation-inf__label {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.5);
+}
+.reservation-inf__item {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  margin-bottom: 10px;
+}
+.reservation-inf__value {
+  font-size: 16px;
 }

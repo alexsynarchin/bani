@@ -4029,7 +4029,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       date: {},
-      navs: []
+      navs: [],
+      selectedIndex: 0
     };
   },
   methods: {
@@ -4038,7 +4039,13 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/admin/api/places/navigation').then(function (response) {
         _this.navs = response.data.dates;
+
+        _this.$emit('select-date', response.data.now);
       });
+    },
+    selectNav: function selectNav(date, index) {
+      this.selectedIndex = index;
+      this.$emit('select-date', date);
     },
     getDate: function getDate() {}
   },
@@ -4073,13 +4080,138 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     Navigation: _components_navigation__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
+  data: function data() {
+    return {
+      date: {},
+      selectedType: '',
+      selectedIndex: null,
+      typeNumber: null,
+      places: [],
+      cabinets: [],
+      reservationInf: {
+        number: null,
+        title: "",
+        start: '',
+        end: '',
+        client_name: "",
+        phone: "",
+        status: ''
+      }
+    };
+  },
   methods: {
-    selectDate: function selectDate(date) {}
+    selectDate: function selectDate(date) {
+      this.date = date;
+      this.reservationInf = {
+        number: null,
+        title: "",
+        start: '',
+        end: '',
+        client_name: "",
+        phone: "",
+        status: ''
+      };
+      this.selectedType = '';
+      this.getReservations(date);
+    },
+    getReservations: function getReservations(date) {
+      var _this = this;
+
+      axios.get('/admin/api/reservations', {
+        params: {
+          date: date
+        }
+      }).then(function (response) {
+        _this.places = response.data.places;
+        _this.cabinets = response.data.cabinets;
+      });
+    },
+    selectReservation: function selectReservation(reservation, number, type, index) {
+      this.selectedType = type;
+      this.typeNumber = number;
+      this.selectedIndex = index;
+
+      if (type === 'place') {
+        this.reservationInf.title = "Место";
+      } else {
+        this.reservationInf.title = "Кабинка";
+      }
+
+      this.reservationInf.number = number;
+      this.reservationInf.start = reservation.start_time;
+      this.reservationInf.end = reservation.end_time;
+      this.reservationInf.client_name = reservation.order.client.name;
+      this.reservationInf.phone = reservation.order.client.phone;
+      this.reservationInf.status = reservation.order.status;
+    }
   }
 });
 
@@ -85475,17 +85607,19 @@ var render = function () {
     _c(
       "ul",
       { staticClass: "dashboard-places-list" },
-      _vm._l(_vm.navs, function (nav) {
+      _vm._l(_vm.navs, function (nav, index) {
         return _c(
           "li",
           {
             staticClass: "dashboard-places-list__item",
             class: {
-              "dashboard-places-list__item--selected": nav.selected,
+              "dashboard-places-list__item--selected":
+                index === _vm.selectedIndex,
             },
             on: {
               click: function ($event) {
                 $event.preventDefault()
+                return _vm.selectNav(nav, index)
               },
             },
           },
@@ -85526,7 +85660,186 @@ var render = function () {
       [
         _c("navigation", { on: { "select-date": _vm.selectDate } }),
         _vm._v(" "),
-        _c("section", { staticClass: "places-dashboard" }),
+        _c(
+          "section",
+          { staticClass: "places-dashboard__content" },
+          [
+            _c("h1", { staticClass: "text-center places-dashboard__title" }, [
+              _vm._v(
+                "\n                " +
+                  _vm._s(_vm.date.date_string) +
+                  "\n            "
+              ),
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.places, function (place, index) {
+              return _c("ul", { staticClass: "places-reserv-list" }, [
+                _c("li", { staticClass: "places-reserv-list__item" }, [
+                  _c("label", { staticClass: "places-reserv-list__label" }, [
+                    _vm._v("Место № " + _vm._s(place.number) + " "),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "places-reserv-list__reserv-wrap" },
+                    _vm._l(place.reservations, function (reservation, index) {
+                      return _c(
+                        "span",
+                        {
+                          staticClass: "places-reserv-list__reserv",
+                          class: {
+                            "places-reserv-list__reserv--selected":
+                              place.number === _vm.typeNumber &&
+                              _vm.selectedType === "place" &&
+                              _vm.selectedIndex === index,
+                          },
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              return _vm.selectReservation(
+                                reservation,
+                                place.number,
+                                "place",
+                                index
+                              )
+                            },
+                          },
+                        },
+                        [
+                          _vm._v(
+                            "\n                            с " +
+                              _vm._s(reservation.start_time) +
+                              " по " +
+                              _vm._s(reservation.end_time) +
+                              "\n                        "
+                          ),
+                        ]
+                      )
+                    }),
+                    0
+                  ),
+                ]),
+              ])
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.cabinets, function (place, index) {
+              return _c("ul", { staticClass: "places-reserv-list" }, [
+                _c("li", { staticClass: "places-reserv-list__item" }, [
+                  _c("label", { staticClass: "places-reserv-list__label" }, [
+                    _vm._v("Кабинка № " + _vm._s(place.number) + " "),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "places-reserv-list__reserv-wrap" },
+                    _vm._l(place.reservations, function (reservation, index) {
+                      return _c(
+                        "span",
+                        {
+                          staticClass: "places-reserv-list__reserv",
+                          class: {
+                            "places-reserv-list__reserv--selected":
+                              place.number === _vm.typeNumber &&
+                              _vm.selectedType === "cabinet" &&
+                              _vm.selectedIndex === index,
+                          },
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              return _vm.selectReservation(
+                                reservation,
+                                place.number,
+                                "cabinet",
+                                index
+                              )
+                            },
+                          },
+                        },
+                        [
+                          _vm._v(
+                            "\n                            с " +
+                              _vm._s(reservation.start_time) +
+                              " по " +
+                              _vm._s(reservation.end_time) +
+                              "\n                        "
+                          ),
+                        ]
+                      )
+                    }),
+                    0
+                  ),
+                ]),
+              ])
+            }),
+            _vm._v(" "),
+            _c("section", { staticClass: "reservation-inf__wrap" }, [
+              _vm.reservationInf.number
+                ? _c("div", { staticClass: "reservation-inf" }, [
+                    _c("h3", { staticClass: "reservation-inf__title" }, [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(_vm.reservationInf.title) +
+                          " № " +
+                          _vm._s(_vm.reservationInf.number) +
+                          "\n                    "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "reservation-inf__item" }, [
+                      _c("label", { staticClass: "reservation-inf__label" }, [
+                        _vm._v(
+                          "\n                            Время брони:\n                        "
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "reservation-inf__value" }, [
+                        _vm._v(
+                          "\n                            с " +
+                            _vm._s(_vm.reservationInf.start) +
+                            " по " +
+                            _vm._s(_vm.reservationInf.end) +
+                            "\n                        "
+                        ),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "reservation-inf__item" }, [
+                      _c("label", { staticClass: "reservation-inf__label" }, [
+                        _vm._v(
+                          "\n                            Имя:\n                        "
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "reservation-inf__value" }, [
+                        _vm._v(
+                          "\n                         " +
+                            _vm._s(_vm.reservationInf.client_name) +
+                            "\n                        "
+                        ),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "reservation-inf__item" }, [
+                      _c("label", { staticClass: "reservation-inf__label" }, [
+                        _vm._v(
+                          "\n                            Номер телефона:\n                        "
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "reservation-inf__value" }, [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(_vm.reservationInf.phone) +
+                            "\n                        "
+                        ),
+                      ]),
+                    ]),
+                  ])
+                : _vm._e(),
+            ]),
+          ],
+          2
+        ),
       ],
       1
     ),
