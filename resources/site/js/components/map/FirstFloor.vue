@@ -32,6 +32,10 @@
 <script>
 export default {
     props: {
+        duration: {
+            type:Number,
+            default: 0,
+        },
         date: {
             type:String,
             required:true
@@ -70,7 +74,19 @@ export default {
                     id: place.id,
                     type:'place',
                     price: place.price,
+                    total_price:0,
                 };
+                let total_price = 0;
+                let price = 0;
+                if(this.duration > 2) {
+                    let discount_time = this.duration - 2;
+                    let discount_price = data['price'] - 50;
+                    price = data['price'] * 2;
+                    price = price + (discount_price * discount_time)
+                } else {
+                    price = data['price'] * this.duration;
+                }
+                data.total_price = price;
                 this.$emit('select-item', data)
 
             } else if(place.reserved) {

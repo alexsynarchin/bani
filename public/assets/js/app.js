@@ -4067,6 +4067,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -4080,6 +4082,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      duration: 0,
       resultVisible: false,
       resultText: '',
       order_id: null,
@@ -4088,6 +4091,7 @@ __webpack_require__.r(__webpack_exports__);
       calendarVisible: false,
       firstStep: false,
       orderModalVisible: false,
+      showMap: true,
       reserveData: {
         selectedDay: null,
         selectedDayString: '',
@@ -4123,7 +4127,7 @@ __webpack_require__.r(__webpack_exports__);
       for (var i = 0; i < this.reservations.length; i++) {
         if (this.reservations[i].type === data.type && this.reservations[i].id === data.id) {
           this.reservations.splice(i, 1);
-          this.reserveData.price = this.reserveData.price - data.price * this.reserveData.duration;
+          this.reserveData.price = this.reserveData.price - data.total_price;
           add = false;
           break;
         }
@@ -4131,10 +4135,15 @@ __webpack_require__.r(__webpack_exports__);
 
       if (add) {
         this.reservations.push(data);
-        this.reserveData.price = this.reserveData.price + data.price * this.reserveData.duration;
+        this.reserveData.price = this.reserveData.price + data.total_price;
       }
 
       this.reserveData.count = this.reservations.length;
+      this.$notify({
+        title: 'Забронировано:',
+        message: 'Мест - ' + this.reserveData.count + ' на сумму ' + this.reserveData.price + ' ₽',
+        type: 'success'
+      });
     },
     handleCalendarClose: function handleCalendarClose() {},
     selectReserveTime: function selectReserveTime(data) {
@@ -4148,7 +4157,8 @@ __webpack_require__.r(__webpack_exports__);
         price: 0,
         count: 0
       };
-      console.log(data);
+      this.showMap = false;
+      this.showMap = true;
       this.reserveData.startTime = data.startTime;
       this.reserveData.endTime = data.endTime;
       this.reserveData.selectedDayString = data.selectedDayString;
@@ -4161,7 +4171,7 @@ __webpack_require__.r(__webpack_exports__);
       var endHours = new Date("01/01/2018 " + data.endTime).getHours();
       var endMinutes = new Date("01/01/2018 " + data.endTime).getMinutes();
       this.reserveData.duration = (endHours * 60 + endMinutes - startHours * 60 - startMinutes) / 60;
-      console.log(this.reservations.duration);
+      this.duration = this.reserveData.duration;
     },
     getPaymentResult: function getPaymentResult(form) {
       var _this = this;
@@ -4763,6 +4773,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
+    duration: {
+      type: Number,
+      "default": 0
+    },
     date: {
       type: String,
       required: true
@@ -4806,8 +4820,22 @@ __webpack_require__.r(__webpack_exports__);
         var data = {
           id: place.id,
           type: 'place',
-          price: place.price
+          price: place.price,
+          total_price: 0
         };
+        var total_price = 0;
+        var price = 0;
+
+        if (this.duration > 2) {
+          var discount_time = this.duration - 2;
+          var discount_price = data['price'] - 50;
+          price = data['price'] * 2;
+          price = price + discount_price * discount_time;
+        } else {
+          price = data['price'] * this.duration;
+        }
+
+        data.total_price = price;
         this.$emit('select-item', data);
       } else if (place.reserved) {
         this.$notify({
@@ -4914,6 +4942,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
+    duration: {
+      type: Number,
+      "default": 0
+    },
     date: {
       type: String,
       required: true
@@ -4970,8 +5002,22 @@ __webpack_require__.r(__webpack_exports__);
         var data = {
           id: place.id,
           type: 'place',
-          price: place.price
+          price: place.price,
+          total_price: 0
         };
+        var total_price = 0;
+        var price = 0;
+
+        if (this.duration > 2) {
+          var discount_time = this.duration - 2;
+          var discount_price = data['price'] - 50;
+          price = data['price'] * 2;
+          price = price + discount_price * discount_time;
+        } else {
+          price = data['price'] * this.duration;
+        }
+
+        data.total_price = price;
         this.$emit('select-item', data);
       } else if (place.reserved) {
         this.$notify({
@@ -4993,8 +5039,11 @@ __webpack_require__.r(__webpack_exports__);
         var data = {
           id: cabinet.id,
           type: 'cabinet',
-          price: cabinet.price
+          price: cabinet.price,
+          total_price: 0
         };
+        var total_price = data['price'] * this.duration;
+        data.total_price = total_price;
         this.$emit('select-item', data);
       } else if (cabinet.reserved) {
         this.$notify({
@@ -5050,10 +5099,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
+    duration: {
+      type: Number,
+      "default": 0
+    },
     date: {
       type: String,
       required: true
@@ -5110,7 +5165,8 @@ vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('booking', (__webpack_requ
 var app = new vue__WEBPACK_IMPORTED_MODULE_2__["default"]({
   el: '#app',
   data: {
-    api_url: "https://bani.pandabrand.ru"
+    api_url: "https://bani.pandabrand.ru" //api_url:"http://bani.loc"
+
   }
 });
 vue__WEBPACK_IMPORTED_MODULE_2__["default"].directive('phone', {
@@ -87168,10 +87224,11 @@ var render = function () {
             _vm.reserveData.startTime &&
             _vm.reserveData.endTime &&
             _vm.reserveData.selectedDay &&
-            _vm.mapVisible
+            _vm.showMap
               ? _c("reserve-map", {
                   ref: "reserve_map",
                   attrs: {
+                    duration: _vm.duration,
                     "can-select": _vm.canSelectMap,
                     date: _vm.reserveData.selectedDay,
                     "start-date":
@@ -87947,6 +88004,7 @@ var render = function () {
       _c("first-floor", {
         attrs: {
           date: _vm.date,
+          duration: _vm.duration,
           "can-select": _vm.canSelect,
           "start-date": _vm.startDate,
           "end-date": _vm.endDate,
@@ -87957,6 +88015,7 @@ var render = function () {
       _c("second-floor", {
         attrs: {
           date: _vm.date,
+          duration: _vm.duration,
           "can-select": _vm.canSelect,
           "start-date": _vm.startDate,
           "end-date": _vm.endDate,

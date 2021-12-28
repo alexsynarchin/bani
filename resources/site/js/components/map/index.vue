@@ -2,6 +2,7 @@
 <section>
     <first-floor
         :date="date"
+        :duration="duration"
         :can-select="canSelect"
         :start-date="startDate"
         :end-date="endDate"
@@ -9,6 +10,7 @@
     ></first-floor>
     <second-floor
         :date="date"
+        :duration="duration"
         :can-select="canSelect"
         :start-date="startDate"
         :end-date="endDate"
@@ -21,6 +23,10 @@ import FirstFloor from "./FirstFloor";
 import SecondFloor from "./SecondFloor";
     export default {
         props: {
+            duration: {
+                type:Number,
+                default: 0,
+            },
             date: {
                 type:String,
                 required:true

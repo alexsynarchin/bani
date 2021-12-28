@@ -1,6 +1,7 @@
 <template>
     <div class="booking__wrap">
         <section class="booking">
+
             <h3 class="booking__title">Забронировать место</h3>
             <p class="booking__description">
                 Дорогие гости, для бронирования вам необходимо <br>
@@ -71,11 +72,12 @@
             >
                 <reserve-map ref="reserve_map"
                              @select-item = "selectReserveItem"
+                             :duration="duration"
                              :can-select="canSelectMap"
                              :date="reserveData.selectedDay"
                              :start-date="reserveData.selectedDay + ' ' +  reserveData.startTime"
                              :end-date="reserveData.selectedDay + ' ' +  reserveData.endTime"
-                             v-if="reserveData.startTime && reserveData.endTime && reserveData.selectedDay && mapVisible"
+                             v-if="reserveData.startTime && reserveData.endTime && reserveData.selectedDay && showMap"
                 ></reserve-map>
                 <div class="reserve-inf__btn-wrap mt-3 pb-3" style="max-width: 300px; margin-right: auto; margin-left: auto">
                     <button class="reserve-inf__btn" @click.prevent="mapVisible = false">
@@ -113,6 +115,7 @@
      },
         data() {
          return {
+             duration:0,
              resultVisible:false,
              resultText:'',
              order_id:null,
@@ -121,6 +124,7 @@
              calendarVisible:false,
              firstStep:false,
             orderModalVisible:false,
+             showMap:true,
              reserveData: {
                  selectedDay:null,
                  selectedDayString:'',
@@ -157,16 +161,21 @@
              for(var i = 0; i < this.reservations.length; i++) {
                  if((this.reservations[i].type ===  data.type) && (this.reservations[i].id === data.id) ) {
                      this.reservations.splice(i, 1);
-                     this.reserveData.price = this.reserveData.price - data.price * this.reserveData.duration
+                     this.reserveData.price = this.reserveData.price - data.total_price;
                      add = false;
                      break;
                  }
              }
              if(add) {
                  this.reservations.push(data);
-                 this.reserveData.price = this.reserveData.price + data.price * this.reserveData.duration
+                 this.reserveData.price = this.reserveData.price + data.total_price;
              }
              this.reserveData.count = this.reservations.length;
+             this.$notify({
+                 title: 'Забронировано:',
+                 message: 'Мест - ' + this.reserveData.count + ' на сумму ' + this.reserveData.price + ' ₽' ,
+                 type: 'success'
+             });
          },
          handleCalendarClose() {
 
@@ -182,7 +191,8 @@
                  price: 0,
                  count:0,
              };
-             console.log(data);
+             this.showMap = false;
+             this.showMap = true;
             this.reserveData.startTime = data.startTime;
             this.reserveData.endTime = data.endTime;
             this.reserveData.selectedDayString = data.selectedDayString;
@@ -195,7 +205,7 @@
              let endHours = new Date("01/01/2018 " + data.endTime).getHours();
              let endMinutes = new Date("01/01/2018 " + data.endTime).getMinutes();
              this.reserveData.duration = (endHours * 60 + endMinutes - startHours * 60 - startMinutes) / 60;
-             console.log(this.reservations.duration);
+            this.duration = this.reserveData.duration;
             },
             getPaymentResult(form) {
              axios.post(this.$root.api_url + '/api/payment-result', form)
