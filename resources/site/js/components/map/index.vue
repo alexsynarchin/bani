@@ -1,6 +1,6 @@
 <template>
 <section>
-    <div style="margin-bottom: 20px; font-size: 17px; " v-if="reserveData.count > 0">
+    <div style="color: #006672; margin-bottom: 20px; font-size: 17px; " v-if="reserveData.count > 0">
         Забронировано мест: <span style="font-weight: bold;">{{reserveData.count}}</span><br>
         На сумму: <span style="font-weight: bold;">{{reserveData.price}} ₽</span>
     </div>

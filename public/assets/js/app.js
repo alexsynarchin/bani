@@ -88014,7 +88014,13 @@ var render = function () {
       _vm.reserveData.count > 0
         ? _c(
             "div",
-            { staticStyle: { "margin-bottom": "20px", "font-size": "17px" } },
+            {
+              staticStyle: {
+                color: "#006672",
+                "margin-bottom": "20px",
+                "font-size": "17px",
+              },
+            },
             [
               _vm._v("\n        Забронировано мест: "),
               _c("span", { staticStyle: { "font-weight": "bold" } }, [
