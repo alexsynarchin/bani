@@ -50,7 +50,7 @@ class OrderController extends Controller
         }
         $data = array(
             'userName' => env('ALFA_USERNAME'),
-            'password' =>  urlencode(env('ALFA_PASSWORD')),
+            'password' =>  env('ALFA_PASSWORD'),
             'orderNumber' => $order->id,
             'amount' => $request->get('reservation')['price'] * 100,
             'returnUrl' => env('ALFA_RETURN_URL')
