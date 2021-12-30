@@ -50,17 +50,15 @@ class OrderController extends Controller
         }
         $data = array(
             'userName' => env('ALFA_USERNAME'),
-            'password' =>  env('ALFA_PASSWORD'),
+            'password' => env('ALFA_PASSWORD'),
             'orderNumber' => $order->id,
             'amount' => $request->get('reservation')['price'] * 100,
             'returnUrl' => env('ALFA_RETURN_URL')
         );
         $alfa_pay = new PaymentService();
         $response = $alfa_pay -> gateway('register.do', $data);
-
-       // $order -> alfa_order_id = $response['orderId'];
-        //$order -> save();
-        //return $response;
+        $order -> alfa_order_id = $response['orderId'];
+        $order -> save();
         return $response;
     }
     public function getOrderInf(Request $request) {
