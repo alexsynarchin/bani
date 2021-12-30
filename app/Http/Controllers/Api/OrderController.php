@@ -56,12 +56,12 @@ class OrderController extends Controller
             'returnUrl' => env('ALFA_RETURN_URL')
         );
         $alfa_pay = new PaymentService();
-        //$response = $alfa_pay -> gateway('register.do', $data);
+        $response = $alfa_pay -> gateway('register.do', $data);
 
        // $order -> alfa_order_id = $response['orderId'];
         //$order -> save();
         //return $response;
-        return $data;
+        return $response;
     }
     public function getOrderInf(Request $request) {
         $data = array(
