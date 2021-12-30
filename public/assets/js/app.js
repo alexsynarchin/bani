@@ -3940,8 +3940,7 @@ __webpack_require__.r(__webpack_exports__);
         reservation: this.reserveData,
         reservations: this.reservations
       }).then(function (response) {
-        console.log(response.data);
-        window.location.href = response.data.formUrl;
+        console.log(response.data); //window.location.href=response.data.formUrl;
       })["catch"](function (error) {
         _this.errors.record(error.response.data.errors);
       });

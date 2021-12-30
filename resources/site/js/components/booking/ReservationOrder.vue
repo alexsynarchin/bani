@@ -100,7 +100,7 @@ export default {
             axios.post(this.$root.api_url + '/api/reservation-order', {client:this.form, reservation:this.reserveData, reservations:this.reservations})
             .then((response) => {
                 console.log(response.data);
-                window.location.href=response.data.formUrl;
+                //window.location.href=response.data.formUrl;
             })
             .catch((error) => {
                 this.errors.record(error.response.data.errors);
