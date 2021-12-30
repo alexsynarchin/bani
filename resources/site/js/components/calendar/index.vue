@@ -86,7 +86,7 @@ export default {
 
         today() {
             let day = dayjs().format("YYYY-MM-DD")
-            return '2021-12-29';
+            return '2021-12-31';
         },
 
         month() {
