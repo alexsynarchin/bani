@@ -4654,7 +4654,7 @@ dayjs__WEBPACK_IMPORTED_MODULE_0___default().extend((dayjs_plugin_weekOfYear__WE
     },
     today: function today() {
       var day = dayjs__WEBPACK_IMPORTED_MODULE_0___default()().format("YYYY-MM-DD");
-      return '2022-01-03';
+      return '2022-01-04';
     },
     month: function month() {
       return Number(this.selectedDate.format("M"));
