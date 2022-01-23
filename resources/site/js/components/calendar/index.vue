@@ -85,8 +85,12 @@ export default {
         },
 
         today() {
-            let day = dayjs().format("YYYY-MM-DD")
-            return '2022-01-23';
+            let day = dayjs().format("YYYY-MM-DD");
+            var now = new Date();
+            if(now.getHours() >= 16) {
+                day = '2022-01-24'
+            }
+            return day;
         },
 
         month() {
