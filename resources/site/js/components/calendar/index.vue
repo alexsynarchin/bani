@@ -88,7 +88,7 @@ export default {
             let day = dayjs().format("YYYY-MM-DD");
             var now = new Date();
             if(now.getHours() >= 16) {
-                day = '2022-02-11'
+                day = '2022-02-12'
             }
             return day;
         },
