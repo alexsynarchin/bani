@@ -1,7 +1,6 @@
 <template>
     <div class="booking__wrap">
         <section class="booking">
-
             <h3 class="booking__title">Забронировать место</h3>
             <p class="booking__description">
                 Дорогие гости, для бронирования вам необходимо <br>
@@ -217,7 +216,8 @@
                 })
             },
             resultClosed() {
-                window.location.href=('https://baniufa.ru/reservation.html');
+               window.location.href=('https://baniufa.ru/reservation.html');
+                //window.location.href=('http://bani.loc');
             },
             getOrderInf(order_id) {
                 axios.post(this.$root.api_url + '/api/reservation-order-inf', {order_id:order_id})
