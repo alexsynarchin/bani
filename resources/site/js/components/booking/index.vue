@@ -46,6 +46,7 @@
             ></reservation-information>
             <el-dialog
                 @closed="resultClosed"
+                @beffore-close="handleResultClose"
                 :visible.sync="resultVisible"
                 class="result-modal"
             >
@@ -214,6 +215,9 @@
                     this.resultVisible = true;
                    this.resultText = response.data;
                 })
+            },
+            handleResultClose() {
+             this.resultClosed();
             },
             resultClosed() {
                window.location.href=('https://baniufa.ru/reservation.html');

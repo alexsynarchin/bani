@@ -4069,6 +4069,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -4181,6 +4182,9 @@ __webpack_require__.r(__webpack_exports__);
         _this.resultVisible = true;
         _this.resultText = response.data;
       });
+    },
+    handleResultClose: function handleResultClose() {
+      this.resultClosed();
     },
     resultClosed: function resultClosed() {
       window.location.href = 'https://baniufa.ru/reservation.html'; //window.location.href=('http://bani.loc');
@@ -87184,6 +87188,7 @@ var render = function () {
             attrs: { visible: _vm.resultVisible },
             on: {
               closed: _vm.resultClosed,
+              "beffore-close": _vm.handleResultClose,
               "update:visible": function ($event) {
                 _vm.resultVisible = $event
               },
