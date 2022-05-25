@@ -8,7 +8,8 @@ Vue.component('booking', require('./components/booking').default);
 const app = new Vue({
     el: '#app',
     data: {
-       api_url:"https://bani.pandabrand.ru"
+        api_url:"https://admin.baniufa.ru"
+       //api_url:"https://bani.pandabrand.ru"
         //api_url:"http://bani.loc"
     }
 });
