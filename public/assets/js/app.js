@@ -4187,7 +4187,8 @@ __webpack_require__.r(__webpack_exports__);
       this.resultClosed();
     },
     resultClosed: function resultClosed() {
-      window.location.href = 'https://baniufa.ru/reservation.html'; //window.location.href=('http://bani.loc');
+      window.location.href = 'https://baniufa.ru/reservation.html';
+      document.location.reload(); //window.location.href=('http://bani.loc');
     },
     getOrderInf: function getOrderInf(order_id) {
       axios.post(this.$root.api_url + '/api/reservation-order-inf', {

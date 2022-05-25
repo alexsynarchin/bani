@@ -221,6 +221,7 @@
             },
             resultClosed() {
                window.location.href=('https://baniufa.ru/reservation.html');
+                document.location.reload();
                 //window.location.href=('http://bani.loc');
             },
             getOrderInf(order_id) {
