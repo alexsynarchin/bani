@@ -5179,8 +5179,8 @@ vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('booking', (__webpack_requ
 var app = new vue__WEBPACK_IMPORTED_MODULE_2__["default"]({
   el: '#app',
   data: {
-    //api_url:"https://bani.pandabrand.ru"
-    api_url: "http://bani.loc"
+    api_url: "https://bani.pandabrand.ru" //api_url:"http://bani.loc"
+
   }
 });
 vue__WEBPACK_IMPORTED_MODULE_2__["default"].directive('phone', {
