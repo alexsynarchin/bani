@@ -30,7 +30,7 @@
                 @change="timeIsSelected"
                 v-model="endTime"
                 :picker-options="{
-                  start: startTime,
+                  start: minEndTime,
                   step: '00:30',
 
 

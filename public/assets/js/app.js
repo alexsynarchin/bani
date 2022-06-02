@@ -87556,7 +87556,7 @@ var render = function () {
               placeholder: "-- : --",
               disabled: _vm.endTimeDisabled,
               "picker-options": {
-                start: _vm.startTime,
+                start: _vm.minEndTime,
                 step: "00:30",
               },
             },
