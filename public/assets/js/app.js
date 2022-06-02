@@ -87559,7 +87559,7 @@ var render = function () {
               "picker-options": {
                 start: _vm.minEndTime,
                 step: "00:30",
-                end: "25:00",
+                end: "24:00",
               },
             },
             on: { change: _vm.timeIsSelected },
