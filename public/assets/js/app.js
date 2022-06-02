@@ -4661,7 +4661,7 @@ dayjs__WEBPACK_IMPORTED_MODULE_0___default().extend((dayjs_plugin_weekOfYear__WE
       var now = new Date();
 
       if (now.getHours() >= 16) {
-        day = '2022-06-02';
+        day = '2022-06-03';
       }
 
       return day;
