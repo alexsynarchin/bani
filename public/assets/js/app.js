@@ -87526,7 +87526,7 @@ var render = function () {
               "picker-options": {
                 start: "17:00",
                 step: "00:30",
-                end: "20:00",
+                end: "24:00",
               },
             },
             on: { change: _vm.startTimeIsSelected },
