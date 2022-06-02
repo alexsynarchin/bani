@@ -87558,7 +87558,7 @@ var render = function () {
               "picker-options": {
                 start: _vm.minEndTime,
                 step: "00:30",
-                end: "24:00",
+                end: "00:00",
               },
             },
             on: { change: _vm.timeIsSelected },

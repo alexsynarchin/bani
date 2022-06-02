@@ -32,7 +32,7 @@
                 :picker-options="{
                   start: minEndTime,
                   step: '00:30',
-                  end: '24:00',
+                  end: '00:00',
 
 }">
             </el-time-select>
