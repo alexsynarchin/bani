@@ -15,8 +15,8 @@ class CabinetController extends Controller
             $cabinet -> reserved = false;
             $reservations = $cabinet ->reservations()
                 ->whereDate('date', '=', $request->get('date'))
-                ->whereTime('start', '<=', \Carbon\Carbon::parse($request->get('startDate')))
-                ->whereTime('end' , '>', \Carbon\Carbon::parse($request->get('startDate')))
+                ->whereTime('end', '>=', \Carbon\Carbon::parse($request->get('startDate')))
+                -> whereTime('start' , '<=', \Carbon\Carbon::parse($request->get('endDate')))
                 ->whereHas('order', function ($query) {
                     $query->where('status','success');
                 }) -> get();

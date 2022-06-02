@@ -87241,6 +87241,7 @@ var render = function () {
             },
           },
           [
+            _vm.mapVisible &&
             _vm.reserveData.startTime &&
             _vm.reserveData.endTime &&
             _vm.reserveData.selectedDay &&

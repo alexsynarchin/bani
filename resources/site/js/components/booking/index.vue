@@ -78,7 +78,7 @@
                              :date="reserveData.selectedDay"
                              :start-date="reserveData.selectedDay + ' ' +  reserveData.startTime"
                              :end-date="reserveData.selectedDay + ' ' +  reserveData.endTime"
-                             v-if="reserveData.startTime && reserveData.endTime && reserveData.selectedDay && showMap"
+                             v-if="mapVisible && reserveData.startTime && reserveData.endTime && reserveData.selectedDay && showMap"
                 ></reserve-map>
                 <div class="reserve-inf__btn-wrap mt-3 pb-3" style="max-width: 300px; margin-right: auto; margin-left: auto">
                     <button class="reserve-inf__btn" @click.prevent="mapVisible = false">
