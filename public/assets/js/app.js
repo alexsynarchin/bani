@@ -4072,6 +4072,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -4086,6 +4089,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      selectedPlacesArrFirst: [],
+      selectedPlacesArrSecond: [],
+      selectedCabinsArr: [],
       duration: 0,
       resultVisible: false,
       resultText: '',
@@ -4817,6 +4823,12 @@ __webpack_require__.r(__webpack_exports__);
     canSelect: {
       type: Boolean,
       "default": false
+    },
+    selectedPlacesArr: {
+      type: Array,
+      "default": function _default() {
+        return [];
+      }
     }
   },
   data: function data() {
@@ -4836,12 +4848,33 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         _this.places = response.data;
+
+        _this.places.forEach(function (item, index) {
+          var selectIndex = _this.selectedPlacesArr.findIndex(function (selected) {
+            return selected === index;
+          });
+
+          if (selectIndex !== -1) {
+            _this.places[index].select = true;
+          }
+        });
+
         console.log(_this.places);
       });
     },
     handleSelectPlace: function handleSelectPlace(place, index) {
       if (this.canSelect && !place.reserved) {
         this.places[index].select = !this.places[index].select;
+
+        if (this.places[index].select) {
+          this.selectedPlacesArr.push(index);
+        } else {
+          var selectedArrIndex = this.selectedPlacesArr.findIndex(function (item) {
+            return item === index;
+          });
+          this.selectedPlacesArr.splice(selectedArrIndex, 1);
+        }
+
         var data = {
           id: place.id,
           type: 'place',
@@ -4967,6 +5000,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
+    selectedPlacesArr: {
+      type: Array,
+      "default": function _default() {
+        return [];
+      }
+    },
+    selectedCabinsArr: {
+      type: Array,
+      "default": function _default() {
+        return [];
+      }
+    },
     duration: {
       type: Number,
       "default": 0
@@ -5006,6 +5051,16 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         _this.cabinets = response.data;
+
+        _this.cabinets.forEach(function (item, index) {
+          var selectIndex = _this.selectedCabinsArr.findIndex(function (selected) {
+            return selected === index;
+          });
+
+          if (selectIndex !== -1) {
+            _this.cabinets[index].select = true;
+          }
+        });
       });
     },
     getPlaces: function getPlaces() {
@@ -5019,11 +5074,31 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         _this2.places = response.data;
+
+        _this2.places.forEach(function (item, index) {
+          var selectIndex = _this2.selectedPlacesArr.findIndex(function (selected) {
+            return selected === index;
+          });
+
+          if (selectIndex !== -1) {
+            _this2.places[index].select = true;
+          }
+        });
       });
     },
     handleSelectPlace: function handleSelectPlace(place, index) {
       if (this.canSelect && !place.reserved) {
         this.places[index].select = !this.places[index].select;
+
+        if (this.places[index].select) {
+          this.selectedPlacesArr.push(index);
+        } else {
+          var selectedArrIndex = this.selectedPlacesArr.findIndex(function (item) {
+            return item === index;
+          });
+          this.selectedPlacesArr.splice(selectedArrIndex, 1);
+        }
+
         var data = {
           id: place.id,
           type: 'place',
@@ -5061,6 +5136,16 @@ __webpack_require__.r(__webpack_exports__);
     handleSelectCabinet: function handleSelectCabinet(cabinet, index) {
       if (this.canSelect && !cabinet.reserved) {
         this.cabinets[index].select = !this.cabinets[index].select;
+
+        if (this.cabinets[index].select) {
+          this.selectedCabinsArr.push(index);
+        } else {
+          var selectedArrIndex = this.selectedCabinsArr.findIndex(function (item) {
+            return item === index;
+          });
+          this["this"].selectedCabinsArr.splice(selectedArrIndex, 1);
+        }
+
         var data = {
           id: cabinet.id,
           type: 'cabinet',
@@ -5130,10 +5215,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
+    selectedPlacesArrFirst: {
+      type: Array,
+      "default": function _default() {
+        return [];
+      }
+    },
+    selectedPlacesArrSecond: {
+      type: Array,
+      "default": function _default() {
+        return [];
+      }
+    },
+    selectedCabinsArr: {
+      type: Array,
+      "default": function _default() {
+        return [];
+      }
+    },
     reserveData: {
       type: Object,
       required: true
@@ -87264,6 +87370,9 @@ var render = function () {
               ? _c("reserve-map", {
                   ref: "reserve_map",
                   attrs: {
+                    "selected-cabins-arr": _vm.selectedCabinsArr,
+                    "selected-places-arr-first": _vm.selectedPlacesArrFirst,
+                    "selected-places-arr-second": _vm.selectedPlacesArrSecond,
                     "reserve-data": _vm.reserveData,
                     duration: _vm.duration,
                     "can-select": _vm.canSelectMap,
@@ -88064,6 +88173,7 @@ var render = function () {
           date: _vm.date,
           duration: _vm.duration,
           "can-select": _vm.canSelect,
+          "selected-places-arr": _vm.selectedPlacesArrFirst,
           "start-date": _vm.startDate,
           "end-date": _vm.endDate,
         },
@@ -88077,6 +88187,8 @@ var render = function () {
           "can-select": _vm.canSelect,
           "start-date": _vm.startDate,
           "end-date": _vm.endDate,
+          "selected-places-arr": _vm.selectedPlacesArrSecond,
+          "selected-cabins-arr": _vm.selectedCabinsArr,
         },
         on: { "select-item": _vm.selectReservationItem },
       }),

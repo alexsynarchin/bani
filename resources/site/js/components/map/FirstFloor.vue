@@ -52,6 +52,12 @@ export default {
             type: Boolean,
             default: false
         },
+        selectedPlacesArr: {
+            type:Array,
+            default: function (){
+                return [];
+            }
+        }
     },
     data() {
         return {
@@ -64,12 +70,29 @@ export default {
             axios.get(this.$root.api_url + '/api/places/list/' + 1, {params:{startDate:this.startDate, endDate:this.endDate,date:this.date}})
             .then((response) => {
                 this.places = response.data;
+                this.places.forEach( (item, index)=> {
+                    let selectIndex = this.selectedPlacesArr.findIndex(function(selected) {
+                        return selected === index;
+                    } )
+                    if(selectIndex !==-1){
+                        this.places[index].select = true;
+                    }
+                })
                 console.log(this.places);
             })
         },
         handleSelectPlace(place, index) {
             if(this.canSelect && !place.reserved) {
                 this.places[index].select =  !this.places[index].select;
+                if(this.places[index].select) {
+                    this.selectedPlacesArr.push(index);
+                } else {
+                   let selectedArrIndex =  this.selectedPlacesArr.findIndex(function (item) {
+                       return item === index
+                   });
+                   this.selectedPlacesArr.splice(selectedArrIndex, 1);
+                }
+
                 let data = {
                     id: place.id,
                     type:'place',
@@ -87,7 +110,7 @@ export default {
                     price = data['price'] * this.duration;
                 }
                 data.total_price = price;
-                this.$emit('select-item', data)
+                this.$emit('select-item', data);
 
             } else if(place.reserved) {
                 this.$notify({

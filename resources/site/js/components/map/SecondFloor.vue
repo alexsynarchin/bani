@@ -71,6 +71,19 @@
 <script>
 export default {
     props: {
+        selectedPlacesArr:{
+            type:Array,
+            default: function (){
+                return [];
+            }
+        },
+        selectedCabinsArr: {
+            type:Array,
+            default: function (){
+                return [];
+            }
+        },
+
         duration: {
             type:Number,
             default: 0,
@@ -104,17 +117,41 @@ export default {
             axios.get( this.$root.api_url + '/api/cabinets/list/' + 2, {params:{startDate:this.startDate, endDate:this.endDate, date:this.date}})
                 .then((response) => {
                     this.cabinets = response.data;
+                    this.cabinets.forEach( (item, index)=> {
+                        let selectIndex = this.selectedCabinsArr.findIndex(function(selected) {
+                            return selected === index;
+                        } )
+                        if(selectIndex !==-1){
+                            this.cabinets[index].select = true;
+                        }
+                    })
                 })
         },
         getPlaces() {
             axios.get(this.$root.api_url + '/api/places/list/' + 2, {params:{startDate:this.startDate, endDate:this.endDate, date:this.date}})
                 .then((response) => {
                     this.places = response.data;
+                    this.places.forEach( (item, index)=> {
+                        let selectIndex = this.selectedPlacesArr.findIndex(function(selected) {
+                            return selected === index;
+                        } )
+                        if(selectIndex !==-1){
+                            this.places[index].select = true;
+                        }
+                    })
                 })
         },
         handleSelectPlace(place, index) {
             if(this.canSelect && !place.reserved) {
                 this.places[index].select =  !this.places[index].select;
+                if(this.places[index].select) {
+                    this.selectedPlacesArr.push(index);
+                } else {
+                    let selectedArrIndex =  this.selectedPlacesArr.findIndex(function (item) {
+                        return item === index
+                    });
+                    this.selectedPlacesArr.splice(selectedArrIndex, 1);
+                }
                 let data = {
                     id: place.id,
                     type:'place',
@@ -152,6 +189,14 @@ export default {
          handleSelectCabinet(cabinet, index) {
              if(this.canSelect && !cabinet.reserved) {
                  this.cabinets[index].select =  !this.cabinets[index].select;
+                 if(this.cabinets[index].select) {
+                     this.selectedCabinsArr.push(index);
+                 } else {
+                     let selectedArrIndex =  this.selectedCabinsArr.findIndex(function (item) {
+                         return item === index
+                     });
+                     this.this.selectedCabinsArr.splice(selectedArrIndex, 1);
+                 }
                  let data = {
                      id: cabinet.id,
                      type:'cabinet',

@@ -8,6 +8,7 @@
         :date="date"
         :duration="duration"
         :can-select="canSelect"
+        :selected-places-arr="selectedPlacesArrFirst"
         :start-date="startDate"
         :end-date="endDate"
         @select-item="selectReservationItem"
@@ -19,6 +20,8 @@
         :start-date="startDate"
         :end-date="endDate"
         @select-item="selectReservationItem"
+        :selected-places-arr="selectedPlacesArrSecond"
+        :selected-cabins-arr="selectedCabinsArr"
     ></second-floor>
 </section>
 </template>
@@ -27,6 +30,24 @@ import FirstFloor from "./FirstFloor";
 import SecondFloor from "./SecondFloor";
     export default {
         props: {
+            selectedPlacesArrFirst: {
+                type:Array,
+                default: function (){
+                    return [];
+                }
+            },
+            selectedPlacesArrSecond:{
+                type:Array,
+                default: function (){
+                    return [];
+                }
+            },
+            selectedCabinsArr: {
+                type:Array,
+                default: function (){
+                    return [];
+                }
+            },
             reserveData: {
                 type:Object,
                 required:true,
