@@ -3966,6 +3966,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _map_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../map/index */ "./resources/site/js/components/map/index.vue");
 /* harmony import */ var _ReservationInformation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ReservationInformation */ "./resources/site/js/components/booking/ReservationInformation.vue");
 /* harmony import */ var _ReservationOrder__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ReservationOrder */ "./resources/site/js/components/booking/ReservationOrder.vue");
+/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! dayjs */ "./node_modules/dayjs/dayjs.min.js");
+/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(dayjs__WEBPACK_IMPORTED_MODULE_4__);
 //
 //
 //
@@ -4070,6 +4072,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 
@@ -4105,7 +4108,18 @@ __webpack_require__.r(__webpack_exports__);
       reservations: []
     };
   },
-  computed: {},
+  computed: {
+    endDate: function endDate() {
+      var endDay = this.reserveData.selectedDay;
+      var time = this.reserveData.endTime;
+
+      if (this.reserveData.endTime === '24:00') {
+        time = '23:59';
+      }
+
+      return endDay + ' ' + time;
+    }
+  },
   methods: {
     openMapModal: function openMapModal() {
       if (this.canSelectMap) {
@@ -87258,10 +87272,7 @@ var render = function () {
                       _vm.reserveData.selectedDay +
                       " " +
                       _vm.reserveData.startTime,
-                    "end-date":
-                      _vm.reserveData.selectedDay +
-                      " " +
-                      _vm.reserveData.endTime,
+                    "end-date": _vm.endDate,
                   },
                   on: { "select-item": _vm.selectReserveItem },
                 })

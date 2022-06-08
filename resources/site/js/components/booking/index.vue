@@ -77,7 +77,7 @@
                              :can-select="canSelectMap"
                              :date="reserveData.selectedDay"
                              :start-date="reserveData.selectedDay + ' ' +  reserveData.startTime"
-                             :end-date="reserveData.selectedDay + ' ' +  reserveData.endTime"
+                             :end-date="endDate"
                              v-if="mapVisible && reserveData.startTime && reserveData.endTime && reserveData.selectedDay && showMap"
                 ></reserve-map>
                 <div class="reserve-inf__btn-wrap mt-3 pb-3" style="max-width: 300px; margin-right: auto; margin-left: auto">
@@ -107,6 +107,7 @@
     import ReserveMap from "../map/index"
     import ReservationInformation from "./ReservationInformation";
     import ReservationOrder from "./ReservationOrder";
+    import dayjs from "dayjs";
     export default {
      components: {
          ReservationInformation,
@@ -139,7 +140,14 @@
          }
         },
         computed: {
-
+            endDate: function () {
+                let endDay = this.reserveData.selectedDay;
+                let time = this.reserveData.endTime;
+                if(this.reserveData.endTime === '24:00') {
+                    time = '23:59';
+                }
+                return endDay + ' ' +  time;
+            }
         },
         methods: {
          openMapModal() {
