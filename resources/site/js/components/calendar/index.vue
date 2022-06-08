@@ -87,8 +87,8 @@ export default {
         today() {
             let day = dayjs().format("YYYY-MM-DD");
             var now = new Date();
-            if(now.getHours() >= 9) {
-                day = '2022-06-07'
+            if(now.getHours() >= 16) {
+                day = '2022-06-08'
             }
             return day;
         },
