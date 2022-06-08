@@ -4660,7 +4660,7 @@ dayjs__WEBPACK_IMPORTED_MODULE_0___default().extend((dayjs_plugin_weekOfYear__WE
       var day = dayjs__WEBPACK_IMPORTED_MODULE_0___default()().format("YYYY-MM-DD");
       var now = new Date();
 
-      if (now.getHours() >= 16) {
+      if (now.getHours() >= 9) {
         day = '2022-06-07';
       }
 
@@ -87976,7 +87976,7 @@ var render = function () {
                         "xlink:href":
                           "/assets/site/images/sprites.svg?ver=8#sprite-place-" +
                           place.type +
-                          "res",
+                          "-res",
                       },
                     }),
                   ])
