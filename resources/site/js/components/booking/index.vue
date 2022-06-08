@@ -217,8 +217,16 @@
             this.canSelectMap = true;
              let startHours = new Date("01/01/2018 " + data.startTime).getHours();
              let startMinutes = new Date("01/01/2018 " + data.startTime).getMinutes();
-             let endHours = new Date("01/01/2018 " + data.endTime).getHours();
-             let endMinutes = new Date("01/01/2018 " + data.endTime).getMinutes();
+             let endHours = 0;
+             let endMinutes=0;
+             if(data.endTime === '24:00') {
+                 endHours = 24;
+                 endMinutes = 0;
+             } else {
+                endHours = new Date("01/01/2018 " + data.endTime).getHours();
+                 endMinutes = new Date("01/01/2018 " + data.endTime).getMinutes();
+             }
+
              this.reserveData.duration = (endHours * 60 + endMinutes - startHours * 60 - startMinutes) / 60;
             this.duration = this.reserveData.duration;
             },

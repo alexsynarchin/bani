@@ -4189,8 +4189,17 @@ __webpack_require__.r(__webpack_exports__);
       this.canSelectMap = true;
       var startHours = new Date("01/01/2018 " + data.startTime).getHours();
       var startMinutes = new Date("01/01/2018 " + data.startTime).getMinutes();
-      var endHours = new Date("01/01/2018 " + data.endTime).getHours();
-      var endMinutes = new Date("01/01/2018 " + data.endTime).getMinutes();
+      var endHours = 0;
+      var endMinutes = 0;
+
+      if (data.endTime === '24:00') {
+        endHours = 24;
+        endMinutes = 0;
+      } else {
+        endHours = new Date("01/01/2018 " + data.endTime).getHours();
+        endMinutes = new Date("01/01/2018 " + data.endTime).getMinutes();
+      }
+
       this.reserveData.duration = (endHours * 60 + endMinutes - startHours * 60 - startMinutes) / 60;
       this.duration = this.reserveData.duration;
     },
