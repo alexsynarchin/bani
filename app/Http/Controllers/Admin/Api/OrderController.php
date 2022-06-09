@@ -13,9 +13,12 @@ class OrderController extends Controller
     {
         $orders = Order::where('status', '!=', 'progress')->with('reservations.reservationable')->get();
         foreach ($orders as $order) {
-            $order -> date = Carbon::parse($order -> reservations[0]['date']) -> format('d-m-y');
-            $order -> start = Carbon::parse($order -> reservations[0]['start']) -> format('H:i');
-            $order -> end = Carbon::parse($order -> reservations[0]['end']) -> format('H:i');
+            if($order->reservations()->exists()) {
+                $order -> date = Carbon::parse($order -> reservations[0]['date']) -> format('d-m-y');
+                $order -> start = Carbon::parse($order -> reservations[0]['start']) -> format('H:i');
+                $order -> end = Carbon::parse($order -> reservations[0]['end']) -> format('H:i');
+            }
+
         }
         return $orders;
     }
