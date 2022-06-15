@@ -7,8 +7,8 @@
                     {{date.date_string}}
                 </h1>
                 <section class="d-flex justify-content-between">
-                    <ul class="places-reserv-list" v-for="(place, index) in places" style="margin-right: 20px">
-                        <li class="places-reserv-list__item">
+                    <ul class="places-reserv-list"  style="margin-right: 20px">
+                        <li class="places-reserv-list__item" v-for="(place, index) in places">
                             <label class="places-reserv-list__label">Место № {{place.number}} </label>
                             <div class="places-reserv-list__reserv-wrap">
                             <span class="places-reserv-list__reserv" v-for="(reservation, index) in place.reservations"
@@ -22,8 +22,8 @@
                             </div>
                         </li>
                     </ul>
-                    <ul class="places-reserv-list" v-for="(place, index) in cabinets">
-                        <li class="places-reserv-list__item">
+                    <ul class="places-reserv-list" >
+                        <li class="places-reserv-list__item" v-for="(place, index) in cabinets">
                             <label class="places-reserv-list__label">Кабинка № {{place.number}} </label>
                             <div class="places-reserv-list__reserv-wrap">
                             <span class="places-reserv-list__reserv" v-for="(reservation, index) in place.reservations"

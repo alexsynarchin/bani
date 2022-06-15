@@ -85673,124 +85673,116 @@ var render = function () {
             ),
           ]),
           _vm._v(" "),
-          _c(
-            "section",
-            { staticClass: "d-flex justify-content-between" },
-            [
+          _c("section", { staticClass: "d-flex justify-content-between" }, [
+            _c(
+              "ul",
+              {
+                staticClass: "places-reserv-list",
+                staticStyle: { "margin-right": "20px" },
+              },
               _vm._l(_vm.places, function (place, index) {
-                return _c(
-                  "ul",
-                  {
-                    staticClass: "places-reserv-list",
-                    staticStyle: { "margin-right": "20px" },
-                  },
-                  [
-                    _c("li", { staticClass: "places-reserv-list__item" }, [
-                      _c(
-                        "label",
-                        { staticClass: "places-reserv-list__label" },
-                        [_vm._v("Место № " + _vm._s(place.number) + " ")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "places-reserv-list__reserv-wrap" },
-                        _vm._l(
-                          place.reservations,
-                          function (reservation, index) {
-                            return _c(
-                              "span",
-                              {
-                                staticClass: "places-reserv-list__reserv",
-                                class: {
-                                  "places-reserv-list__reserv--selected":
-                                    place.number === _vm.typeNumber &&
-                                    _vm.selectedType === "place" &&
-                                    _vm.selectedIndex === index,
-                                },
-                                on: {
-                                  click: function ($event) {
-                                    $event.preventDefault()
-                                    return _vm.selectReservation(
-                                      reservation,
-                                      place.number,
-                                      "place",
-                                      index
-                                    )
-                                  },
-                                },
-                              },
-                              [
-                                _vm._v(
-                                  "\n                            с " +
-                                    _vm._s(reservation.start_time) +
-                                    " по " +
-                                    _vm._s(reservation.end_time) +
-                                    "\n                        "
-                                ),
-                              ]
-                            )
-                          }
-                        ),
-                        0
-                      ),
-                    ]),
-                  ]
-                )
-              }),
-              _vm._v(" "),
-              _vm._l(_vm.cabinets, function (place, index) {
-                return _c("ul", { staticClass: "places-reserv-list" }, [
-                  _c("li", { staticClass: "places-reserv-list__item" }, [
-                    _c("label", { staticClass: "places-reserv-list__label" }, [
-                      _vm._v("Кабинка № " + _vm._s(place.number) + " "),
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "places-reserv-list__reserv-wrap" },
-                      _vm._l(place.reservations, function (reservation, index) {
-                        return _c(
-                          "span",
-                          {
-                            staticClass: "places-reserv-list__reserv",
-                            class: {
-                              "places-reserv-list__reserv--selected":
-                                place.number === _vm.typeNumber &&
-                                _vm.selectedType === "cabinet" &&
-                                _vm.selectedIndex === index,
-                            },
-                            on: {
-                              click: function ($event) {
-                                $event.preventDefault()
-                                return _vm.selectReservation(
-                                  reservation,
-                                  place.number,
-                                  "cabinet",
-                                  index
-                                )
-                              },
+                return _c("li", { staticClass: "places-reserv-list__item" }, [
+                  _c("label", { staticClass: "places-reserv-list__label" }, [
+                    _vm._v("Место № " + _vm._s(place.number) + " "),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "places-reserv-list__reserv-wrap" },
+                    _vm._l(place.reservations, function (reservation, index) {
+                      return _c(
+                        "span",
+                        {
+                          staticClass: "places-reserv-list__reserv",
+                          class: {
+                            "places-reserv-list__reserv--selected":
+                              place.number === _vm.typeNumber &&
+                              _vm.selectedType === "place" &&
+                              _vm.selectedIndex === index,
+                          },
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              return _vm.selectReservation(
+                                reservation,
+                                place.number,
+                                "place",
+                                index
+                              )
                             },
                           },
-                          [
-                            _vm._v(
-                              "\n                            с " +
-                                _vm._s(reservation.start_time) +
-                                " по " +
-                                _vm._s(reservation.end_time) +
-                                "\n                        "
-                            ),
-                          ]
-                        )
-                      }),
-                      0
-                    ),
-                  ]),
+                        },
+                        [
+                          _vm._v(
+                            "\n                            с " +
+                              _vm._s(reservation.start_time) +
+                              " по " +
+                              _vm._s(reservation.end_time) +
+                              "\n                        "
+                          ),
+                        ]
+                      )
+                    }),
+                    0
+                  ),
                 ])
               }),
-            ],
-            2
-          ),
+              0
+            ),
+            _vm._v(" "),
+            _c(
+              "ul",
+              { staticClass: "places-reserv-list" },
+              _vm._l(_vm.cabinets, function (place, index) {
+                return _c("li", { staticClass: "places-reserv-list__item" }, [
+                  _c("label", { staticClass: "places-reserv-list__label" }, [
+                    _vm._v("Кабинка № " + _vm._s(place.number) + " "),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "places-reserv-list__reserv-wrap" },
+                    _vm._l(place.reservations, function (reservation, index) {
+                      return _c(
+                        "span",
+                        {
+                          staticClass: "places-reserv-list__reserv",
+                          class: {
+                            "places-reserv-list__reserv--selected":
+                              place.number === _vm.typeNumber &&
+                              _vm.selectedType === "cabinet" &&
+                              _vm.selectedIndex === index,
+                          },
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              return _vm.selectReservation(
+                                reservation,
+                                place.number,
+                                "cabinet",
+                                index
+                              )
+                            },
+                          },
+                        },
+                        [
+                          _vm._v(
+                            "\n                            с " +
+                              _vm._s(reservation.start_time) +
+                              " по " +
+                              _vm._s(reservation.end_time) +
+                              "\n                        "
+                          ),
+                        ]
+                      )
+                    }),
+                    0
+                  ),
+                ])
+              }),
+              0
+            ),
+          ]),
         ]),
       ],
       1
