@@ -11925,7 +11925,6 @@ p {
 }
 .places-dashboard__wrap {
   display: flex;
-  justify-content: center;
 }
 .places-dashboard__title {
   font-family: "Metro", sans-serif;
@@ -11996,12 +11995,9 @@ p {
   box-sizing: border-box;
   border-radius: 10px;
   padding: 35px 60px;
-}
-.reservation-inf__wrap {
-  margin-top: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: #fff;
+  background-color: #007583;
+  margin-left: 20px;
 }
 .reservation-inf__title {
   font-family: "Metro", sans-serif;

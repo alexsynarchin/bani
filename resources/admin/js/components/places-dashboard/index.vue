@@ -6,10 +6,11 @@
                 <h1 class="text-center places-dashboard__title">
                     {{date.date_string}}
                 </h1>
-                <ul class="places-reserv-list" v-for="(place, index) in places">
-                    <li class="places-reserv-list__item">
-                        <label class="places-reserv-list__label">Место № {{place.number}} </label>
-                        <div class="places-reserv-list__reserv-wrap">
+                <section class="d-flex justify-content-between">
+                    <ul class="places-reserv-list" v-for="(place, index) in places" style="margin-right: 20px">
+                        <li class="places-reserv-list__item">
+                            <label class="places-reserv-list__label">Место № {{place.number}} </label>
+                            <div class="places-reserv-list__reserv-wrap">
                             <span class="places-reserv-list__reserv" v-for="(reservation, index) in place.reservations"
                                   :class="{
                                 'places-reserv-list__reserv--selected': (place.number === typeNumber) && (selectedType === 'place') && (selectedIndex === index)
@@ -18,13 +19,13 @@
                             >
                                 с {{reservation.start_time}} по {{reservation.end_time}}
                             </span>
-                        </div>
-                    </li>
-                </ul>
-                <ul class="places-reserv-list" v-for="(place, index) in cabinets">
-                    <li class="places-reserv-list__item">
-                        <label class="places-reserv-list__label">Кабинка № {{place.number}} </label>
-                        <div class="places-reserv-list__reserv-wrap">
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="places-reserv-list" v-for="(place, index) in cabinets">
+                        <li class="places-reserv-list__item">
+                            <label class="places-reserv-list__label">Кабинка № {{place.number}} </label>
+                            <div class="places-reserv-list__reserv-wrap">
                             <span class="places-reserv-list__reserv" v-for="(reservation, index) in place.reservations"
                                   @click.prevent="selectReservation(reservation, place.number, 'cabinet', index)"
                                   :class="{
@@ -33,42 +34,45 @@
                             >
                                 с {{reservation.start_time}} по {{reservation.end_time}}
                             </span>
-                        </div>
-                    </li>
-                </ul>
-                <section class="reservation-inf__wrap">
-                    <div class="reservation-inf" v-if="reservationInf.number">
-                        <h3 class="reservation-inf__title">
-                            {{reservationInf.title}} № {{reservationInf.number}}
-                        </h3>
-                        <div class="reservation-inf__item">
-                            <label class="reservation-inf__label">
-                                Время брони:
-                            </label>
-                            <span class="reservation-inf__value">
-                                с {{reservationInf.start}} по {{reservationInf.end}}
-                            </span>
-                        </div>
-                        <div class="reservation-inf__item">
-                            <label class="reservation-inf__label">
-                                Имя:
-                            </label>
-                            <span class="reservation-inf__value">
-                             {{reservationInf.client_name}}
-                            </span>
-                        </div>
-                        <div class="reservation-inf__item">
-                            <label class="reservation-inf__label">
-                                Номер телефона:
-                            </label>
-                            <span class="reservation-inf__value">
-                                {{reservationInf.phone}}
-                            </span>
-                        </div>
-                    </div>
+                            </div>
+                        </li>
+                    </ul>
                 </section>
+
+
             </section>
         </section>
+
+            <div class="reservation-inf" v-if="reservationInf.number">
+                <h3 class="reservation-inf__title">
+                    {{reservationInf.title}} № {{reservationInf.number}}
+                </h3>
+                <div class="reservation-inf__item">
+                    <label class="reservation-inf__label">
+                        Время брони:
+                    </label>
+                    <span class="reservation-inf__value">
+                                с {{reservationInf.start}} по {{reservationInf.end}}
+                            </span>
+                </div>
+                <div class="reservation-inf__item">
+                    <label class="reservation-inf__label">
+                        Имя:
+                    </label>
+                    <span class="reservation-inf__value">
+                             {{reservationInf.client_name}}
+                            </span>
+                </div>
+                <div class="reservation-inf__item">
+                    <label class="reservation-inf__label">
+                        Номер телефона:
+                    </label>
+                    <span class="reservation-inf__value">
+                                {{reservationInf.phone}}
+                            </span>
+                </div>
+            </div>
+
     </div>
 
 </template>
