@@ -41,7 +41,16 @@ class Reservation extends Model
         $end = new Carbon ($this->end);
         $diff = $end->diffInMinutes($start);
         $cost = $this->reservationable->price;
-        $sum = ($cost * $diff) / 30;
+        $sum = 0;
+        if ($diff > 120 && $this->reservationable_type === 'App\Models\Place') {
+            $sum = 900;
+            $diff = $diff - 120;
+            $sum = $sum + (400 * $diff) / 60;
+        } else {
+            $sum = ($cost * $diff) / 60;
+        }
+
+
         return $sum;
     }
 }
