@@ -11,7 +11,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::where('status', '!=', 'progress')->with('reservations.reservationable')->get();
+        $orders = Order::where('status', '!=', 'progress')->with('reservations.reservationable')->orderBy('created_at','DESC')->get();
         foreach ($orders as $order) {
             if($order->reservations()->exists()) {
                 $order -> date = Carbon::parse($order -> reservations[0]['date']) -> format('d-m-y');
