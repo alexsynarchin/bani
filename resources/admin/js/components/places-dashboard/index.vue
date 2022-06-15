@@ -52,25 +52,33 @@
                         Время брони:
                     </label>
                     <span class="reservation-inf__value">
-                                с {{reservationInf.start}} по {{reservationInf.end}}
-                            </span>
+                        с {{reservationInf.start}} по {{reservationInf.end}}
+                    </span>
                 </div>
                 <div class="reservation-inf__item">
                     <label class="reservation-inf__label">
                         Имя:
                     </label>
                     <span class="reservation-inf__value">
-                             {{reservationInf.client_name}}
-                            </span>
+                        {{reservationInf.client_name}}
+                    </span>
                 </div>
                 <div class="reservation-inf__item">
                     <label class="reservation-inf__label">
                         Номер телефона:
                     </label>
                     <span class="reservation-inf__value">
-                                {{reservationInf.phone}}
-                            </span>
+                        {{reservationInf.phone}}
+                    </span>
                 </div>
+                <div class="reservation-inf__item">
+                <label class="reservation-inf__label">
+                    Стоимость:
+                </label>
+                <span class="reservation-inf__value">
+                        {{reservationInf.price}} руб.
+                </span>
+            </div>
             </div>
 
     </div>
@@ -97,6 +105,7 @@ import Navigation from "./components/navigation";
                     title:"",
                     start:'',
                     end:'',
+                    price: '',
                     client_name:"",
                     phone: "",
                     status:''
@@ -136,6 +145,7 @@ import Navigation from "./components/navigation";
                     this.reservationInf.title = "Кабинка";
                 }
                 this.reservationInf.number = number;
+                this.reservationInf.price = reservation.price
                 this.reservationInf.start = reservation.start_time;
                 this.reservationInf.end = reservation.end_time;
                 this.reservationInf.client_name = reservation.order.client.name;

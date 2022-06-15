@@ -4147,6 +4147,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -4165,6 +4173,7 @@ __webpack_require__.r(__webpack_exports__);
         title: "",
         start: '',
         end: '',
+        price: '',
         client_name: "",
         phone: "",
         status: ''
@@ -4210,6 +4219,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.reservationInf.number = number;
+      this.reservationInf.price = reservation.price;
       this.reservationInf.start = reservation.start_time;
       this.reservationInf.end = reservation.end_time;
       this.reservationInf.client_name = reservation.order.client.name;
@@ -85807,11 +85817,11 @@ var render = function () {
             _vm._v(" "),
             _c("span", { staticClass: "reservation-inf__value" }, [
               _vm._v(
-                "\n                            с " +
+                "\n                    с " +
                   _vm._s(_vm.reservationInf.start) +
                   " по " +
                   _vm._s(_vm.reservationInf.end) +
-                  "\n                        "
+                  "\n                "
               ),
             ]),
           ]),
@@ -85823,9 +85833,9 @@ var render = function () {
             _vm._v(" "),
             _c("span", { staticClass: "reservation-inf__value" }, [
               _vm._v(
-                "\n                         " +
+                "\n                    " +
                   _vm._s(_vm.reservationInf.client_name) +
-                  "\n                        "
+                  "\n                "
               ),
             ]),
           ]),
@@ -85837,9 +85847,23 @@ var render = function () {
             _vm._v(" "),
             _c("span", { staticClass: "reservation-inf__value" }, [
               _vm._v(
-                "\n                            " +
+                "\n                    " +
                   _vm._s(_vm.reservationInf.phone) +
-                  "\n                        "
+                  "\n                "
+              ),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "reservation-inf__item" }, [
+            _c("label", { staticClass: "reservation-inf__label" }, [
+              _vm._v("\n                Стоимость:\n            "),
+            ]),
+            _vm._v(" "),
+            _c("span", { staticClass: "reservation-inf__value" }, [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(_vm.reservationInf.price) +
+                  " руб.\n            "
               ),
             ]),
           ]),

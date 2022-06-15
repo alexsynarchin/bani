@@ -11,7 +11,7 @@ class Reservation extends Model
     use HasFactory;
     protected $fillable = ['order_id', 'start', 'end', 'reservationable_type, reservationable_id', 'date'];
     protected $appends = [
-        'status', 'start_time', 'end_time'
+        'status', 'start_time', 'end_time', 'price'
     ];
     public function order()
     {
@@ -33,5 +33,15 @@ class Reservation extends Model
     public function getEndTimeAttribute()
     {
         return Carbon::createFromFormat('Y-m-d H:i:s', $this -> end)-> format('H:i');
+    }
+
+    public function getPriceAttribute()
+    {
+        $start  = new Carbon ($this->start);
+        $end = new Carbon ($this->end);
+        $diff = $end->diffInMinutes($start);
+        $cost = $this->reservationable->price;
+        $sum = ($cost * $diff) / 30;
+        return $sum;
     }
 }
