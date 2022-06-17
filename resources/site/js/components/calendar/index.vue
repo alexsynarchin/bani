@@ -63,7 +63,6 @@ export default {
     data() {
         return {
             selectedDate: dayjs(),
-            minStartTime: "17:00",
             eventDay:"2021-12-22",
             reserveData: {
                 selectedDay:null,
@@ -75,6 +74,18 @@ export default {
     },
 
     computed: {
+        minStartTime() {
+            let time;
+            let weekday = this.getWeekday(this.reserveData.selectedDay);
+            console.log(this.reserveData.selectedDay);
+            console.log(weekday);
+            if(weekday === 6 || weekday ===  0) {
+                time = '12:00';
+            } else {
+               time = '17:00';
+            }
+            return time;
+        },
         selectedDay() {
            return  dayjs(this.reserveData.selectedDay).locale('ru').format('DD MMMM');
         },
