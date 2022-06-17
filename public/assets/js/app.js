@@ -4498,6 +4498,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    minStartTime: {
+      type: String,
+      "default": '17:00'
+    }
+  },
   data: function data() {
     return {
       startTime: '',
@@ -4643,6 +4649,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
 
 
 __webpack_require__(/*! dayjs/locale/ru */ "./node_modules/dayjs/locale/ru.js");
@@ -4669,6 +4676,7 @@ dayjs__WEBPACK_IMPORTED_MODULE_0___default().extend((dayjs_plugin_weekOfYear__WE
   data: function data() {
     return {
       selectedDate: dayjs__WEBPACK_IMPORTED_MODULE_0___default()(),
+      minStartTime: "",
       eventDay: "2021-12-22",
       reserveData: {
         selectedDay: null,
@@ -4764,6 +4772,11 @@ dayjs__WEBPACK_IMPORTED_MODULE_0___default().extend((dayjs_plugin_weekOfYear__WE
   },
   mounted: function mounted() {
     this.selectDay(this.today);
+    var weekday = this.getWeekday(this.today);
+
+    if (weekday === 6 || 7) {
+      this.minStartTime = '12:00';
+    } else {}
   }
 });
 
@@ -87654,7 +87667,7 @@ var render = function () {
               placeholder: "-- : --",
               clearable: false,
               "picker-options": {
-                start: "17:00",
+                start: _vm.minStartTime,
                 step: "00:30",
                 end: "22:00",
               },
@@ -87818,7 +87831,10 @@ var render = function () {
         1
       ),
       _vm._v(" "),
-      _c("calendar-time", { on: { "select-time": _vm.selectTime } }),
+      _c("calendar-time", {
+        attrs: { "min-start-time": _vm.minStartTime },
+        on: { "select-time": _vm.selectTime },
+      }),
       _vm._v(" "),
       _c("div", { staticClass: "calendar-btn__wrap" }, [
         _c(

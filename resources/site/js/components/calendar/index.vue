@@ -27,6 +27,7 @@
         </div>
         <calendar-time
             @select-time="selectTime"
+            :min-start-time="minStartTime"
         ></calendar-time>
         <div class="calendar-btn__wrap">
             <button class="calendar-btn" @click.prevent="selectDayAndTime">Выбрать</button>
@@ -62,6 +63,7 @@ export default {
     data() {
         return {
             selectedDate: dayjs(),
+            minStartTime: "",
             eventDay:"2021-12-22",
             reserveData: {
                 selectedDay:null,
@@ -197,6 +199,13 @@ export default {
     },
     mounted() {
         this.selectDay(this.today);
+        let weekday = this.getWeekday(this.today);
+        if(weekday === 6 || 7) {
+            this.minStartTime = '12:00';
+        } else {
+            this.minStartTime = '17:00';
+        }
+
     }
 }
 </script>

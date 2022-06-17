@@ -13,7 +13,7 @@
                 style="margin-right: 10px"
                 @change="startTimeIsSelected"
                 :picker-options="{
-                  start: '17:00',
+                  start: minStartTime,
                   step: '00:30',
                   end: '22:00'
 }">
@@ -43,8 +43,15 @@
 </template>
 <script>
 export default {
+    props: {
+        minStartTime:{
+            type:String,
+            default: '17:00'
+        },
+    },
     data() {
         return {
+
             startTime: '',
             endTime: '',
             endTimeDisabled:true,
@@ -77,7 +84,8 @@ export default {
            this.$emit('select-time', {startTime:this.startTime,endTime:this.endTime})
           }
         }
-    }
+    },
+
 }
 </script>
 <style lang="scss" >
