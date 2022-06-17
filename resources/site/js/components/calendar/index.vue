@@ -63,7 +63,7 @@ export default {
     data() {
         return {
             selectedDate: dayjs(),
-            minStartTime: "",
+            minStartTime: "17:00",
             eventDay:"2021-12-22",
             reserveData: {
                 selectedDay:null,
@@ -199,12 +199,7 @@ export default {
     },
     mounted() {
         this.selectDay(this.today);
-        let weekday = this.getWeekday(this.today);
-        if(weekday === 6 || 7) {
-            this.minStartTime = '12:00';
-        } else {
-            this.minStartTime = '17:00';
-        }
+
 
     }
 }
