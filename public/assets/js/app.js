@@ -4676,7 +4676,7 @@ dayjs__WEBPACK_IMPORTED_MODULE_0___default().extend((dayjs_plugin_weekOfYear__WE
   data: function data() {
     return {
       selectedDate: dayjs__WEBPACK_IMPORTED_MODULE_0___default()(),
-      minStartTime: "",
+      minStartTime: "17:00",
       eventDay: "2021-12-22",
       reserveData: {
         selectedDay: null,
@@ -4772,11 +4772,6 @@ dayjs__WEBPACK_IMPORTED_MODULE_0___default().extend((dayjs_plugin_weekOfYear__WE
   },
   mounted: function mounted() {
     this.selectDay(this.today);
-    var weekday = this.getWeekday(this.today);
-
-    if (weekday === 6 || 7) {
-      this.minStartTime = '12:00';
-    } else {}
   }
 });
 
