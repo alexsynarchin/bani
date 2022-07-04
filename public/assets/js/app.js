@@ -4710,8 +4710,8 @@ dayjs__WEBPACK_IMPORTED_MODULE_0___default().extend((dayjs_plugin_weekOfYear__WE
       var day = dayjs__WEBPACK_IMPORTED_MODULE_0___default()().format("YYYY-MM-DD");
       var now = new Date();
 
-      if (now.getHours() >= 12) {
-        day = '2022-07-04';
+      if (now.getHours() >= 17) {
+        day = '2022-07-05';
       }
 
       return day;
