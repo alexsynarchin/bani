@@ -3909,7 +3909,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -87145,7 +87144,6 @@ var render = function () {
         _vm._v(" "),
         _c("input", {
           directives: [
-            { name: "phone", rawName: "v-phone" },
             {
               name: "model",
               rawName: "v-model",

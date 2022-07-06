@@ -61,7 +61,6 @@
                 </label>
                 <input autocomplete="tel" name="phone" type="tel"
                        class="form-control"
-                       v-phone
                        v-model="form.phone"
                        :class="{'is-invalid': errors.has('client.phone')}"
                        placeholder="Телефон">
