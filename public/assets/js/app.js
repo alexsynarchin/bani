@@ -4697,6 +4697,13 @@ dayjs__WEBPACK_IMPORTED_MODULE_0___default().extend((dayjs_plugin_weekOfYear__WE
         time = '17:00';
       }
 
+      var nowDate = new Date(this.reserveData.selectedDay);
+      console.log(nowDate.getMonth());
+
+      if (nowDate.getDate() === 11 && nowDate.getMonth() === 6) {
+        time = '12:00';
+      }
+
       return time;
     },
     selectedDay: function selectedDay() {
@@ -4710,7 +4717,7 @@ dayjs__WEBPACK_IMPORTED_MODULE_0___default().extend((dayjs_plugin_weekOfYear__WE
       var now = new Date();
 
       if (now.getHours() >= 12) {
-        day = '2022-07-11';
+        day = '2022-07-12';
       }
 
       return day;

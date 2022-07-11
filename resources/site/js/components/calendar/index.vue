@@ -84,6 +84,11 @@ export default {
             } else {
                time = '17:00';
             }
+            let nowDate = new Date(this.reserveData.selectedDay);
+            console.log(nowDate.getMonth())
+            if(nowDate.getDate() === 11 && nowDate.getMonth() === 6) {
+                time = '12:00';
+            }
             return time;
         },
         selectedDay() {
@@ -101,7 +106,7 @@ export default {
             let day = dayjs().format("YYYY-MM-DD");
             var now = new Date();
             if(now.getHours() >= 12) {
-                day = '2022-07-11'
+                day = '2022-07-12'
             }
             return day;
         },
