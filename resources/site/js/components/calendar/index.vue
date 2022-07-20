@@ -106,7 +106,7 @@ export default {
             let day = dayjs().format("YYYY-MM-DD");
             var now = new Date();
             if(now.getHours() >= 17) {
-                day = '2022-07-20'
+                day = '2022-07-21'
             }
             return day;
         },
