@@ -4717,7 +4717,7 @@ dayjs__WEBPACK_IMPORTED_MODULE_0___default().extend((dayjs_plugin_weekOfYear__WE
       var now = new Date();
 
       if (now.getHours() >= 17) {
-        day = '2022-07-29';
+        day = '2022-07-30';
       }
 
       return day;
